@@ -109,7 +109,10 @@ h1 {
   font-size: 2em;
   text-shadow: 2px 2px 5px rgb(1, 101, 47);
 }
-
+.uk-card {
+  font-family: 'Caveat', cursive;
+  font-size: 1.7em;
+}
 /*Categories pictures with hovering info*/
 .categories {
   display: flex;
