@@ -1,5 +1,6 @@
 /* Fonts
   font-family: 'Caveat', cursive; 
+  font-family: 'Caveat Brush', cursive;
 */
 
 body {
@@ -10,13 +11,19 @@ body {
 /*Nav bar*/
 .uk-navbar-nav{
   background-color: rgb(54, 183, 41);
+  
 }
-
+.uk-navbar-nav>li>a {
+  font-family: 'Caveat Brush', cursive;
+  font-weight: 500;
+  font-size: 1em;
+}
 .uk-navbar-dropdown {
   background-color: rgb(54, 183, 41);
+  font-family: 'Caveat', cursive;
 }
 
-nav {
+/* nav {
   width: 100%;
   display: flex;
   position: fixed;
@@ -28,8 +35,7 @@ nav {
   vertical-align: middle;
   z-index: 2;
   box-shadow: 0px 5px 30px -5px black;
-  /*Shadow of nav bar. May or may not keep.*/
-}
+} */
 
 nav a, nav a:hover {
   color: white !important;
@@ -46,22 +52,22 @@ nav img {
   border-radius: 5px;
 }
 
-.navContact, .navContact:hover {
+/* .navContact, .navContact:hover {
   font-size: .9em;
   padding-top: 10px;
-}
+} */
 
-.socialMediaNav {
+/* .socialMediaNav {
   display: flex;
   flex-direction: row;
   /* flex: 1; */
-}
+/* }  */
 
-.socialMediaNav a, .socialMediaNav a:hover {
+/* .socialMediaNav a, .socialMediaNav a:hover {
   padding: 5px 10px;
   margin: 0px;
   font-size: 1.2em;
-}
+} */
 
 .navMenu {
   display: none;
@@ -107,11 +113,29 @@ h1 {
   font-family: 'Caveat', cursive;
   font-weight: 500;
   font-size: 2em;
-  text-shadow: 2px 2px 5px rgb(1, 101, 47);
+  text-shadow: 2px 2px 5px rgb(1, 101, 47); 
 }
 .uk-card {
   font-family: 'Caveat', cursive;
   font-size: 1.7em;
+}
+.uk-overlay {
+  padding: 5px;
+}
+.uk-overlay p {
+  padding: 0px;
+  margin: 0px;
+}
+.card-name {
+  font-size: 1em;
+  padding: 0px;
+  margin: 0px;
+}
+.card-price {
+  font-size: .75em;
+  margin-bottom: 3px;
+  padding-bottom: 5px;
+  font-family: 'Caveat Brush', cursive;
 }
 /*Categories pictures with hovering info*/
 .categories {
