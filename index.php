@@ -33,16 +33,16 @@
       <div class="uk-navbar-left">
           <ul class="uk-navbar-nav">
             <li>
-              <a class="uk-logo" href="index.html">
+              <a class="uk-logo" href="index.php">
                 <img src="images/Zahn Farms Logo.jpg" alt="Zahn Farms Logo"> <!--TODO Change logo-->
               </a>
             </li>
             <li>
-              <a href="index.html">Products</a>
+              <a href="index.php">Products</a>
               <div class="uk-navbar-dropdown" delay-hide="50">
                   <ul class="uk-nav uk-navbar-dropdown-nav"> <!-- TODO Dynamically get categories from database-->
-                    <li><a href="products.php">Beef</a></li>
-                    <li><a href="#">Pork</a></li>
+                    <li><a href="products.php/beef">Beef</a></li>
+                    <li><a href="products.php/pork">Pork</a></li>
                     <li><a href="#">Chicken</a></li>
                     <li><a href="#">Eggs</a></li>
                     <li><a href="#">Mushrooms</a></li>
@@ -106,7 +106,7 @@
   <!-- TODO Style -->
   <div class="uk-grid-small uk-child-width-1-4@s uk-flex-center uk-text-center" uk-grid>
     <!-- TODO Created dynamically from database -->
-    <a href="products.html"><!--? Put class="uk-flex-last" for out of season items -->
+    <a href="products.php"><!--? Put class="uk-flex-last" for out of season items -->
       <div class="uk-card uk-card-default">    
         <div class="uk-card-media-top">
           <img src="images/beef.jpg" alt="">
@@ -116,7 +116,7 @@
         </div>
       </div>
     </a>
-    <a href="products.html">
+    <a href="products.php">
       <div class="uk-card uk-card-default">    
         <div class="uk-card-media-top">
           <img src="images/beef.jpg" alt="">
@@ -126,7 +126,7 @@
         </div>
       </div>
     </a>
-    <a href="products.html">
+    <a href="products.php">
       <div class="uk-card uk-card-default">    
         <div class="uk-card-media-top">
           <img src="images/beef.jpg" alt="">
@@ -136,7 +136,7 @@
         </div>
       </div>
     </a>
-    <a href="products.html">
+    <a href="products.php">
       <div class="uk-card uk-card-default">    
         <div class="uk-card-media-top">
           <img src="images/beef.jpg" alt="">
@@ -146,7 +146,7 @@
         </div>
       </div>
     </a>
-    <a href="products.html">
+    <a href="products.php">
       <div class="uk-card uk-card-default">    
         <div class="uk-card-media-top">
           <img src="images/beef.jpg" alt="">
@@ -156,7 +156,7 @@
         </div>
       </div>
     </a>
-    <a href="products.html">
+    <a href="products.php">
       <div class="uk-card uk-card-default">    
         <div class="uk-card-media-top">
           <img src="images/beef.jpg" alt="">
@@ -166,7 +166,7 @@
         </div>
       </div>
     </a>
-    <a href="products.html">
+    <a href="products.php">
       <div class="uk-card uk-card-default">    
         <div class="uk-card-media-top">
           <img src="images/beef.jpg" alt="">
@@ -176,7 +176,7 @@
         </div>
       </div>
     </a>
-    <a href="products.html">
+    <a href="products.php">
       <div class="uk-card uk-card-default">    
         <div class="uk-card-media-top">
           <img src="images/beef.jpg" alt="">

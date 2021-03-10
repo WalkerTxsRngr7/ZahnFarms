@@ -33,15 +33,15 @@
       <div class="uk-navbar-left">
           <ul class="uk-navbar-nav">
             <li>
-              <a class="uk-logo" href="index.html">
+              <a class="uk-logo" href="index.php">
                 <img src="images/Zahn Farms Logo.jpg" alt="Zahn Farms Logo"> <!--TODO Change logo-->
               </a>
             </li>
             <li>
-              <a href="index.html">Products</a>
+              <a href="index.php">Products</a>
               <div class="uk-navbar-dropdown" delay-hide="50">
                   <ul class="uk-nav uk-navbar-dropdown-nav"> <!-- TODO Dynamically get categories from database-->
-                    <li><a href="products.html">Beef</a></li>
+                    <li><a href="products.php">Beef</a></li>
                     <li><a href="#">Pork</a></li>
                     <li><a href="#">Chicken</a></li>
                     <li><a href="#">Eggs</a></li>

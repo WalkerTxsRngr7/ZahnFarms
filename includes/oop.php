@@ -107,6 +107,9 @@ class conn{
                 $text = row["Text"];
                 $URL = "<a href='$link'>'$text'</a>";
                 echo $URL;
+
+
+                // <li><a href="products.php/$link">Beef</a></li>
             }
         }
     }
