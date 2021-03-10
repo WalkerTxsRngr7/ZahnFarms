@@ -1,33 +1,29 @@
 <!doctype html>
 <html lang="en">
 
-<head>
-  <!-- Required meta tags -->
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-  <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   
-  <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.gstatic.com">
-  <link href="https://fonts.googleapis.com/css2?family=Caveat&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
-    integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
-
-  <link rel="preconnect" href="https://fonts.gstatic.com">
-  <link href="https://fonts.googleapis.com/css2?family=Caveat+Brush&display=swap" rel="stylesheet">
-
-  <!-- UIkit CSS -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.6.17/dist/css/uikit.min.css" />
-  <!-- UIkit JS -->
-  <script src="https://cdn.jsdelivr.net/npm/uikit@3.6.17/dist/js/uikit.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/uikit@3.6.17/dist/js/uikit-icons.min.js"></script>
-
-  <link rel="stylesheet" href="styles.css">
-
-  <title>Zahn Farms</title>
-</head>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Caveat&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+  
+    <!-- UIkit CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.6.17/dist/css/uikit.min.css" />
+    <!-- UIkit JS -->
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.6.17/dist/js/uikit.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.6.17/dist/js/uikit-icons.min.js"></script>
+  
+    <link rel="stylesheet" href="styles.css">
+  
+    <title>Zahn Farms</title>
+  </head>
 
 <body>
   <!--* Nav Bar --> 
@@ -45,7 +41,7 @@
               <a href="index.html">Products</a>
               <div class="uk-navbar-dropdown" delay-hide="50">
                   <ul class="uk-nav uk-navbar-dropdown-nav"> <!-- TODO Dynamically get categories from database-->
-                    <li><a href="#">Beef</a></li>
+                    <li><a href="products.html">Beef</a></li>
                     <li><a href="#">Pork</a></li>
                     <li><a href="#">Chicken</a></li>
                     <li><a href="#">Eggs</a></li>
@@ -59,32 +55,31 @@
             <li><a href="#">About Us</a></li>
             <li><a href="#">Blog</a></li>
             <li><a href="#">Contact Us</a></li>
-            <a href="tel:555-555-5555" class="navContact">(555) 555-5555</a>
-            <div class="socialMediaNav">
-              <a href="https://www.facebook.com/AgSelectUSA/" target="_blank"><i class="fab fa-facebook-square"></i></a>
-              <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
-              <a href="https://twitter.com/ag_select" target="_blank"><i class="fab fa-twitter-square"></i></a>
-            </div>
+
+            <li><a href="tel:417-719-7517" class="navContact">(417) 719-7517</a></li>
+            <li><a href="https://www.facebook.com/ZahnFarms/" target="_blank"><i class="fab fa-facebook-square"></i></a></li>
+            <li><a href="#" target="_blank"><i class="fab fa-instagram"></i></a></li>
+            <li><a href="https://twitter.com/ag_select" target="_blank"><i class="fab fa-twitter-square"></i></a></li>
           </ul>
       </div>
       <div class="uk-navbar-right">
-          <ul class="uk-navbar-nav">
-              <li><a href="#">Sign In</a></li>
-          </ul>
+        <ul class="uk-navbar-nav">
+          <li><a href="#"><i class="fas fa-shopping-cart"></i></a></li>
+          <li><a href="#">Sign In</a></li>
+        </ul>
       </div>
     </nav>
     <!--? For putting breadcrumbs on Products and Product page. Not Categories/Home Page -->
-    <!-- <div class="uk-navbar-subtitle"> 
-      <ul class="uk-breadcrumb">
+    <div class="uk-navbar-subtitle"> 
+      <ul class="uk-breadcrumb"> <!--! change links dynamically to show correct breadcrumbs -->
         <li><a href="">Products</a></li>
         <li><a href="">Chicken</a></li>
-        <li><span>Chicken Breast</span></li>
       </ul>
-    </div> -->
+    </div>
   </div>
   
   <!-- TODO Navbar for mobile devices -->
-  <nav class="navMenu">
+  <!-- <nav class="navMenu">
     <div class="nav-item dropdown">
       <a data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><i class="fas fa-bars"></i></a>
       <div class="dropdown-menu collapse hide">
@@ -102,7 +97,7 @@
     </div>
     <a href="index.html"><img src="images/agSelect-Logo-nav.jpg" alt="AgSelect logo"></a>
     <a href="tel:555-555-5555" class="navContact">(555) 555-5555</a>
-  </nav>
+  </nav> -->
 
   <h1 class="slogan">Short about us here.... Beef Chicken Eggs</h1>
 
@@ -110,7 +105,7 @@
   <!-- TODO Style -->
   <div class="uk-grid-small uk-child-width-1-4@s uk-flex-center uk-text-center" uk-grid>
     <!-- TODO Created dynamically from database -->
-    <div><!--? Put class="uk-flex-last" for out of season items -->
+    <a href="product.html"><!--? Put class="uk-flex-last" for out of season items -->
       <div class="uk-card uk-card-default">    
         <div class="uk-card-media-top">
           <img src="images/beef.jpg" alt="">
@@ -120,8 +115,8 @@
           <p class="card-price">($3/lb)</p>
         </div>
       </div>
-    </div>
-    <div>
+    </a>
+    <a href="product.html">
       <div class="uk-card uk-card-default">    
         <div class="uk-card-media-top">
           <img src="images/beef.jpg" alt="">
@@ -131,8 +126,8 @@
           <p class="card-price">($2)</p>
         </div>
       </div>
-    </div>
-    <div>
+    </a>
+    <a href="product.html">
       <div class="uk-card uk-card-default">    
         <div class="uk-card-media-top">
           <img src="images/beef.jpg" alt="">
@@ -142,8 +137,8 @@
           <p class="card-price">($8/lb)</p>
         </div>
       </div>
-    </div>
-    <div>
+    </a>
+    <a href="product.html">
       <div class="uk-card uk-card-default">    
         <div class="uk-card-media-top">
           <img src="images/beef.jpg" alt="">
@@ -153,8 +148,8 @@
           <p class="card-price">($7/dozen)</p>
         </div>
       </div>
-    </div>
-    <div>
+    </a>
+    <a href="product.html">
       <div class="uk-card uk-card-default">    
         <div class="uk-card-media-top">
           <img src="images/beef.jpg" alt="">
@@ -164,8 +159,8 @@
           <p class="card-price">($10/lb)</p>
         </div>
       </div>
-    </div>
-    <div>
+    </a>
+    <a href="product.html">
       <div class="uk-card uk-card-default">    
         <div class="uk-card-media-top">
           <img src="images/beef.jpg" alt="">
@@ -175,8 +170,8 @@
           <p class="card-price">($1)</p>
         </div>
       </div>
-    </div>
-    <div>
+    </a>
+    <a href="product.html">
       <div class="uk-card uk-card-default">    
         <div class="uk-card-media-top">
           <img src="images/beef.jpg" alt="">
@@ -186,8 +181,8 @@
           <p class="card-price">($2/pint)</p>
         </div>
       </div>
-    </div>
-    <div>
+    </a>
+    <a href="product.html">
       <div class="uk-card uk-card-default">    
         <div class="uk-card-media-top">
           <img src="images/beef.jpg" alt="">
@@ -197,7 +192,7 @@
           <p class="card-price">$5 / bag</p>
         </div>
       </div>
-    </div>
+    </a>
   </div>
 
 

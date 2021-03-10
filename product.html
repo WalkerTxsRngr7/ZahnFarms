@@ -41,7 +41,7 @@
               <a href="index.html">Products</a>
               <div class="uk-navbar-dropdown" delay-hide="50">
                   <ul class="uk-nav uk-navbar-dropdown-nav"> <!-- TODO Dynamically get categories from database-->
-                    <li><a href="#">Beef</a></li>
+                    <li><a href="products.html">Beef</a></li>
                     <li><a href="#">Pork</a></li>
                     <li><a href="#">Chicken</a></li>
                     <li><a href="#">Eggs</a></li>
@@ -55,32 +55,32 @@
             <li><a href="#">About Us</a></li>
             <li><a href="#">Blog</a></li>
             <li><a href="#">Contact Us</a></li>
-            <a href="tel:555-555-5555" class="navContact">(555) 555-5555</a>
-            <div class="socialMediaNav">
-              <a href="https://www.facebook.com/AgSelectUSA/" target="_blank"><i class="fab fa-facebook-square"></i></a>
-              <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
-              <a href="https://twitter.com/ag_select" target="_blank"><i class="fab fa-twitter-square"></i></a>
-            </div>
+
+            <li><a href="tel:417-719-7517" class="navContact">(417) 719-7517</a></li>
+            <li><a href="https://www.facebook.com/ZahnFarms/" target="_blank"><i class="fab fa-facebook-square"></i></a></li>
+            <li><a href="#" target="_blank"><i class="fab fa-instagram"></i></a></li>
+            <li><a href="https://twitter.com/ag_select" target="_blank"><i class="fab fa-twitter-square"></i></a></li>
           </ul>
       </div>
       <div class="uk-navbar-right">
-          <ul class="uk-navbar-nav">
-              <li><a href="#">Sign In</a></li>
-          </ul>
+        <ul class="uk-navbar-nav">
+          <li><a href="#"><i class="fas fa-shopping-cart"></i></a></li>
+          <li><a href="#">Sign In</a></li>
+        </ul>
       </div>
     </nav>
     <!--? For putting breadcrumbs on Products and Product page. Not Categories/Home Page -->
-    <!-- <div class="uk-navbar-subtitle"> 
-      <ul class="uk-breadcrumb">
+    <div class="uk-navbar-subtitle"> 
+      <ul class="uk-breadcrumb"> <!--! change links dynamically to show correct breadcrumbs -->
         <li><a href="">Products</a></li>
         <li><a href="">Chicken</a></li>
         <li><span>Chicken Breast</span></li>
       </ul>
-    </div> -->
+    </div>
   </div>
   
   <!-- TODO Navbar for mobile devices -->
-  <nav class="navMenu">
+  <!-- <nav class="navMenu">
     <div class="nav-item dropdown">
       <a data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><i class="fas fa-bars"></i></a>
       <div class="dropdown-menu collapse hide">
@@ -98,93 +98,30 @@
     </div>
     <a href="index.html"><img src="images/agSelect-Logo-nav.jpg" alt="AgSelect logo"></a>
     <a href="tel:555-555-5555" class="navContact">(555) 555-5555</a>
-  </nav>
+  </nav> -->
 
-  <h1 class="slogan">Short about us here</h1>
 
-  <!--* Category boxes-->
-  <!-- TODO Style -->
-  <div class="uk-grid-small uk-child-width-1-4@s uk-flex-center uk-text-center" uk-grid>
-    <!-- TODO Created dynamically from database -->
-    <div><!--? Put class="uk-flex-last" for out of season items -->
-      <div class="uk-card uk-card-default">    
-        <div class="uk-card-media-top">
-          <img src="images/beef.jpg" alt="">
-        </div>
-        <div class="uk-overlay uk-overlay-primary uk-position-bottom">
-          <p>Beef</p>
-        </div>
-      </div>
-    </div>
-    <div>
-      <div class="uk-card uk-card-default">    
-        <div class="uk-card-media-top">
-          <img src="images/beef.jpg" alt="">
-        </div>
-        <div class="uk-overlay uk-overlay-primary uk-position-bottom">
-          <p>Chicken</p>
-        </div>
-      </div>
-    </div>
-    <div>
-      <div class="uk-card uk-card-default">    
-        <div class="uk-card-media-top">
-          <img src="images/beef.jpg" alt="">
-        </div>
-        <div class="uk-overlay uk-overlay-primary uk-position-bottom">
-          <p>Pork</p>
-        </div>
-      </div>
-    </div>
-    <div>
-      <div class="uk-card uk-card-default">    
-        <div class="uk-card-media-top">
-          <img src="images/beef.jpg" alt="">
-        </div>
-        <div class="uk-overlay uk-overlay-primary uk-position-bottom">
-          <p>Eggs</p>
-        </div>
-      </div>
-    </div>
-    <div>
-      <div class="uk-card uk-card-default">    
-        <div class="uk-card-media-top">
-          <img src="images/beef.jpg" alt="">
-        </div>
-        <div class="uk-overlay uk-overlay-primary uk-position-bottom">
-          <p>Vegetables</p>
-        </div>
-      </div>
-    </div>
-    <div>
-      <div class="uk-card uk-card-default">    
-        <div class="uk-card-media-top">
-          <img src="images/beef.jpg" alt="">
-        </div>
-        <div class="uk-overlay uk-overlay-primary uk-position-bottom">
-          <p>Fruit</p>
-        </div>
-      </div>
-    </div>
-    <div>
-      <div class="uk-card uk-card-default">    
-        <div class="uk-card-media-top">
-          <img src="images/beef.jpg" alt="">
-        </div>
-        <div class="uk-overlay uk-overlay-primary uk-position-bottom">
-          <p>Berries</p>
-        </div>
-      </div>
-    </div>
-    <div>
-      <div class="uk-card uk-card-default">    
-        <div class="uk-card-media-top">
-          <img src="images/beef.jpg" alt="">
-        </div>
-        <div class="uk-overlay uk-overlay-primary uk-position-bottom">
-          <p>Mushrooms</p>
-        </div>
-      </div>
+
+  <!--* Product box-->
+  <div class="uk-grid-small uk-child-width-1-2@s uk-flex-center uk-text-center" uk-grid>
+    <!-- <div class="uk-width-1-2@m"> -->
+      <div class="uk-card uk-card-default"><img src="images/beef.jpg" alt=""></div>
+    <!-- </div> -->
+    <!-- <div class="uk-width-1-2@m"> -->
+      <div class="uk-card uk-card-default uk-card-body productDesc">
+        <h2>
+          Chicken Breast
+        </h2>
+        <p>
+          Description Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. In ante metus dictum at tempor commodo. Mattis ullamcorper velit sed ullamcorper. Mauris ultrices eros in cursus turpis massa tincidunt dui ut. Enim sit amet venenatis urna cursus eget nunc scelerisque. Lectus proin nibh nisl condimentum id venenatis a condimentum. In hac habitasse platea dictumst quisque. Turpis egestas integer eget aliquet nibh praesent. Viverra nibh cras pulvinar mattis nunc. Parturient montes nascetur ridiculus mus mauris.
+        </p>
+        <h3>
+          $3 / pound
+        </h3>
+         </div>
+    <!-- </div> -->
+    <div class="uk-width-expand">
+      <div class="uk-card uk-card-default uk-card-body">Buttons</div>
     </div>
   </div>
 
