@@ -41,7 +41,7 @@
               <a href="index.html">Products</a>
               <div class="uk-navbar-dropdown" delay-hide="50">
                   <ul class="uk-nav uk-navbar-dropdown-nav"> <!-- TODO Dynamically get categories from database-->
-                    <li><a href="products.html">Beef</a></li>
+                    <li><a href="products.php">Beef</a></li>
                     <li><a href="#">Pork</a></li>
                     <li><a href="#">Chicken</a></li>
                     <li><a href="#">Eggs</a></li>
