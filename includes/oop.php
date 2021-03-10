@@ -1,4 +1,11 @@
 <?php
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "zahnFarms";
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+
 class conn{
     // check connection
     public function check_conn($servername,$username,$password,$dbname){
@@ -15,12 +22,6 @@ class conn{
     // product information functions and edit once database is setup
     // public site use
     public function get_Product($product){
-        $servername = "127.0.0.1";
-        $username = "root";
-        $password = "arizona";
-        $dbname = "main";
-        // Create connection
-        $conn = new mysqli($servername, $username, $password, $dbname);
         $sql = "select Item From inventory WHERE Item = '$product'";
         $result = $conn->query($sql);
         if ($result->num_rows > 0) {
@@ -42,12 +43,6 @@ class conn{
         }
     }
     public function get_Product_Status($product){
-        $servername = "127.0.0.1";
-        $username = "root";
-        $password = "arizona";
-        $dbname = "main";
-        // Create connection
-        $conn = new mysqli($servername, $username, $password, $dbname);
         $sql = "SELECT inventory.Item,orders.Status
                 FROM inventory
                 INNER JOIN orders ON inventory.Item=Orders.Item Where inventory.Item = '$product'";
@@ -72,12 +67,6 @@ class conn{
         }
     }
     public function getCategories(){
-        $servername = "127.0.0.1";
-        $username = "root";
-        $password = "arizona";
-        $dbname = "main";
-        // Create connection
-        $conn = new mysqli($servername, $username, $password, $dbname);
         $sql = "SELECT CategoryName FROM categories";
         $result = $conn->query($sql);
         if ($result->num_rows > 0) {
@@ -99,12 +88,6 @@ class conn{
         }
     }
     public function getNavbar(){
-        $servername = "127.0.0.1";
-        $username = "root";
-        $password = "arizona";
-        $dbname = "main";
-        // Create connection
-        $conn = new mysqli($servername, $username, $password, $dbname);
         $sql = "SELECT URL,Text FROM links";
         $result = $conn->query($sql);
         if ($result->num_rows > 0) {
@@ -129,12 +112,6 @@ class conn{
     }
     // admin functions
     public function add_New_Product($productID,$productName,$price,$quantity,$description,$categoryID,$inSeason){
-        $servername = "127.0.0.1";
-        $username = "root";
-        $password = "arizona";
-        $dbname = "main";
-        // Create connection
-        $conn = new mysqli($servername, $username, $password, $dbname);
         if(isset($_POST['upload_photo'])){
 
             $name = $_FILES['file']['name'];
@@ -170,23 +147,11 @@ class conn{
         */
     }
     public function update_Product($productName,$price,$quantity,$description,$categoryID,$inSeason){
-        $servername = "127.0.0.1";
-        $username = "root";
-        $password = "arizona";
-        $dbname = "main";
-        // Create connection
-        $conn = new mysqli($servername, $username, $password, $dbname);
         $sql = "Update inventory SET price = '$price',quantity = '$quantity',description = '$description',categoryID = '$categoryID',inSeason = '$inSeason'
                 WHERE productName = '$productName'";
         $conn->query($sql);
     }
     public function inSeason($productName){
-        $servername = "127.0.0.1";
-        $username = "root";
-        $password = "arizona";
-        $dbname = "main";
-        // Create connection
-        $conn = new mysqli($servername, $username, $password, $dbname);
         // price
         $priceSql = "Select price from inventory where productName = '$productName'";
         $priceResult = $conn->query($priceSql);
@@ -207,12 +172,6 @@ class conn{
         $this->update_Product($productName,$priceResult["price"],$quantityResult["quantity"],$descriptionResult["description"],$categoryIDResult["categoryID"],"1");
     }
     public function offSeason($productName){
-        $servername = "127.0.0.1";
-        $username = "root";
-        $password = "arizona";
-        $dbname = "main";
-        // Create connection
-        $conn = new mysqli($servername, $username, $password, $dbname);
         // price
         $priceSql = "Select price from inventory where productName = '$productName'";
         $priceResult = $conn->query($priceSql);
@@ -234,12 +193,6 @@ class conn{
     }
     // admin  functions and public site functions
     public function add_inventory($productName,$quantity){
-        $servername = "127.0.0.1";
-        $username = "root";
-        $password = "arizona";
-        $dbname = "main";
-        // Create connection
-        $conn = new mysqli($servername, $username, $password, $dbname);
         // math
         $preSql = "Select quantity from inventory where productName = '$productName'";
         $preResult = $conn->query($preSql);
@@ -250,12 +203,6 @@ class conn{
         $conn->query($sql);
     }
     public function subtract_inventory($productName,$quantity){
-        $servername = "127.0.0.1";
-        $username = "root";
-        $password = "arizona";
-        $dbname = "main";
-        // Create connection
-        $conn = new mysqli($servername, $username, $password, $dbname);
         // math
         $preSql = "Select quantity from inventory where productName = '$productName'";
         $preResult = $conn->query($preSql);
@@ -268,7 +215,7 @@ class conn{
 }
 $status = new conn();
 // guide
-//$status->check_conn("127.0.0.1","root","arizona","main");
+// $status->check_conn("localhost","root","","zahnFarms");
 //$status->get_Product("Zoie Mug");
 //$status->get_Product_Status("Zoie Mug");
 //$status->getCategories();
