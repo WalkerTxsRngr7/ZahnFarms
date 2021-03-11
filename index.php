@@ -41,6 +41,7 @@
               <a href="index.php">Products</a>
               <div class="uk-navbar-dropdown" delay-hide="50">
                   <ul class="uk-nav uk-navbar-dropdown-nav"> <!-- TODO Dynamically get categories from database-->
+                    <!--
                     <li><a href="products.php/beef">Beef</a></li>
                     <li><a href="products.php/pork">Pork</a></li>
                     <li><a href="#">Chicken</a></li>
@@ -49,6 +50,36 @@
                     <li><a href="#">Fruit</a></li>
                     <li><a href="#">Berries</a></li>
                     <li><a href="#">Vegetables</a></li>
+                    -->
+                      <?php
+                      $servername = "127.0.0.1";
+                      $username = "root";
+                      $password = "arizona";
+                      $dbname = "teaching";
+                      $sql = "SELECT URL,Text FROM links";
+                      $conn = new mysqli($servername, $username, $password, $dbname);
+                      $result = $conn->query($sql);
+                      if ($result->num_rows > 0) {
+                          // output data of each row
+                          while($row = $result->fetch_assoc()) {
+                              /*
+                               * adding html can be done by calling the echo statement
+                               * example:
+                               * echo "<tr class='TableRows'>";
+                               * remember this is just html code just in a php format
+                               * more data can be added just a sample from my database
+                               * this function can become a key to our project and more advance
+                               * if you change any styling to this function its going to change the whole product page
+                               * you can delete these comments once we finish the product page and add needed information
+                              */
+                              $link = row["URL"];
+                              $text = row["Text"];
+                              $URL = "<li><a href='$link'>'$text'</a></li>";
+                              echo $URL;
+                              // <li><a href="products.php/$link">Beef</a></li>
+                          }
+                      }
+                      ?>
                   </ul>
               </div>
             </li>
