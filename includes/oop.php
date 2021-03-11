@@ -2,9 +2,11 @@
 $servername = "localhost";
 $username = "root";
 $password = "";
-$dbname = "zahnFarms";
+$dbname = "teaching";
+//$password = "";
+//$dbname = "zahnFarms";
 // Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
+
 
 class conn{
     // check connection
@@ -23,6 +25,7 @@ class conn{
     // public site use
     public function get_Product($product){
         $sql = "select Item From inventory WHERE Item = '$product'";
+        $conn = new mysqli($GLOBALS['servername'], $GLOBALS['username'], $GLOBALS['password'], $GLOBALS['dbname']);
         $result = $conn->query($sql);
         if ($result->num_rows > 0) {
             // output data of each row
@@ -46,6 +49,7 @@ class conn{
         $sql = "SELECT inventory.Item,orders.Status
                 FROM inventory
                 INNER JOIN orders ON inventory.Item=Orders.Item Where inventory.Item = '$product'";
+        $conn = new mysqli($GLOBALS['servername'], $GLOBALS['username'], $GLOBALS['password'], $GLOBALS['dbname']);
         $result = $conn->query($sql);
         if ($result->num_rows > 0) {
             // output data of each row
@@ -68,6 +72,7 @@ class conn{
     }
     public function getCategories(){
         $sql = "SELECT CategoryName FROM categories";
+        $conn = new mysqli($GLOBALS['servername'], $GLOBALS['username'], $GLOBALS['password'], $GLOBALS['dbname']);
         $result = $conn->query($sql);
         if ($result->num_rows > 0) {
             // output data of each row
@@ -89,6 +94,7 @@ class conn{
     }
     public function getNavbar(){
         $sql = "SELECT URL,Text FROM links";
+        $conn = new mysqli($GLOBALS['servername'], $GLOBALS['username'], $GLOBALS['password'], $GLOBALS['dbname']);
         $result = $conn->query($sql);
         if ($result->num_rows > 0) {
             // output data of each row
@@ -120,7 +126,7 @@ class conn{
             $name = $_FILES['file']['name'];
             $target_dir = "127.0.0.1/Home-Server-Website/";
             $target_file = $target_dir . basename($_FILES["file"]["name"]);
-
+            $conn = new mysqli($GLOBALS['servername'], $GLOBALS['username'], $GLOBALS['password'], $GLOBALS['dbname']);
             // Select file type
             $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
 
@@ -150,6 +156,7 @@ class conn{
         */
     }
     public function update_Product($productName,$price,$quantity,$description,$categoryID,$inSeason){
+        $conn = new mysqli($GLOBALS['servername'], $GLOBALS['username'], $GLOBALS['password'], $GLOBALS['dbname']);
         $sql = "Update inventory SET price = '$price',quantity = '$quantity',description = '$description',categoryID = '$categoryID',inSeason = '$inSeason'
                 WHERE productName = '$productName'";
         $conn->query($sql);
@@ -157,6 +164,7 @@ class conn{
     public function inSeason($productName){
         // price
         $priceSql = "Select price from inventory where productName = '$productName'";
+        $conn = new mysqli($GLOBALS['servername'], $GLOBALS['username'], $GLOBALS['password'], $GLOBALS['dbname']);
         $priceResult = $conn->query($priceSql);
         $PriceRow = $priceResult->fetch_assoc();
         // quantity
@@ -176,6 +184,7 @@ class conn{
     }
     public function offSeason($productName){
         // price
+        $conn = new mysqli($GLOBALS['servername'], $GLOBALS['username'], $GLOBALS['password'], $GLOBALS['dbname']);
         $priceSql = "Select price from inventory where productName = '$productName'";
         $priceResult = $conn->query($priceSql);
         $PriceRow = $priceResult->fetch_assoc();
@@ -197,6 +206,7 @@ class conn{
     // admin  functions and public site functions
     public function add_inventory($productName,$quantity){
         // math
+        $conn = new mysqli($GLOBALS['servername'], $GLOBALS['username'], $GLOBALS['password'], $GLOBALS['dbname']);
         $preSql = "Select quantity from inventory where productName = '$productName'";
         $preResult = $conn->query($preSql);
         $preRow = $preResult->fetch_assoc();
@@ -207,6 +217,7 @@ class conn{
     }
     public function subtract_inventory($productName,$quantity){
         // math
+        $conn = new mysqli($GLOBALS['servername'], $GLOBALS['username'], $GLOBALS['password'], $GLOBALS['dbname']);
         $preSql = "Select quantity from inventory where productName = '$productName'";
         $preResult = $conn->query($preSql);
         $preRow = $preResult->fetch_assoc();
