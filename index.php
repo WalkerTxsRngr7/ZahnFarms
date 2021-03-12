@@ -56,7 +56,7 @@
                       $username = "root";
                       $password = "arizona";
                       $dbname = "teaching";
-                      $sql = "SELECT URL,Text FROM links";
+                      $sql = "SELECT * FROM links";
                       $conn = new mysqli($servername, $username, $password, $dbname);
                       $result = $conn->query($sql);
                       if ($result->num_rows > 0) {
@@ -72,9 +72,9 @@
                                * if you change any styling to this function its going to change the whole product page
                                * you can delete these comments once we finish the product page and add needed information
                               */
-                              $link = row["URL"];
-                              $text = row["Text"];
-                              $URL = "<li><a href='$link'>'$text'</a></li>";
+                              $link = $row['URL'];
+                              $text = $row['Text'];
+                              $URL = "<li><a href='$link'>$text</a></li>";
                               echo $URL;
                               // <li><a href="products.php/$link">Beef</a></li>
                           }
