@@ -41,16 +41,6 @@
               <a href="index.php">Products</a>
               <div class="uk-navbar-dropdown" delay-hide="50">
                   <ul class="uk-nav uk-navbar-dropdown-nav"> <!-- TODO Dynamically get categories from database-->
-                    <!--
-                    <li><a href="products.php/beef">Beef</a></li>
-                    <li><a href="products.php/pork">Pork</a></li>
-                    <li><a href="#">Chicken</a></li>
-                    <li><a href="#">Eggs</a></li>
-                    <li><a href="#">Mushrooms</a></li>
-                    <li><a href="#">Fruit</a></li>
-                    <li><a href="#">Berries</a></li>
-                    <li><a href="#">Vegetables</a></li>
-                    -->
                       <?php
                       $servername = "127.0.0.1";
                       $username = "root";

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Mar 11, 2021 at 07:33 PM
+-- Generation Time: Mar 12, 2021 at 06:22 PM
 -- Server version: 8.0.20
 -- PHP Version: 7.4.7
 
@@ -32,15 +32,19 @@ CREATE TABLE `categories` (
   `CategoryName` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `categories`
+--
+
 INSERT INTO `categories` (`CategoryID`, `CategoryName`) VALUES
 (41, 'Beef'),
 (42, 'Chicken'),
 (43, 'Pork'),
-(44,'Eggs'),
-(45,'Vegetables'),
-(46,'Fruit'),
-(47,'Berries'),
-(48,'Mushrooms');
+(44, 'Eggs'),
+(45, 'Vegetables'),
+(46, 'Fruit'),
+(47, 'Berries'),
+(48, 'Mushrooms');
 
 -- --------------------------------------------------------
 
@@ -68,8 +72,8 @@ CREATE TABLE `customers` (
 --
 
 CREATE TABLE `links` (
-  `URL` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `Text` varchar(25) COLLATE utf8mb4_unicode_ci NOT NULL
+  `URL` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `Text` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -79,7 +83,12 @@ CREATE TABLE `links` (
 INSERT INTO `links` (`URL`, `Text`) VALUES
 ('products.php/beef', 'Beef'),
 ('products.php/chicken', 'Chicken'),
-('products.php/pork', 'Pork');
+('products.php/pork', 'Pork'),
+('products.php/eggs', 'Eggs'),
+('products.php/mushrooms', 'Mushrooms'),
+('products.php/fruit', 'Fruits'),
+('products.php/berries', 'Berries'),
+('products.php/vegetables', 'Vegetables');
 
 -- --------------------------------------------------------
 
@@ -135,10 +144,11 @@ CREATE TABLE `payments` (
 CREATE TABLE `portions` (
   `portionsID` int NOT NULL,
   `portionsName` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL
-  /*`portionsSize` int NOT NULL*/
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- --------------------------------------------------------
+--
+-- Dumping data for table `portions`
+--
 
 INSERT INTO `portions` (`portionsID`, `portionsName`) VALUES
 (50, 'bunches'),
@@ -147,32 +157,10 @@ INSERT INTO `portions` (`portionsID`, `portionsName`) VALUES
 (53, 'Quart'),
 (54, 'KnownPounds'),
 (55, 'UnknownPounds'),
-(56,'Dozen');
-
---
--- Table structure for table `products`
---
-
-CREATE TABLE `products` (
-  `ProductID` int DEFAULT NULL,
-  `PortionsID` int NOT NULL,
-  `sizeID` int DEFAULT NULL,
-  `ProductName` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `Price` int NOT NULL,
-  'Quantity' int NOT NULL,
-  `Description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `CategoryID` int NOT NULL,
-  `InSeason` tinyint(1) NOT NULL,
-  `Image` longblob
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+(56, 'Dozen');
 
 -- --------------------------------------------------------
- /*
-INSERT INTO `portions` (`ProductID`, `PortionsID`,'sizeID','ProductName','Price','Quanitity','Description','CategoryID','InSeason','Image') VALUES
-('products.php/beef', 'Beef' ,'Beef'),
-('products.php/chicken', 'Chicken','Chicken'),
-('products.php/pork', 'Pork', 'Pork');
-*/
+
 --
 -- Table structure for table `sizes`
 --
@@ -185,13 +173,6 @@ CREATE TABLE `sizes` (
 --
 -- Indexes for dumped tables
 --
-
---
--- Indexes for table `links`
---
-ALTER TABLE `links`
-  ADD PRIMARY KEY (`URL`),
-  ADD UNIQUE KEY `links_Text_uindex` (`Text`);
 
 --
 -- Indexes for table `sizes`
