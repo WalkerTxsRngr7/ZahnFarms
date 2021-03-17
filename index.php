@@ -54,13 +54,13 @@
   </nav> -->
 
   <h1 class="slogan">Short about us here</h1>
-
+ 
   <!--* Category boxes-->
   <!-- TODO Style -->
   <div class="uk-grid-small uk-child-width-1-4@s uk-flex-center uk-text-center" uk-grid>
     <!-- TODO Created dynamically from database -->
     <a href="products.php"><!--? Put class="uk-flex-last" for out of season items -->
-      <div class="uk-card uk-card-default">    
+      <div class="uk-card uk-card-default" value="beef">    
         <div class="uk-card-media-top">
           <img src="images/beef.jpg" alt="">
         </div>

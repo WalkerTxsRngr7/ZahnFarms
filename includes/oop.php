@@ -1,10 +1,10 @@
 <?php
 $servername = "localhost";
 $username = "root";
+// $password = "";
+// $dbname = "teaching";
 $password = "";
-$dbname = "teaching";
-//$password = "";
-//$dbname = "zahnFarms";
+$dbname = "zahnFarms";
 // Create connection
 
 

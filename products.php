@@ -149,40 +149,6 @@
     </a>
   </div>
 
-
-<!--
-  <p class="desc">Click on a circle to learn more!</p>
-  <div class="categories">
-    <div class="ctgContainer">
-      <img src="images/premiumProducts4.png" class="ctgPic" alt="Local Organics">
-      <div class="overlay">
-        <div class="overlayText">We personally visit the various locations that our products are produced. We do this to ensure that any product purchased is the highest level of quality.</div>
-      </div>
-      <div class="text">Local Organics</div>
-    </div>
-    <div class="ctgContainer">
-      <img src="images/premiumSpirits.jpg" class="ctgPic" alt="Spirits">
-      <div class="overlay">
-        <div class="overlayText">AgSelect distributes premium beverage products to the Midwestern US markets.</div>
-      </div>
-      <div class="text">Spirits</div>
-    </div>
-    <div class="ctgContainer">
-      <img src="images/organicFarmer.png" class="ctgPic" alt="Supports Local Farmers">
-      <div class="overlay">
-        <div class="overlayText">AgSelect searches out the best of breed producers of niche products and distributes those products directly to the market.</div>
-      </div>
-      <div class="text">Supports Local Farmers</div>
-    </div>
-    <div class="ctgContainer">
-      <img src="images/labels.jpg" class="ctgPic" alt="Private Label">
-      <div class="overlay">
-        <div class="overlayText">The opportunity to take one of our high end, premium products, and label it with your company's own brand!</div>
-      </div>
-      <div class="text">Private Label</div>
-    </div>
-  </div> -->
-
  <!-- TODO Change info -->
   <footer class="footer">
     <div class="footerImg">

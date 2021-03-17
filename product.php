@@ -74,43 +74,48 @@
          </div>
     <!-- </div> -->
     <div class="uk-width-expand">
-      <div class="uk-card uk-card-default uk-card-body">Buttons</div>
+      <div class="uk-card uk-card-default uk-card-body">
+        <div class="uk-grid-small uk-child-width-1-2@s uk-flex-center uk-text-center" uk-grid>
+          <div class="uk-margin">
+            <label class="uk-form-label" for="form-stacked-select">Select</label>
+            <div class="uk-form-controls">
+              <select class="uk-select" id="form-stacked-select">
+                <option>Option 01</option>
+                <option>Option 02</option>
+              </select>
+            </div>
+          </div>
+          <div class="uk-margin">
+            <label class="uk-form-label" for="form-stacked-select">Select</label>
+            <div class="uk-form-controls">
+              <select class="uk-select" id="form-stacked-select">
+                <option>Option 01</option>
+                <option>Option 02</option>
+              </select>
+            </div>
+          </div>
+          <!-- <button class="uk-button uk-button-default" type="button">Dropdown</button>
+          <div uk-dropdown>
+            <ul class="uk-nav uk-dropdown-nav">
+              <select name=”subject” multiple>
+                <option value=”math”>Math</option>
+                <option value=”english”>English</option>
+                <option value=”science”>Science</option>
+                <option value=”biology”>Biology</option>
+              </select>
+              <li class="uk-active"><a href="#">Active</a></li>
+              <li><a href="#">Item</a></li>
+              <li class="uk-nav-header">Header</li>
+              <li><a href="#">Item</a></li>
+              <li><a href="#">Item</a></li>
+              <li class="uk-nav-divider"></li>
+              <li><a href="#">Item</a></li>
+            </ul>
+          </div> -->
+        </div>
+      </div>
     </div>
   </div>
-
-
-<!--
-  <p class="desc">Click on a circle to learn more!</p>
-  <div class="categories">
-    <div class="ctgContainer">
-      <img src="images/premiumProducts4.png" class="ctgPic" alt="Local Organics">
-      <div class="overlay">
-        <div class="overlayText">We personally visit the various locations that our products are produced. We do this to ensure that any product purchased is the highest level of quality.</div>
-      </div>
-      <div class="text">Local Organics</div>
-    </div>
-    <div class="ctgContainer">
-      <img src="images/premiumSpirits.jpg" class="ctgPic" alt="Spirits">
-      <div class="overlay">
-        <div class="overlayText">AgSelect distributes premium beverage products to the Midwestern US markets.</div>
-      </div>
-      <div class="text">Spirits</div>
-    </div>
-    <div class="ctgContainer">
-      <img src="images/organicFarmer.png" class="ctgPic" alt="Supports Local Farmers">
-      <div class="overlay">
-        <div class="overlayText">AgSelect searches out the best of breed producers of niche products and distributes those products directly to the market.</div>
-      </div>
-      <div class="text">Supports Local Farmers</div>
-    </div>
-    <div class="ctgContainer">
-      <img src="images/labels.jpg" class="ctgPic" alt="Private Label">
-      <div class="overlay">
-        <div class="overlayText">The opportunity to take one of our high end, premium products, and label it with your company's own brand!</div>
-      </div>
-      <div class="text">Private Label</div>
-    </div>
-  </div> -->
 
  <!-- TODO Change info -->
   <footer class="footer">

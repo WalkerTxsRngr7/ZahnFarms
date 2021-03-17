@@ -14,8 +14,11 @@
                             <?php
                             $servername = "127.0.0.1";
                             $username = "root";
-                            $password = "arizona";
-                            $dbname = "teaching";
+                            // $password = "arizona";
+                            // $dbname = "teaching";
+                            $password = "";
+                            $dbname = "zahnFarms";
+                            
                             $sql = "SELECT * FROM links";
                             $conn = new mysqli($servername, $username, $password, $dbname);
                             $result = $conn->query($sql);
