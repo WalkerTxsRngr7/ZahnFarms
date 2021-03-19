@@ -56,65 +56,61 @@
 
 
   <!--* Product box-->
-  <div class="uk-grid-small uk-child-width-1-2@s uk-flex-center uk-text-center" uk-grid>
-    <!-- <div class="uk-width-1-2@m"> -->
-      <div class="uk-card uk-card-default"><img src="images/beef.jpg" alt=""></div>
-    <!-- </div> -->
-    <!-- <div class="uk-width-1-2@m"> -->
-      <div class="uk-card uk-card-default uk-card-body productDesc">
-        <h2>
-          Chicken Breast
-        </h2>
-        <p>
-          Description Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. In ante metus dictum at tempor commodo. Mattis ullamcorper velit sed ullamcorper. Mauris ultrices eros in cursus turpis massa tincidunt dui ut. Enim sit amet venenatis urna cursus eget nunc scelerisque. Lectus proin nibh nisl condimentum id venenatis a condimentum. In hac habitasse platea dictumst quisque. Turpis egestas integer eget aliquet nibh praesent. Viverra nibh cras pulvinar mattis nunc. Parturient montes nascetur ridiculus mus mauris.
-        </p>
-        <h3>
-          $3 / pound
-        </h3>
-         </div>
-    <!-- </div> -->
-    <div class="uk-width-expand">
-      <div class="uk-card uk-card-default uk-card-body">
-        <div class="uk-grid-small uk-child-width-1-2@s uk-flex-center uk-text-center" uk-grid>
-          <div class="uk-margin">
-            <label class="uk-form-label" for="form-stacked-select">Select</label>
-            <div class="uk-form-controls">
-              <select class="uk-select" id="form-stacked-select">
-                <option>Option 01</option>
-                <option>Option 02</option>
-              </select>
-            </div>
-          </div>
-          <div class="uk-margin">
-            <label class="uk-form-label" for="form-stacked-select">Select</label>
-            <div class="uk-form-controls">
-              <select class="uk-select" id="form-stacked-select">
-                <option>Option 01</option>
-                <option>Option 02</option>
-              </select>
-            </div>
-          </div>
-          <!-- <button class="uk-button uk-button-default" type="button">Dropdown</button>
-          <div uk-dropdown>
-            <ul class="uk-nav uk-dropdown-nav">
-              <select name=”subject” multiple>
-                <option value=”math”>Math</option>
-                <option value=”english”>English</option>
-                <option value=”science”>Science</option>
-                <option value=”biology”>Biology</option>
-              </select>
-              <li class="uk-active"><a href="#">Active</a></li>
-              <li><a href="#">Item</a></li>
-              <li class="uk-nav-header">Header</li>
-              <li><a href="#">Item</a></li>
-              <li><a href="#">Item</a></li>
-              <li class="uk-nav-divider"></li>
-              <li><a href="#">Item</a></li>
-            </ul>
-          </div> -->
-        </div>
-      </div>
+  <div class="uk-grid-small uk-flex-center uk-text-center content-container" style="width:90%; margin:auto" uk-grid>
+    <div class="uk-card uk-card-default uk-width-1-2@s">
+      <img src="images/beef.jpg" alt="beef image">
     </div>
+    <div class="uk-width-1-2@s">
+      <h2>
+        Chicken Breast
+      </h2>
+      <h3>
+        $3 / pound
+      </h3>
+      <form class="uk-form-stacked" action="product.php" method="get">
+        <div class="uk-grid-small uk-child-width-1-2@m uk-flex-center uk-text-center" uk-grid>
+          <div class="uk-margin uk-card">
+            <div uk-form-custom="target: > * > span:first-child">
+              <label class="uk-form-label">Size</label>
+              <select name="size">
+                <option value="">Please select...</option>
+                <option value="1">Small</option>
+                <option value="2">Medium</option>
+                <option value="3">Large</option>
+              </select>
+              <button class="uk-button uk-button-default" type="button" tabindex="-1">
+                <span></span>
+                <span uk-icon="icon: chevron-down"></span>
+              </button>
+            </div>
+          </div>
+          <div class="uk-margin uk-card">
+            <label class="uk-form-label" for="form-stacked-text">Quantity</label>
+            <div class="uk-form-controls uk-width-1-2" style="margin:auto"> <!-- Possibly use numbered dropdown through 10+ then change to input box like Amazon-->
+              <input class="uk-input uk-text-center" id="form-stacked-text" type="number" placeholder="How many?" min="1" name="qty"> 
+            </div>
+          </div>
+          <div class="uk-margin uk-card">
+            <input type="hidden" name="productID" value="1">
+            <button class="uk-button uk-button-default" type="submit">Add To Cart</button>
+          </div>
+        </div>
+      </form>
+      <div class="uk-card uk-card-default uk-card-body uk-width-expand productDesc">
+      <p>
+        Short Description. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.
+      </p>
+    </div>
+    </div>
+    <div class="uk-card uk-card-default uk-card-body uk-width-expand productDesc">
+      <p>
+        Full Description. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
+        et dolore magna aliqua. In ante metus dictum at tempor commodo. Mattis ullamcorper velit sed ullamcorper. Mauris
+        ultrices eros in cursus turpis massa tincidunt dui ut. Enim sit amet venenatis urna cursus eget nunc
+        scelerisque.
+      </p>
+    </div>
+    
   </div>
 
  <!-- TODO Change info -->

@@ -4,7 +4,8 @@
 */
 
 body {
-  background-color: white;
+  background-image: url("images/barnWood.jpg");
+  background-size: cover;
   height: 100%;
 }
 
@@ -38,7 +39,9 @@ nav img {
   border-radius: 5px;
 }
 
-
+.content-container {
+  background-color: rgba(201, 201, 201, 0.644);
+}
 .dropdown-menu {
   display: flex;
   width: 100vw;
@@ -65,6 +68,7 @@ h1 {
 .uk-card {
   font-family: 'Caveat', cursive;
   font-size: 1.7em;
+  background-color: rgba(1,1,1,0)
 }
 .productDesc {
   font-family: 'Caveat', cursive;
