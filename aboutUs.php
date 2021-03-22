@@ -53,72 +53,95 @@
     <a href="tel:555-555-5555" class="navContact">(555) 555-5555</a>
   </nav> -->
 
-
-
-  <!--* Product box-->
-  <div class="uk-grid-small uk-flex-center uk-text-center content-container" style="width:90%; margin:auto" uk-grid>
-    <!-- Product image -->
-    <div class="uk-card uk-card-default uk-width-1-2@s"> 
-      <img src="images/beef.jpg" alt="beef image">
-    </div>
-    <!-- Main info and buttons -->
-    <div class="uk-width-1-2@s">
-      <h2>
-        Chicken Breast
-      </h2>
-      <h3>
-        $3 / pound
-      </h3>
-      <!-- Form for product details to add to cart -->
-      <form class="uk-form-stacked" action="product.php" method="get">
-        <div class="uk-grid-small uk-child-width-1-1@m uk-flex-center uk-text-center" uk-grid>
-          <!-- Size dropdown card -->
-          <div class="uk-card">
-            <div uk-form-custom="target: > * > span:first-child">
-              <label class="uk-form-label">Size</label>
-              <!-- Size Dropdown-->
-              <select name="size"> <!-- For individual if SizeID != null-->
-                <option value="">Please select...</option>
-                <option value="1">Small</option>
-                <option value="2">Medium</option>
-                <option value="3">Large</option>
-              </select>
-              <button class="uk-button uk-button-default" type="button" tabindex="-1">
-                <span></span>
-                <span uk-icon="icon: chevron-down"></span>
-              </button>
-            </div>
-          </div>
-          <!-- Quantity box -->
-          <div class="uk-card  uk-width-expand">
-            <label class="uk-form-label" for="form-stacked-text">Quantity</label>
-            <div class="uk-form-controls uk-width-1-3" style="margin:auto"> <!-- Possibly use numbered dropdown through 10+ then change to input box like Amazon-->
-              <input class="uk-input uk-text-center" id="form-stacked-text" type="number" placeholder="How many?" min="1" name="qty"> 
-            </div>
-          </div>
-          <!-- Add to cart button -->
-          <div class="uk-card">
-            <input type="hidden" name="productID" value="1">
-            <button class="uk-button uk-button-default" type="submit">Add To Cart</button>
-          </div>
+  <h1 class="slogan">Short about us here</h1>
+ 
+  <!--* Category boxes-->
+  <!-- TODO Style -->
+  <div class="uk-grid-small uk-child-width-1-4@s uk-flex-center uk-text-center" uk-grid>
+    <!-- TODO Created dynamically from database -->
+    <a href="products.php"><!--? Put class="uk-flex-last" for out of season items -->
+      <div class="uk-card uk-card-default" value="beef">    
+        <div class="uk-card-media-top">
+          <img src="images/beef.jpg" alt="">
         </div>
-      </form>
-      <div class="uk-card uk-card-default uk-card-body uk-width-expand product-desc-short">
-      <p>
-        Short Description. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.
-      </p>
-    </div>
-    </div>
-    <div class="uk-card uk-card-default uk-card-body uk-width-expand product-desc-full">
-      <p>
-        Full Description. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-        et dolore magna aliqua. In ante metus dictum at tempor commodo. Mattis ullamcorper velit sed ullamcorper. Mauris
-        ultrices eros in cursus turpis massa tincidunt dui ut. Enim sit amet venenatis urna cursus eget nunc
-        scelerisque.
-      </p>
-    </div>
-    
+        <div class="uk-overlay uk-overlay-primary uk-position-bottom">
+          <p>Beef</p>
+        </div>
+      </div>
+    </a>
+    <a href="products.php">
+      <div class="uk-card uk-card-default">    
+        <div class="uk-card-media-top">
+          <img src="images/beef.jpg" alt="">
+        </div>
+        <div class="uk-overlay uk-overlay-primary uk-position-bottom">
+          <p>Chicken</p>
+        </div>
+      </div>
+    </a>
+    <a href="products.php">
+      <div class="uk-card uk-card-default">    
+        <div class="uk-card-media-top">
+          <img src="images/beef.jpg" alt="">
+        </div>
+        <div class="uk-overlay uk-overlay-primary uk-position-bottom">
+          <p>Pork</p>
+        </div>
+      </div>
+    </a>
+    <a href="products.php">
+      <div class="uk-card uk-card-default">    
+        <div class="uk-card-media-top">
+          <img src="images/beef.jpg" alt="">
+        </div>
+        <div class="uk-overlay uk-overlay-primary uk-position-bottom">
+          <p>Eggs</p>
+        </div>
+      </div>
+    </a>
+    <a href="products.php">
+      <div class="uk-card uk-card-default">    
+        <div class="uk-card-media-top">
+          <img src="images/beef.jpg" alt="">
+        </div>
+        <div class="uk-overlay uk-overlay-primary uk-position-bottom">
+          <p>Vegetables</p>
+        </div>
+      </div>
+    </a>
+    <a href="products.php">
+      <div class="uk-card uk-card-default">    
+        <div class="uk-card-media-top">
+          <img src="images/beef.jpg" alt="">
+        </div>
+        <div class="uk-overlay uk-overlay-primary uk-position-bottom">
+          <p>Fruit</p>
+        </div>
+      </div>
+    </a>
+    <a href="products.php">
+      <div class="uk-card uk-card-default">    
+        <div class="uk-card-media-top">
+          <img src="images/beef.jpg" alt="">
+        </div>
+        <div class="uk-overlay uk-overlay-primary uk-position-bottom">
+          <p>Berries</p>
+        </div>
+      </div>
+    </a>
+    <a href="products.php">
+      <div class="uk-card uk-card-default">    
+        <div class="uk-card-media-top">
+          <img src="images/beef.jpg" alt="">
+        </div>
+        <div class="uk-overlay uk-overlay-primary uk-position-bottom">
+          <p>Mushrooms</p>
+        </div>
+      </div>
+    </a>
   </div>
+
+
 
  <!-- TODO Change info -->
   <footer class="footer">
@@ -128,9 +151,9 @@
     <div class="socialMediaFooter">
       <a href="mailto:DHamilton@GreenFundSolutions.com">Email: DHamilton@GreenFundSolutions.com</a>
       <br>
-      <a href="tel:833-697-6649" class="navContact">Phone: (833) 697-6649</a>
+      <a href="tel:417-719-7517" class="navContact">Phone: (417) 719-7517</a>
       <br>
-      <a href="https://www.facebook.com/AgSelectUSA/" target="_blank"><i class="fab fa-facebook-square"></i></a>
+      <a href="https://www.facebook.com/ZahnFarms/" target="_blank"><i class="fab fa-facebook-square"></i></a>
       <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
       <a href="https://twitter.com/ag_select" target="_blank"><i class="fab fa-twitter-square"></i></a>
     </div>

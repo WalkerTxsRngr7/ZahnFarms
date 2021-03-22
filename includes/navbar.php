@@ -46,7 +46,7 @@
                         </ul>
                     </div>
                 </li>
-                <li><a href="#">About Us</a></li>
+                <li><a href="aboutUs.php">About Us</a></li>
                 <li><a href="#">Blog</a></li>
                 <li><a href="#">Contact Us</a></li>
 
@@ -59,7 +59,7 @@
         <div class="uk-navbar-right">
             <ul class="uk-navbar-nav">
                 <li><a href="#"><i class="fas fa-shopping-cart"></i></a></li>
-                <li><a href="#">Sign In</a></li>
+                <li><a href="admin.php">Sign In</a></li> <!-- CHANGE! linked to admin for testing admin page -->
             </ul>
         </div>
     </nav>

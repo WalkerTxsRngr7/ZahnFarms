@@ -6,12 +6,14 @@
 body {
   background-image: url("images/barnWood.jpg");
   background-size: cover;
-  height: 100%;
+  height:100%;
 }
 
 /*Nav bar*/
 .uk-navbar-nav{
   background-color: rgb(54, 183, 41);
+  /* for testing reload */
+  /* background-color: pink; */
   
 }
 .uk-navbar-nav>li>a {
@@ -122,6 +124,11 @@ footer a {
   text-align: right;
   padding-right: 10px;
   padding-bottom: 0px;
+}
+@media (min-width: 960px) {
+  .admin-prod-row-checkbox{
+    align-items: flex-start;
+  }
 }
 
 @media (max-width: 1215px) {
