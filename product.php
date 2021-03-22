@@ -53,7 +53,7 @@
     <a href="tel:555-555-5555" class="navContact">(555) 555-5555</a>
   </nav> -->
 
-
+    // to get items from other page -  $_GET[Product_Id]
 
   <!--* Product box-->
   <div class="uk-grid-small uk-flex-center uk-text-center content-container" style="width:90%; margin:auto" uk-grid>
