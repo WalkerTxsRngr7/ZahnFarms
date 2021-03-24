@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 4.8.4
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:3306
--- Generation Time: Mar 12, 2021 at 06:22 PM
--- Server version: 8.0.20
--- PHP Version: 7.4.7
+-- Host: 127.0.0.1
+-- Generation Time: Mar 24, 2021 at 09:34 PM
+-- Server version: 10.1.37-MariaDB
+-- PHP Version: 7.3.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -18,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `teaching`
+-- Database: `zahnfarms`
 --
 
 -- --------------------------------------------------------
@@ -28,15 +29,15 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `categories` (
-  `CategoryID` int NOT NULL,
-  `CategoryName` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL
+  `catID` int(11) NOT NULL,
+  `catName` varchar(25) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `categories`
 --
 
-INSERT INTO `categories` (`CategoryID`, `CategoryName`) VALUES
+INSERT INTO `categories` (`catID`, `catName`) VALUES
 (41, 'Beef'),
 (42, 'Chicken'),
 (43, 'Pork'),
@@ -53,16 +54,16 @@ INSERT INTO `categories` (`CategoryID`, `CategoryName`) VALUES
 --
 
 CREATE TABLE `customers` (
-  `CustomerID` int NOT NULL,
-  `LName` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `FName` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `Phone` int NOT NULL,
-  `AdressLine1` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `AdressLine2` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `City` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `State` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `Postal` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `Email` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL
+  `customerID` int(11) NOT NULL,
+  `lName` varchar(25) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `fName` varchar(25) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `phone` int(11) NOT NULL,
+  `addressLine1` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `addressLine2` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `city` varchar(25) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `state` varchar(25) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `postal` varchar(25) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -72,8 +73,8 @@ CREATE TABLE `customers` (
 --
 
 CREATE TABLE `links` (
-  `URL` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `Text` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL
+  `URL` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `Text` varchar(25) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -97,11 +98,11 @@ INSERT INTO `links` (`URL`, `Text`) VALUES
 --
 
 CREATE TABLE `orderdetails` (
-  `OrderID` int NOT NULL,
-  `ProductID` int NOT NULL,
-  `QuantityOrdered` int NOT NULL,
-  `PriceEach` int NOT NULL,
-  `OrderLineNumber` int NOT NULL
+  `orderID` int(11) NOT NULL,
+  `productID` int(11) NOT NULL,
+  `quantityOrdered` int(11) NOT NULL,
+  `priceEach` int(11) NOT NULL,
+  `orderLineNumber` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -111,14 +112,14 @@ CREATE TABLE `orderdetails` (
 --
 
 CREATE TABLE `orders` (
-  `OrderID` int NOT NULL,
-  `CustomerID` int NOT NULL,
-  `OrderDate` date NOT NULL,
-  `Status` int NOT NULL,
-  `DeliveryDate` date NOT NULL,
-  `DeliveryTime` time NOT NULL,
-  `DeliveryLocation` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `TotalPrice` int NOT NULL
+  `orderID` int(11) NOT NULL,
+  `customerID` int(11) NOT NULL,
+  `orderDate` date NOT NULL,
+  `status` int(11) NOT NULL,
+  `deliveryDate` date NOT NULL,
+  `deliveryTime` time NOT NULL,
+  `deliveryLocation` varchar(25) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `totalPrice` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -128,11 +129,11 @@ CREATE TABLE `orders` (
 --
 
 CREATE TABLE `payments` (
-  `CheckNumber` int NOT NULL,
-  `CustomerID` int NOT NULL,
-  `OrderID` int NOT NULL,
-  `PaymentDate` date NOT NULL,
-  `TotalPrice` int NOT NULL
+  `checkNumber` int(11) DEFAULT NULL,
+  `customerID` int(11) NOT NULL,
+  `orderID` int(11) NOT NULL,
+  `paymentDate` date NOT NULL,
+  `totalPrice` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -142,8 +143,8 @@ CREATE TABLE `payments` (
 --
 
 CREATE TABLE `portions` (
-  `portionsID` int NOT NULL,
-  `portionsName` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL
+  `portionsID` int(11) NOT NULL,
+  `portionsName` varchar(25) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -159,14 +160,36 @@ INSERT INTO `portions` (`portionsID`, `portionsName`) VALUES
 (55, 'UnknownPounds'),
 (56, 'Dozen');
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `products`
+--
+
+CREATE TABLE `products` (
+  `productID` int(11) NOT NULL,
+  `productName` varchar(50) NOT NULL,
+  `portionsID` int(11) NOT NULL,
+  `price` decimal(10,0) NOT NULL,
+  `qty` decimal(10,0) NOT NULL,
+  `shortDesc` varchar(255) DEFAULT NULL,
+  `fullDesc` varchar(255) DEFAULT NULL,
+  `catID` int(11) NOT NULL,
+  `image` varchar(255) NOT NULL,
+  `sizeID` int(11) NOT NULL,
+  `inSeason` tinyint(1) NOT NULL,
+  `hide` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
 
 --
 -- Table structure for table `sizes`
 --
 
 CREATE TABLE `sizes` (
-  `sizeID` int NOT NULL,
-  `sizeName` int NOT NULL
+  `sizeID` int(11) NOT NULL,
+  `sizeName` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -174,11 +197,90 @@ CREATE TABLE `sizes` (
 --
 
 --
+-- Indexes for table `categories`
+--
+ALTER TABLE `categories`
+  ADD PRIMARY KEY (`catID`);
+
+--
+-- Indexes for table `customers`
+--
+ALTER TABLE `customers`
+  ADD PRIMARY KEY (`customerID`);
+
+--
+-- Indexes for table `orderdetails`
+--
+ALTER TABLE `orderdetails`
+  ADD PRIMARY KEY (`orderID`,`orderLineNumber`);
+
+--
+-- Indexes for table `orders`
+--
+ALTER TABLE `orders`
+  ADD PRIMARY KEY (`orderID`);
+
+--
+-- Indexes for table `payments`
+--
+ALTER TABLE `payments`
+  ADD PRIMARY KEY (`orderID`);
+
+--
+-- Indexes for table `portions`
+--
+ALTER TABLE `portions`
+  ADD PRIMARY KEY (`portionsID`);
+
+--
+-- Indexes for table `products`
+--
+ALTER TABLE `products`
+  ADD PRIMARY KEY (`productID`),
+  ADD KEY `sizeID` (`sizeID`),
+  ADD KEY `sizeID_2` (`sizeID`),
+  ADD KEY `sizeID_3` (`sizeID`);
+
+--
 -- Indexes for table `sizes`
 --
 ALTER TABLE `sizes`
   ADD PRIMARY KEY (`sizeID`),
   ADD KEY `sizeNameFK` (`sizeName`) USING BTREE;
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `categories`
+--
+ALTER TABLE `categories`
+  MODIFY `catID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
+
+--
+-- AUTO_INCREMENT for table `customers`
+--
+ALTER TABLE `customers`
+  MODIFY `customerID` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `orders`
+--
+ALTER TABLE `orders`
+  MODIFY `orderID` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `products`
+--
+ALTER TABLE `products`
+  MODIFY `productID` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `sizes`
+--
+ALTER TABLE `sizes`
+  MODIFY `sizeID` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

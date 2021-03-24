@@ -71,8 +71,8 @@
                       <a class="uk-button uk-button-default" href="adminProduct.php">Edit</a>
                     </div>
                     <div class="admin-prod-row-checkbox uk-flex uk-flex-column ">
-                        <label class="uk-form-label"><input name="hide" value="true" class="uk-checkbox" type="checkbox"> Hide</label>
-                        <label class="uk-form-label"><input name="outofseason" value="true" class="uk-checkbox" type="checkbox"> Out Of Season</label>
+                        <label class="uk-form-label"><input name="hide" value="1" class="uk-checkbox" type="checkbox"> Hide</label>
+                        <label class="uk-form-label"><input name="outofseason" value="1" class="uk-checkbox" type="checkbox"> Out Of Season</label>
                     </div>
                     <div>
                         <Button class="uk-button" type="submit">Save</Button>
