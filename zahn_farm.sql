@@ -173,7 +173,7 @@ CREATE TABLE `products` (
   'Quantity' int NOT NULL,
   `Description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `CategoryID` int NOT NULL,
-  `InSeason` tinyint(1) NOT NULL,
+  `InSeason` bit(1) NOT NULL,
   `Image` longblob
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
