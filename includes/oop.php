@@ -4,7 +4,7 @@ $username = "root";
 // $password = "";
 // $dbname = "teaching";
 $password = "";
-$dbname = "zahnFarms";
+$dbname = "zahnfarms";
 // Create connection
 
 

@@ -3,7 +3,7 @@
 /** RETURN AN ARRAY OF ALL PRODUCTS */
 function getAllProducts(){
     global $db;
-    $sql = "SELECT * FROM product";
+    $sql = "SELECT * FROM products";
     $qry = $db->query($sql);
     $aryProd = $qry->fetchAll();
 
@@ -17,7 +17,7 @@ function getAllProducts(){
 function prodByID($prodID){
     global $db;
 
-    $sql = "select * from product where productID = $prodID";
+    $sql = "select * from products where productID = $prodID";
 
     //oop
     $qry = $db->query($sql);
@@ -33,33 +33,46 @@ function addProduct($productName, $price, $qty, $imageName){
     global $db;
 
     echo ("<br><h3 class='modMessage'>Added: $productName</h3>");
-    $sql = "INSERT INTO `product`(`productName`, `imageName`, `price`, `qty`) VALUES ('$productName','$imageName',$price,$qty)";
+    $sql = "INSERT INTO `products`(`productName`, `image`, `price`, `qty`) VALUES ('$productName','$imageName',$price,$qty)";
     $pdoS = $db->query($sql);
 }
 
 function editProduct($productName, $price, $qty, $imageName, $productID){
     global $db;
     echo ("<br><h3 class='modMessage'>Edited: $productName</h3>");
-    $sql = "UPDATE `product` SET `productName`='$productName',`imageName`='$imageName',`price`=$price,`qty`=$qty WHERE productID = $productID";
+    $sql = "UPDATE `products` SET `productName`='$productName',`image`='$imageName',`price`=$price,`qty`=$qty WHERE productID = $productID";
     $pdoS = $db->query($sql);
 }
 
-function order($productID, $qty){
+function orderLine($orderID, $productID, $qty){ /* Change to updated database. Probably foreach from each item being purchased. Get price from Database*/
     global $db;
-    $sqlInsert = "INSERT INTO `order`(`productID`, `customerName`, `qtyOrdered`) VALUES ($productID,'$_SESSION[name]',$qty)";    
+    $sqlInsert = "INSERT INTO `orderdetails`(`orderID`, `productID`, `quantityOrdered`, `priceEach`, `orderLineNumber`) VALUES ('$orderID', '$productID', '$qty', '$price')";    
     $pdoS = $db->query($sqlInsert);
 
     $product = prodByID($productID);
     $loweredQty = $product['qty'] - $qty;
-    $sqlQty = "UPDATE `product` SET `qty`= $loweredQty WHERE `productID` = $productID";
+    $sqlQty = "UPDATE `products` SET `qty`= $loweredQty WHERE `productID` = $productID";
     $pdoS = $db->query($sqlQty);
+
+    echo ("<br><h3 class='modMessage'>Order Item Processed Successfully</h3>");
+}
+
+function order($orderID, $custID, $delDate, $delTime, $delLocation, $totalPrice, $cartAry) {
+    global $db;
+    $sqlInsert = "INSERT INTO `orders`(`orderID`, `customerID`, `orderDate`, `status`, `deliveryDate`, `deliveryTime`, `deliveryLocation`, `totalPrice`) VALUES ('$orderID', '$_SESSION[name]','$delDate', '$delTime', '$delLocation', '$totalPrice')";    
+    $pdoS = $db->query($sqlInsert);
+
+    foreach ($cartAry as $prod){
+        orderLine($orderID, $productID, $qty);
+    }
+
     echo ("<br><h3 class='modMessage'>Order Completed Successfully</h3>");
 }
 
 /** RETURN AN ARRAY OF ALL ORDERS */
 function getAllOrders(){
     global $db;
-    $sql = "SELECT * FROM `order`";
+    $sql = "SELECT * FROM `orders`";
 
     //oop
     $qry = $db->query($sql);

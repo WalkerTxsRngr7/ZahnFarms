@@ -47,7 +47,7 @@
                     </div>
                 </li>
                 <li><a href="aboutUs.php">About Us</a></li>
-                <li><a href="#">Blog</a></li>
+                <li><a href="latestNews.php">Blog</a></li>
                 <li><a href="#">Contact Us</a></li>
 
                 <li><a href="tel:417-719-7517" class="navContact">(417) 719-7517</a></li>

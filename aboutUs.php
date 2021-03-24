@@ -2,7 +2,6 @@
 <html lang="en">
 
 <head>
-  <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -21,18 +20,15 @@
   <script src="https://cdn.jsdelivr.net/npm/uikit@3.6.17/dist/js/uikit-icons.min.js"></script>
 
   <link rel="stylesheet" href="styles.css">
-
-  <title>Zahn Farms</title>
 </head>
 
 <body>
-  <!--* Nav Bar --> 
-  <!-- TODO Style -->
-  <div id="import-Navbar">
+  <div id="fb-root"></div>
+  <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v10.0"
+    nonce="SPVF6MS7"></script>
 
+  <div id="import-Navbar">
   </div>
-  
-  <!-- TODO Navbar for mobile devices -->
   <!-- <nav class="navMenu">
     <div class="nav-item dropdown">
       <a data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><i class="fas fa-bars"></i></a>
@@ -50,100 +46,32 @@
       </div>
     </div>
     <a href="index.html"><img src="images/agSelect-Logo-nav.jpg" alt="AgSelect logo"></a>
-    <a href="tel:555-555-5555" class="navContact">(555) 555-5555</a>
+    <a href="tel:833-697-6649" class="navContact">(833) 697-6649</a>
   </nav> -->
+  <div class="uk-column-1-2@m">
+    <div style="width:75%; margin:auto;">
+      <div class="fb-page" data-href="https://www.facebook.com/ZahnFarms/" data-tabs="timeline" data-width="500"
+        data-height="600" data-small-header="true" data-adapt-container-width="true" data-hide-cover="false"
+        data-show-facepile="true">
+        <blockquote cite="https://www.facebook.com/ZahnFarms/" class="fb-xfbml-parse-ignore"><a
+            href="https://www.facebook.com/ZahnFarms/">Zahn Farms</a></blockquote>
+      </div>
+    </div>
 
-  <h1 class="slogan">Short about us here</h1>
- 
-  <!--* Category boxes-->
-  <!-- TODO Style -->
-  <div class="uk-grid-small uk-child-width-1-4@s uk-flex-center uk-text-center" uk-grid>
-    <!-- TODO Created dynamically from database -->
-    <a href="products.php"><!--? Put class="uk-flex-last" for out of season items -->
-      <div class="uk-card uk-card-default" value="beef">    
-        <div class="uk-card-media-top">
-          <img src="images/beef.jpg" alt="">
-        </div>
-        <div class="uk-overlay uk-overlay-primary uk-position-bottom">
-          <p>Beef</p>
-        </div>
-      </div>
-    </a>
-    <a href="products.php">
-      <div class="uk-card uk-card-default">    
-        <div class="uk-card-media-top">
-          <img src="images/beef.jpg" alt="">
-        </div>
-        <div class="uk-overlay uk-overlay-primary uk-position-bottom">
-          <p>Chicken</p>
-        </div>
-      </div>
-    </a>
-    <a href="products.php">
-      <div class="uk-card uk-card-default">    
-        <div class="uk-card-media-top">
-          <img src="images/beef.jpg" alt="">
-        </div>
-        <div class="uk-overlay uk-overlay-primary uk-position-bottom">
-          <p>Pork</p>
-        </div>
-      </div>
-    </a>
-    <a href="products.php">
-      <div class="uk-card uk-card-default">    
-        <div class="uk-card-media-top">
-          <img src="images/beef.jpg" alt="">
-        </div>
-        <div class="uk-overlay uk-overlay-primary uk-position-bottom">
-          <p>Eggs</p>
-        </div>
-      </div>
-    </a>
-    <a href="products.php">
-      <div class="uk-card uk-card-default">    
-        <div class="uk-card-media-top">
-          <img src="images/beef.jpg" alt="">
-        </div>
-        <div class="uk-overlay uk-overlay-primary uk-position-bottom">
-          <p>Vegetables</p>
-        </div>
-      </div>
-    </a>
-    <a href="products.php">
-      <div class="uk-card uk-card-default">    
-        <div class="uk-card-media-top">
-          <img src="images/beef.jpg" alt="">
-        </div>
-        <div class="uk-overlay uk-overlay-primary uk-position-bottom">
-          <p>Fruit</p>
-        </div>
-      </div>
-    </a>
-    <a href="products.php">
-      <div class="uk-card uk-card-default">    
-        <div class="uk-card-media-top">
-          <img src="images/beef.jpg" alt="">
-        </div>
-        <div class="uk-overlay uk-overlay-primary uk-position-bottom">
-          <p>Berries</p>
-        </div>
-      </div>
-    </a>
-    <a href="products.php">
-      <div class="uk-card uk-card-default">    
-        <div class="uk-card-media-top">
-          <img src="images/beef.jpg" alt="">
-        </div>
-        <div class="uk-overlay uk-overlay-primary uk-position-bottom">
-          <p>Mushrooms</p>
-        </div>
-      </div>
-    </a>
+    <h1 class="slogan">Short about us here</h1>
+    <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+      sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+    <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis
+      aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
+      occaecat cupidatat non proident. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore.</p>
   </div>
 
+  
+
+  
 
 
- <!-- TODO Change info -->
   <footer class="footer">
     <div class="footerImg">
       <a href="https://greenfundsolutions.com/" target="_blank"><img src="images/greenFund-Logo1.png" alt="Green Fund Solutions Logo"></a>
@@ -151,9 +79,9 @@
     <div class="socialMediaFooter">
       <a href="mailto:DHamilton@GreenFundSolutions.com">Email: DHamilton@GreenFundSolutions.com</a>
       <br>
-      <a href="tel:417-719-7517" class="navContact">Phone: (417) 719-7517</a>
+      <a href="tel:833-697-6649" class="navContact">Phone: (833) 697-6649</a>
       <br>
-      <a href="https://www.facebook.com/ZahnFarms/" target="_blank"><i class="fab fa-facebook-square"></i></a>
+      <a href="https://www.facebook.com/AgSelectUSA/" target="_blank"><i class="fab fa-facebook-square"></i></a>
       <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
       <a href="https://twitter.com/ag_select" target="_blank"><i class="fab fa-twitter-square"></i></a>
     </div>

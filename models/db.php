@@ -1,5 +1,5 @@
 <?php
-    $dsn = "mysql:host=localhost;dbname=zahnFarms";
+    $dsn = "mysql:host=localhost;dbname=zahnfarms";
     
     try {
         $db = new PDO($dsn, "root", "");

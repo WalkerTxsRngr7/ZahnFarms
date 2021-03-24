@@ -82,8 +82,7 @@
                           <label class="uk-form-label">Size</label>
                           <!-- Size Dropdown-->
                           <!-- Make dynamically -->
-                          <input class="admin-input uk-input uk-text-center" id="form-stacked-text" type="text"
-                              placeholder="Small" name="productName">
+                          <input class="admin-input uk-input uk-text-center" id="form-stacked-text" type="text" placeholder="Small" name="productName">
                           <input class="admin-input uk-input uk-text-center" id="form-stacked-text" type="text"
                               placeholder="Medium" name="productName">
                           <input class="admin-input uk-input uk-text-center" id="form-stacked-text" type="text"
@@ -95,8 +94,7 @@
                       <label class="uk-form-label" for="form-stacked-text">Stock</label>
                       <div class="uk-form-controls uk-width-1-3" style="margin:auto">
                           <!-- Possibly use numbered dropdown through 10+ then change to input box like Amazon-->
-                          <input class="uk-input uk-text-center" id="form-stacked-text" type="number"
-                              placeholder="How much?" min="1" name="qty">
+                          <input class="uk-input uk-text-center" id="form-stacked-text" type="number" placeholder="<?$product['qty']?>" min="1" name="qty">
                       </div>
                   </div>
 
@@ -104,20 +102,22 @@
 
               <div class="uk-card uk-card-default uk-card-body uk-width-expand product-desc-short">
                   <p>
-                      Short Description. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                      incididunt.
+                  <textarea class="admin-input uk-textarea" rows="5" name="shortDesc" placeholder="Short Description. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt."></textarea>
                   </p>
               </div>
 
           </div>
           <div class="uk-card uk-card-default uk-card-body uk-width-expand product-desc-full">
               <p>
-                  Full Description. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                <!-- <input class="admin-input uk-input uk-text-center" id="form-stacked-text" type="text" placeholder="Full Description. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
                   incididunt ut labore
                   et dolore magna aliqua. In ante metus dictum at tempor commodo. Mattis ullamcorper velit sed
                   ullamcorper. Mauris
                   ultrices eros in cursus turpis massa tincidunt dui ut. Enim sit amet venenatis urna cursus eget nunc
-                  scelerisque.
+                  scelerisque." name="productName"> -->
+                <textarea class="admin-input uk-textarea" rows="5" name="fullDesc" placeholder="Full Description. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. In ante metus dictum at tempor commodo. Mattis ullamcorper velit sed ullamcorper. Mauris ultrices eros in cursus turpis massa tincidunt dui ut. Enim sit amet venenatis urna cursus eget nunc scelerisque."></textarea>
+                <!-- <br/> -->
+                <!-- <input type="submit" value="Submit"> -->
               </p>
           </div>
 
