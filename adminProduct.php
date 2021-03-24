@@ -52,62 +52,77 @@
     <a href="tel:555-555-5555" class="navContact">(555) 555-5555</a>
   </nav> -->
 
-    <div class="admin-prod-container">
-        <!-- Individual Product -->
-        <div class="admin-prod-row">
-            <form action="admin.php" method="get">
-                <input type="hidden" name="productID" value="1"> <!-- value="<?=$product['productID']?>" -->
-                <div class="uk-flex-center uk-text-center uk-flex-middle uk-child-width-expand@m" uk-grid>
-                    <div class="uk-card uk-card-default uk-width-1-5@m">
-                        <img src="images/beef.jpg" alt="beef image">
-                    </div>
-                    <div>
-                        <h3>Product Name</h3>
-                    </div>
-                    <div>
-                        <h3>Price</h3>
-                    </div>
-                    <div>
-                      <a class="uk-button uk-button-default" href="adminProduct.php">Edit</a>
-                    </div>
-                    <div class="admin-prod-row-checkbox uk-flex uk-flex-column ">
-                        <label class="uk-form-label"><input name="hide" value="true" class="uk-checkbox" type="checkbox"> Hide</label>
-                        <label class="uk-form-label"><input name="outofseason" value="true" class="uk-checkbox" type="checkbox"> Out Of Season</label>
-                    </div>
-                    <div>
-                        <Button class="uk-button" type="submit">Save</Button>
-                    </div>
-                </div>
-            </form>
-        </div>
-        
-        <div class="admin-prod-row">
-            <form action="admin.php" method="get">
-                <div class="uk-flex-center uk-text-center uk-flex-middle uk-child-width-expand@m" uk-grid>
-                    <div class="uk-card uk-card-default uk-width-1-5@m">
-                        <img src="images/beef.jpg" alt="beef image">
-                    </div>
-                    <div>
-                        <h3>Product Name</h3>
-                    </div>
-                    <div>
-                        <h3>Price</h3>
-                    </div>
-                    <div>
-                        <Button class="uk-button">Edit</Button>
-                    </div>
-                    <div class="admin-prod-row-checkbox uk-flex uk-flex-column ">
-                        <label class="uk-form-label"><input class="uk-checkbox" type="checkbox"> Hide</label>
-                        <label class="uk-form-label"><input class="uk-checkbox" type="checkbox"> Out Of Season</label>
-                    </div>
-                    <div>
-                        <Button class="uk-button" type="submit">Save</Button>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
+  <!-- Form for product details that can be changed -->
+  <form class="uk-form-stacked admin-prod-form" action="adminProduct.php" method="post">
+      <div class="uk-grid-small uk-flex-center uk-text-center content-container" style="width:90%; margin:auto" uk-grid>
+          
+          <!-- Product image -->
+          <div class="uk-card uk-card-default uk-width-1-2@s">
+              <img src="images/beef.jpg" alt="beef image">
+          </div>
+          <!-- Main info and buttons -->
+          <div class="uk-width-1-2@s">
+              <!-- Save Changes button -->
+              <div class="uk-card">
+                  <input type="hidden" name="productID" value="1">
+                  <button class="uk-button uk-button-default" type="submit">Save</button>
+              </div>
+              <h2>
+                  <input class="admin-input uk-input uk-text-center" id="form-stacked-text" type="text"
+                      placeholder="Chicken Breast" name="productName">
+              </h2>
+              <h3>
+                  <input class="admin-input uk-input uk-text-center" id="form-stacked-text" type="text"
+                      placeholder="$3 / pound" name="price">
+              </h3>
+              <div class="uk-grid-small uk-child-width-1-1@m uk-flex-center uk-text-center" uk-grid>
+                  <!-- Size dropdown card -->
+                  <div class="uk-card">
+                      <div uk-form-custom="target: > * > span:first-child">
+                          <label class="uk-form-label">Size</label>
+                          <!-- Size Dropdown-->
+                          <!-- Make dynamically -->
+                          <input class="admin-input uk-input uk-text-center" id="form-stacked-text" type="text"
+                              placeholder="Small" name="productName">
+                          <input class="admin-input uk-input uk-text-center" id="form-stacked-text" type="text"
+                              placeholder="Medium" name="productName">
+                          <input class="admin-input uk-input uk-text-center" id="form-stacked-text" type="text"
+                              placeholder="Large" name="productName">
+                      </div>
+                  </div>
+                  <!-- Quantity box -->
+                  <div class="uk-card  uk-width-expand">
+                      <label class="uk-form-label" for="form-stacked-text">Stock</label>
+                      <div class="uk-form-controls uk-width-1-3" style="margin:auto">
+                          <!-- Possibly use numbered dropdown through 10+ then change to input box like Amazon-->
+                          <input class="uk-input uk-text-center" id="form-stacked-text" type="number"
+                              placeholder="How much?" min="1" name="qty">
+                      </div>
+                  </div>
 
+              </div>
+
+              <div class="uk-card uk-card-default uk-card-body uk-width-expand product-desc-short">
+                  <p>
+                      Short Description. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                      incididunt.
+                  </p>
+              </div>
+
+          </div>
+          <div class="uk-card uk-card-default uk-card-body uk-width-expand product-desc-full">
+              <p>
+                  Full Description. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                  incididunt ut labore
+                  et dolore magna aliqua. In ante metus dictum at tempor commodo. Mattis ullamcorper velit sed
+                  ullamcorper. Mauris
+                  ultrices eros in cursus turpis massa tincidunt dui ut. Enim sit amet venenatis urna cursus eget nunc
+                  scelerisque.
+              </p>
+          </div>
+
+      </div>
+  </form>
   
 
  <!-- TODO Change info -->

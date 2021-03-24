@@ -3,7 +3,7 @@
   font-family: 'Caveat Brush', cursive;
 */
 
-body {
+html, body {
   background-image: url("images/barnWood.jpg");
   background-size: cover;
   height:100%;
@@ -83,6 +83,28 @@ h1 {
   padding: 0px;
   margin: 0px;
 }
+
+.admin-prod-container {
+  background-color:rgba(201, 201, 201, 0.644);
+  width: 90%;
+  margin: auto;
+}
+
+.admin-input {
+  background-color:rgba(1,1,1,0);
+  font-family:'Caveat', cursive;
+}
+.admin-input::placeholder{ /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color:black;
+  opacity:1; /* Firefox */
+}
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color: black;
+}
+::-ms-input-placeholder { /* Microsoft Edge */
+  color: black;
+}
+
 
 footer {
   background-color: rgb(100, 100, 100);
