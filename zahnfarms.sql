@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 24, 2021 at 09:34 PM
+-- Generation Time: Mar 25, 2021 at 06:34 PM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.3.1
 
@@ -30,22 +30,23 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `categories` (
   `catID` int(11) NOT NULL,
-  `catName` varchar(25) COLLATE utf8mb4_unicode_ci NOT NULL
+  `catName` varchar(25) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `image` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `categories`
 --
 
-INSERT INTO `categories` (`catID`, `catName`) VALUES
-(41, 'Beef'),
-(42, 'Chicken'),
-(43, 'Pork'),
-(44, 'Eggs'),
-(45, 'Vegetables'),
-(46, 'Fruit'),
-(47, 'Berries'),
-(48, 'Mushrooms');
+INSERT INTO `categories` (`catID`, `catName`, `image`) VALUES
+(41, 'Beef', 'beef.jpg'),
+(42, 'Chicken', ''),
+(43, 'Pork', ''),
+(44, 'Eggs', ''),
+(45, 'Vegetables', ''),
+(46, 'Fruit', ''),
+(47, 'Berries', ''),
+(48, 'Mushrooms', '');
 
 -- --------------------------------------------------------
 
