@@ -1,5 +1,15 @@
 <?php
 
+/** RETURN AN ARRAY OF ALL CATEGORIES */
+function getAllCategories(){
+    global $db;
+    $sql = "SELECT * FROM categories";
+    $qry = $db->query($sql);
+    $aryCat = $qry->fetchAll();
+
+    return $aryCat;
+}
+
 /** RETURN AN ARRAY OF ALL PRODUCTS */
 function getAllProducts(){
     global $db;
@@ -7,9 +17,7 @@ function getAllProducts(){
     $qry = $db->query($sql);
     $aryProd = $qry->fetchAll();
 
-
     return $aryProd;
-
 }
 
 
