@@ -44,7 +44,7 @@ INSERT INTO `categories` (`catID`, `catName`, `image`) VALUES
 (43, 'Pork', 'pork.jpg'),
 (44, 'Eggs', ''),
 (45, 'Vegetables', ''),
-(46, 'Fruit', ''),
+(46, 'Fruit', 'Tomato.jpg'),
 (47, 'Berries', ''),
 (48, 'Mushrooms', 'shiitake_mushroom.jpg');
 
