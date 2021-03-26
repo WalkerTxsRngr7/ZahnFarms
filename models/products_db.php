@@ -10,6 +10,15 @@ function getAllCategories(){
     return $aryCat;
 }
 
+/** RETURN A SINGLE CATEGORY FILTERED BY CATEGORY ID */
+function catByID($catID){
+    global $db;
+    $sql = "SELECT * FROM categories WHERE catID = $catID";
+    $qry = $db->query($sql);
+    $cat = $qry->fetch();
+    return $cat;
+}
+
 /** RETURN AN ARRAY OF ALL PRODUCTS */
 function getAllProducts(){
     global $db;
@@ -20,13 +29,20 @@ function getAllProducts(){
     return $aryProd;
 }
 
+/** RETURN AN ARRAY OF ALL PRODUCTS FROM CATEGORY */
+function productsByCatID($catID){
+    global $db;
+    $sql = "SELECT * FROM products WHERE catID = $catID";
+    $qry = $db->query($sql);
+    $aryProd = $qry->fetchAll();
+
+    return $aryProd;
+}
 
 /** RETURN A SINGLE PRODUCT FILTERED BY PRODUCT ID */
 function prodByID($prodID){
     global $db;
-
     $sql = "select * from products where productID = $prodID";
-
     //oop
     $qry = $db->query($sql);
     $product = $qry->fetch();
@@ -36,6 +52,18 @@ function prodByID($prodID){
 
 }
 
+/** RETURN A SINGLE PORTION FILTERED BY PRODUCT ID */
+function portionByID($portionID){
+    global $db;
+
+    $sql = "SELECT * FROM portions WHERE portionsID = $portionID";
+    $qry = $db->query($sql);
+    $portion = $qry->fetch();
+
+    //return a product
+    return $portion;
+
+}
 
 function addProduct($productName, $price, $qty, $imageName){
     global $db;

@@ -55,7 +55,7 @@
     <div class="admin-prod-container">
         <!-- Individual Product -->
         <div class="admin-prod-row">
-            <form action="admin.php" method="get">
+            <form action="" method="get">
                 <input type="hidden" name="productID" value="1"> <!-- value="<?=$product['productID']?>" -->
                 <div class="uk-flex-center uk-text-center uk-flex-middle uk-child-width-expand@m" uk-grid>
                     <div class="uk-card uk-card-default uk-width-1-5@m">
