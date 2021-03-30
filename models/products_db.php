@@ -75,8 +75,15 @@ function addProduct($productName, $price, $qty, $imageName){
 
 function editProduct($productName, $price, $qty, $imageName, $productID){
     global $db;
-    echo ("<br><h3 class='modMessage'>Edited: $productName</h3>");
+    echo ("<h3 class='modMessage'>Edited: $productName</h3>");
     $sql = "UPDATE `products` SET `productName`='$productName',`image`='$imageName',`price`=$price,`qty`=$qty WHERE productID = $productID";
+    $pdoS = $db->query($sql);
+}
+
+function editCat($catName, $imageName, $catID){
+    global $db;
+    echo ("<h3 class='modMessage'>Edited: $catName</h3>");
+    $sql = "UPDATE `categories` SET `catName`='$catName',`image`='$imageName' WHERE catID = $catID";
     $pdoS = $db->query($sql);
 }
 

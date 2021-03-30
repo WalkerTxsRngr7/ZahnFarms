@@ -105,6 +105,10 @@ h1 {
   color: black;
 }
 
+.adminBtns {
+  background-color: rgb(3, 173, 17);
+}
+
 
 footer {
   background-color: rgb(100, 100, 100);

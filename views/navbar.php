@@ -39,7 +39,7 @@
             <ul class="uk-navbar-nav">
                 <li><a href="../product/cart.php"><i class="fas fa-shopping-cart"></i></a></li>
                 <li><a href="?lo=y" class='nav' id='lo'>Sign Out</a></li>
-                <li><a href="../admin/products.php">Sign In</a></li> <!-- CHANGE! linked to admin for testing admin page -->
+                <li><a href="../admin/">Sign In</a></li> <!-- CHANGE! linked to admin for testing admin page -->
             </ul>
         </div>
     </nav>

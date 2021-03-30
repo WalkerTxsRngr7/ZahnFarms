@@ -4,12 +4,15 @@ $title = "Admin";
 $headTitle = "Admin";
 include "../views/header.php";
 
-$productID = filter_input(INPUT_POST, "productID");
+$prodID = filter_input(INPUT_POST, "prodID");
+$catID = filter_input(INPUT_POST, "catID");
 $username = filter_input(INPUT_POST, "username");
 $password = filter_input(INPUT_POST, "password");
 $adminBtn = filter_input(INPUT_POST, "adminBtn");
 $modify = filter_input(INPUT_POST, "modify");
+$edit = filter_input(INPUT_POST, "edit");
 $newProdName = filter_input(INPUT_POST, "newProdName");
+$newCatName = filter_input(INPUT_POST, "newCatName");
 $newPrice = filter_input(INPUT_POST, "newPrice");
 $newQty = filter_input(INPUT_POST, "newQty");
 $newImage = filter_input(INPUT_POST, "newImage");
