@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 24, 2021 at 09:34 PM
+-- Generation Time: Mar 26, 2021 at 07:47 PM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.3.1
 
@@ -30,22 +30,23 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `categories` (
   `catID` int(11) NOT NULL,
-  `catName` varchar(25) COLLATE utf8mb4_unicode_ci NOT NULL
+  `catName` varchar(25) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `image` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `categories`
 --
 
-INSERT INTO `categories` (`catID`, `catName`) VALUES
-(41, 'Beef'),
-(42, 'Chicken'),
-(43, 'Pork'),
-(44, 'Eggs'),
-(45, 'Vegetables'),
-(46, 'Fruit'),
-(47, 'Berries'),
-(48, 'Mushrooms');
+INSERT INTO `categories` (`catID`, `catName`, `image`) VALUES
+(41, 'Beef', 'beef.jpg'),
+(42, 'Chicken', ''),
+(43, 'Pork', 'pork.jpg'),
+(44, 'Eggs', ''),
+(45, 'Vegetables', ''),
+(46, 'Fruit', 'Tomato.jpg'),
+(47, 'Berries', ''),
+(48, 'Mushrooms', 'shiitake_mushroom.jpg');
 
 -- --------------------------------------------------------
 
@@ -144,21 +145,22 @@ CREATE TABLE `payments` (
 
 CREATE TABLE `portions` (
   `portionsID` int(11) NOT NULL,
-  `portionsName` varchar(25) COLLATE utf8mb4_unicode_ci NOT NULL
+  `portionsName` varchar(25) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `portionsDesc` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `portions`
 --
 
-INSERT INTO `portions` (`portionsID`, `portionsName`) VALUES
-(50, 'bunches'),
-(51, 'Individual'),
-(52, 'Pint'),
-(53, 'Quart'),
-(54, 'KnownPounds'),
-(55, 'UnknownPounds'),
-(56, 'Dozen');
+INSERT INTO `portions` (`portionsID`, `portionsName`, `portionsDesc`) VALUES
+(50, 'Bunches', '/ bunch'),
+(51, 'Individual', NULL),
+(52, 'Pint', '/ pint'),
+(53, 'Quart', '/ quart'),
+(54, 'KnownPounds', '/ lb'),
+(55, 'UnknownPounds', '/ lb'),
+(56, 'Dozen', '/ dozen');
 
 -- --------------------------------------------------------
 
@@ -170,16 +172,23 @@ CREATE TABLE `products` (
   `productID` int(11) NOT NULL,
   `productName` varchar(50) NOT NULL,
   `portionsID` int(11) NOT NULL,
-  `price` decimal(10,0) NOT NULL,
-  `qty` decimal(10,0) NOT NULL,
+  `price` decimal(10,2) NOT NULL,
+  `qty` decimal(10,2) NOT NULL,
   `shortDesc` varchar(255) DEFAULT NULL,
   `fullDesc` varchar(255) DEFAULT NULL,
   `catID` int(11) NOT NULL,
   `image` varchar(255) NOT NULL,
   `sizeID` int(11) NOT NULL,
-  `inSeason` tinyint(1) NOT NULL,
+  `outOfSeason` tinyint(1) NOT NULL,
   `hide` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `products`
+--
+
+INSERT INTO `products` (`productID`, `productName`, `portionsID`, `price`, `qty`, `shortDesc`, `fullDesc`, `catID`, `image`, `sizeID`, `outOfSeason`, `hide`) VALUES
+(1, 'Porkchop', 55, '3.99', '100.00', 'Pork chops short description.', 'Pork chops full description.', 43, 'pork.jpg', 1, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -189,8 +198,16 @@ CREATE TABLE `products` (
 
 CREATE TABLE `sizes` (
   `sizeID` int(11) NOT NULL,
-  `sizeName` int(11) NOT NULL
+  `sizeName` varchar(25) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `sizes`
+--
+
+INSERT INTO `sizes` (`sizeID`, `sizeName`) VALUES
+(2, 'Medium (1-1.5 lbs)'),
+(1, 'Small (0.5-1 lbs)');
 
 --
 -- Indexes for dumped tables
@@ -274,13 +291,13 @@ ALTER TABLE `orders`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `productID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `productID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `sizes`
 --
 ALTER TABLE `sizes`
-  MODIFY `sizeID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `sizeID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
