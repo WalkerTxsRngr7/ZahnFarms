@@ -122,7 +122,21 @@ function getAllOrders(){
     $aryOrders= $qry->fetchAll();
 
 
-    //return an array of products
+    //return an array of orders
     return $aryOrders;
+
+}
+
+/** RETURN ORDER DETAILS BY ORDERID */ 
+function getOrderDetails($orderID){
+    global $db;
+    $sql = "SELECT * FROM `orderdetails` WHERE `orderID` = $orderID";
+
+    //oop
+    $qry = $db->query($sql);
+    $orderDetails= $qry->fetch();
+
+    //return an array of orderDetails
+    return $orderDetails;
 
 }
