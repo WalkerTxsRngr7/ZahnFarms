@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 26, 2021 at 07:47 PM
+-- Generation Time: Apr 01, 2021 at 08:30 PM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.3.1
 
@@ -39,7 +39,7 @@ CREATE TABLE `categories` (
 --
 
 INSERT INTO `categories` (`catID`, `catName`, `image`) VALUES
-(41, 'Beef', 'beef.jpg'),
+(41, 'Beef', 'beef2.jpg'),
 (42, 'Chicken', ''),
 (43, 'Pork', 'pork.jpg'),
 (44, 'Eggs', ''),
@@ -188,7 +188,7 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`productID`, `productName`, `portionsID`, `price`, `qty`, `shortDesc`, `fullDesc`, `catID`, `image`, `sizeID`, `outOfSeason`, `hide`) VALUES
-(1, 'Porkchop', 55, '3.99', '100.00', 'Pork chops short description.', 'Pork chops full description.', 43, 'pork.jpg', 1, 0, 0);
+(1, 'Porkchop', 55, '3.99', '100.00', 'Pork chops short description.', 'Pork chops full description.', 43, 'pork.jpg', 1, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -297,7 +297,7 @@ ALTER TABLE `products`
 -- AUTO_INCREMENT for table `sizes`
 --
 ALTER TABLE `sizes`
-  MODIFY `sizeID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `sizeID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

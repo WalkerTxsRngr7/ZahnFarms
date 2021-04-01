@@ -3,7 +3,7 @@ $cat = catByID($catID);
 $aryProd = productsByCatID($catID);
 ?>
 
-<h1 class="slogan">Short about us here.... <?=$cat['catName']?></h1>
+<h1 class="slogan">Short about us here</h1>
 
 <section>
     
@@ -17,14 +17,27 @@ $aryProd = productsByCatID($catID);
         ?>
             <a href="?catID=<?=$catID?>&prodID=<?=$prod['productID']?>">
               <!--? Put class="uk-flex-last" for out of season items -->
-              <div class="uk-card uk-card-default">
+              <!-- using Ternary if to check for out of season -->
+              <div class="uk-card uk-card-default <?php echo($prod['outOfSeason'] == 1 ? 'uk-flex-last' : '' )?>"> 
                 <div class="uk-card-media-top">
                   <img src="../images/<?=$prod['image']?>" alt="<?=$prod['productName']?> Image">
                 </div>
+                <?php if ($prod['outOfSeason'] == 1){?> <!-- if out of season -->
+                <div class="uk-overlay uk-overlay-primary uk-position-cover" style="overflow:hidden">
+                  <p class="card-name" style="font-weight:bold;text-decoration:underline;">OUT OF<br>SEASON</p>
+                  <p class="card-name"><?=$prod['productName']?></p>
+                  <p class="card-price">$<?=$prod['price']?> <?=$portion['portionsDesc']?></p>
+                </div>
+                <?php
+                } else { /* if in season */
+                ?>
                 <div class="uk-overlay uk-overlay-primary uk-position-bottom">
                   <p class="card-name"><?=$prod['productName']?></p>
                   <p class="card-price">$<?=$prod['price']?> <?=$portion['portionsDesc']?></p>
                 </div>
+                <?php 
+                }
+                ?>
               </div>
             </a>
         <?php

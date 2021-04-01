@@ -1,4 +1,5 @@
 <?php
+// TODO change for this site.
 if (isset($modify)){
 
     $name = $_FILES['newImage']['name'];
