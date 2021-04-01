@@ -188,7 +188,29 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`productID`, `productName`, `portionsID`, `price`, `qty`, `shortDesc`, `fullDesc`, `catID`, `image`, `sizeID`, `outOfSeason`, `hide`) VALUES
-(1, 'Porkchop', 55, '3.99', '100.00', 'Pork chops short description.', 'Pork chops full description.', 43, 'pork.jpg', 1, 0, 0);
+(1, 'Porkchop', 55, '3.99', '100.00', 'Pork chops short description.', 'Pork chops full description.', 43, 'Porkchop.jpg', 1, 0, 0),
+(2, 'Pork', 55, '3.99', '100.00', 'Pork short description.', 'Pork  full description.', 43, 'pork.jpg', 1, 0, 0),
+(3, 'Bacon', 55, '3.99', '100.00', 'Bacon short description.', 'Bacon full description.', 43, 'Bacon.jpg', 1, 0, 0),
+(4, 'Beef', 55, '3.99', '100.00', 'Steak short description.', 'Steak full description.', 41, 'beef.jpg', 1, 0, 0),
+(14, 'Ground Beef', 55, '3.99', '100.00', 'Ground Beef short description.', 'Ground beef description.', 41, 'Ground_beef.jpg', 1, 0, 0),
+(5, 'Bratwurst', 55, '3.99', '100.00', 'Bratwurst short description.', 'Bratwurst full description.', 41, 'Bratwurst.jpg', 1, 0, 0),
+(6, 'Cabbage', 55, '3.99', '100.00', 'Cabbage short description.', 'Cabbage full description.', 45, 'Cabbage.jpg', 1, 0, 0),
+(7, 'Shiitake Mushrooms Dried', 55, '3.99', '100.00', 'Shiitake Mushrooms Dried short description.', 'Shiitake Mushrooms Dried full description.', 45, 'shiitake_mushroom.jpg', 1, 0, 0),
+(8, 'Shiitake Mushrooms Fresh', 55, '3.99', '100.00', 'Shiitake Mushrooms Fresh short description.', 'Shiitake Mushrooms Fresh full description.', 45, 'Shiitake_Mushrooms_Fresh.jpg', 1, 0, 0),
+(9, 'Okra', 55, '3.99', '100.00', 'Okra short description.', 'Okra full description.', 45, 'pork.jpg', 1, 0, 0),
+(11, 'Green Beens', 55, '3.99', '100.00', 'Green Beens short description.', 'Green Beens full description.', 45, 'Green_Peppers.jpg', 1, 0, 0),
+(12, 'Red pepper', 55, '3.99', '100.00', 'Red pepper short description.', 'Red pepper full description.', 45, 'Red_Peppers.jpg', 1, 0, 0),
+(13, 'Green onion', 55, '3.99', '100.00', 'Green onion short description.', 'Green onion description.', 45, 'Green_Onions.jpg', 1, 0, 0),
+(15, 'Onions', 55, '3.99', '100.00', 'Onions short description.', 'Onions description.', 45, 'Onions.jpg', 1, 0, 0),
+(16, 'Dill', 55, '3.99', '100.00', 'Dill short description.', 'Dill description.', 45, 'Dill.jpg', 1, 0, 0),
+(16, 'Carrots', 55, '3.99', '100.00', 'Carrots short description.', 'Carrots description.', 45, '.jpg', 1, 0, 0),
+(17, 'Cherry Tomatoes (red)', 55, '3.99', '100.00', 'Cherry Tomatoes (red) short description.', 'Cherry Tomatoes (red) description.', 46, 'Cherry_Tomatoes.jpg', 1, 0, 0),
+(18, '', 55, '3.99', '100.00', ' short description.', ' description.', 46, '.jpg', 1, 0, 0),
+(19, '', 55, '3.99', '100.00', ' short description.', ' description.', 46, '.jpg', 1, 0, 0),
+(20, '', 55, '3.99', '100.00', ' short description.', ' description.', 46, '.jpg', 1, 0, 0),
+(21, '', 55, '3.99', '100.00', ' short description.', ' description.', 46, '.jpg', 1, 0, 0),
+(22, '', 55, '3.99', '100.00', ' short description.', ' description.', 46, '.jpg', 1, 0, 0),
+(23, '', 55, '3.99', '100.00', ' short description.', ' description.', 45, '.jpg', 1, 0, 0);
 
 -- --------------------------------------------------------
 
