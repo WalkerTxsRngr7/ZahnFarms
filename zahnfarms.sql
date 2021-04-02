@@ -209,7 +209,7 @@ INSERT INTO `products` (`productID`, `productName`, `portionsID`, `price`, `qty`
 (19, 'Cucumbers Sliced', 55, '3.99', '100.00', 'Cucumbers Sliced short description.', 'Cucumbers Sliced full description.', 46, 'Cucumber.jpg', 1, 0, 0),
 (20, 'Yellow Squash', 55, '3.99', '100.00', 'Yellow Squash short description.', 'Yellow Squash full description.', 46, 'Yellow_Squash.jpg', 1, 0, 0),
 (21, 'Table Tomatoes', 55, '3.99', '100.00', 'Table Tomatoes short description.', 'Table Tomatoes full description.', 46, 'Tomato.jpg', 1, 0, 0),
-(22, 'Zucchini', 55, '3.99', '100.00', 'Zucchini short description.', 'Zucchini description.', 46, 'Zucchini.jpg', 1, 0, 0),
+(22, 'Zucchini', 55, '3.99', '100.00', 'Zucchini short description.', 'Zucchini description.', 46, 'Zucchini.jpg', 1, 0, 0);
 
 -- --------------------------------------------------------
 
