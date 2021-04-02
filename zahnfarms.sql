@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 26, 2021 at 07:47 PM
+-- Generation Time: Apr 02, 2021 at 03:47 AM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.3.1
 
@@ -192,7 +192,6 @@ INSERT INTO `products` (`productID`, `productName`, `portionsID`, `price`, `qty`
 (2, 'Pork', 55, '3.99', '100.00', 'Pork short description.', 'Pork  full description.', 43, 'pork.jpg', 1, 0, 0),
 (3, 'Bacon', 55, '3.99', '100.00', 'Bacon short description.', 'Bacon full description.', 43, 'Bacon.jpg', 1, 0, 0),
 (4, 'Beef', 55, '3.99', '100.00', 'Steak short description.', 'Steak full description.', 41, 'beef.jpg', 1, 0, 0),
-(14, 'Ground Beef', 55, '3.99', '100.00', 'Ground Beef short description.', 'Ground beef description.', 41, 'Ground_beef.jpg', 1, 0, 0),
 (5, 'Bratwurst', 55, '3.99', '100.00', 'Bratwurst short description.', 'Bratwurst full description.', 41, 'Bratwurst.jpg', 1, 0, 0),
 (6, 'Cabbage', 55, '3.99', '100.00', 'Cabbage short description.', 'Cabbage full description.', 45, 'Cabbage.jpg', 1, 0, 0),
 (7, 'Shiitake Mushrooms Dried', 55, '3.99', '100.00', 'Shiitake Mushrooms Dried short description.', 'Shiitake Mushrooms Dried full description.', 45, 'shiitake_mushroom.jpg', 1, 0, 0),
@@ -201,6 +200,7 @@ INSERT INTO `products` (`productID`, `productName`, `portionsID`, `price`, `qty`
 (11, 'Green Beens', 55, '3.99', '100.00', 'Green Beens short description.', 'Green Beens full description.', 45, 'Green_Peppers.jpg', 1, 0, 0),
 (12, 'Red pepper', 55, '3.99', '100.00', 'Red pepper short description.', 'Red pepper full description.', 45, 'Red_Peppers.jpg', 1, 0, 0),
 (13, 'Green onion', 55, '3.99', '100.00', 'Green onion short description.', 'Green onion full description.', 45, 'Green_Onions.jpg', 1, 0, 0),
+(14, 'Ground Beef', 55, '3.99', '100.00', 'Ground Beef short description.', 'Ground beef description.', 41, 'Ground_beef.jpg', 1, 0, 0),
 (15, 'Onions', 55, '3.99', '100.00', 'Onions short description.', 'Onions full description.', 45, 'Onions.jpg', 1, 0, 0),
 (16, 'Dill', 55, '3.99', '100.00', 'Dill short description.', 'Dill full description.', 45, 'Dill.jpg', 1, 0, 0),
 (17, 'Carrots', 55, '3.99', '100.00', 'Carrots short description.', 'Carrots full description.', 45, 'Carrots.jpg', 1, 0, 0),
@@ -312,13 +312,13 @@ ALTER TABLE `orders`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `productID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `productID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `sizes`
 --
 ALTER TABLE `sizes`
-  MODIFY `sizeID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `sizeID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
