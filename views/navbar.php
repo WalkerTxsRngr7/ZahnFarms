@@ -10,7 +10,7 @@
                 </li>
                 <li>
                     <a href="../product/">Products</a>
-                    <div class="uk-navbar-dropdown" delay-hide="50">
+                    <div class="uk-navbar-dropdown" delay-hide="250">
                         <ul class="uk-nav uk-navbar-dropdown-nav">
                             <?php
                             $aryCat = getAllCategories();

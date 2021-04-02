@@ -22,7 +22,7 @@ $aryProd = productsByCatID($catID);
             <h3>$<?=$prod['price']?></h3> <!-- get portionsDesc and show after price to show how is sold. -->
           </div>
           <div>
-            <h3>Stock: <?=$prod['qty']?></h3> <!-- Show how is portioned so know how stock is kept track of. ie: in pounds, bunches, dozen -->
+            <h3>Stock: <?=$prod['qty']?></h3>
           </div>
           <div class="admin-prod-row-checkbox uk-flex uk-flex-column "> <!-- Move to product.php page -->
             <label class="uk-form-label"><input name="hide" value="1" class="uk-checkbox" type="checkbox">

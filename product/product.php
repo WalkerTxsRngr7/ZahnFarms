@@ -1,7 +1,7 @@
 <?php
 // $cat = catByID($catID);
 $prod = prodByID($prodID);
-// $portion = portionByID($prod['portionsID']);
+$portion = portionByID($prod['portionsID']);
 ?>
 
 

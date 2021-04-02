@@ -41,7 +41,7 @@
                 </td>
                 <td>1</td>
                 <td>Doe, John</td> <!-- Put Last Name, First Name -->
-                <td>Paid</td> <!-- Status: Paid, Unpaid, Delivered. Give different class depending on status. status-paid, status-unpaid, status-delivered -->
+                <td>Paid</td> <!-- Status: Paid, Unpaid, Delivered. Give different class depending on status. status-paid, status-unpaid, status-delivered --> <!-- Paid, Pay At Pickup, Delivered  Style: Paid(Blue) Unpaid(Red, underline) Delivered(Green) Border solid 3px--> 
                 <td>4/1/2021</td> 
                 <td>4/5/2021 3:00PM</td> <!-- Put Date and time together -->
                 <td>Farm</td>

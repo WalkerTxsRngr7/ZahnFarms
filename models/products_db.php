@@ -3,7 +3,7 @@
 /** RETURN AN ARRAY OF ALL CATEGORIES */
 function getAllCategories(){
     global $db;
-    $sql = "SELECT * FROM categories";
+    $sql = "SELECT * FROM categories WHERE hide = 0";
     $qry = $db->query($sql);
     $aryCat = $qry->fetchAll();
 

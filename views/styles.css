@@ -4,9 +4,10 @@
 */
 
 html, body {
-  background-image: url("images/barnWood.jpg");
+  background-image: url("../images/barnWood.jpg");
   background-size: cover;
   height:100%;
+  padding:0px;
 }
 
 /*Nav bar*/
@@ -43,6 +44,10 @@ nav img {
 
 .content-container {
   background-color: rgba(201, 201, 201, 0.644);
+  width: 90%;
+  margin:auto;
+  margin-top:0px;
+  padding:20px;
 }
 .dropdown-menu {
   display: flex;
@@ -66,14 +71,17 @@ h1 {
   font-weight: 500;
   font-size: 2em;
   text-shadow: 2px 2px 5px rgb(1, 101, 47); 
+  margin:0px;
+  padding:30px;
+  padding-top:0px;
 }
 .uk-card {
-  font-family: 'Caveat', cursive;
+  font-family: 'Caveat Brush', cursive;
   font-size: 1.7em;
   background-color: rgba(1,1,1,0)
 }
 .productDesc {
-  font-family: 'Caveat', cursive;
+  font-family: 'Caveat Brush', cursive;
 
 }
 .uk-overlay {
@@ -108,6 +116,8 @@ h1 {
 
 .adminBtns {
   background-color: rgb(3, 173, 17);
+  width:90%;
+  margin: auto;
 }
 
 
@@ -118,7 +128,6 @@ footer {
   justify-content: space-between;
   color: white;
   padding: 15px 0px;
-  margin-top: 30px;
   box-shadow: 0px 10px 50px -10px black inset;
 }
 
