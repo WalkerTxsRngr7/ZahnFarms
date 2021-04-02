@@ -4,76 +4,64 @@
 
 <!-- example -->
 <?php
-foreach ($orders as $order ) {
-    echo("
-    <tr>
-        <th scope='row'>$order[orderID]</th>
-        <td>$order[customerName]</td>
-        <td>$order[productID]</td>
-        <td>$order[qtyOrdered]</td>
-    </tr>");
-}
+// foreach ($orders as $order ) {
+//     echo("
+//     <tr>
+//         <th scope='row'>$order[orderID]</th>
+//         <td>$order[customerName]</td>
+//         <td>$order[productID]</td>
+//         <td>$order[qtyOrdered]</td>
+//     </tr>");
+// }
 ?>
+<div style="width:90%; margin:auto" class="">
+    <div class="uk-column-1-2 uk-column-divider">
+        <p>Order #: 13</p>
+        <p>Name: Doe, John<br></p>
+        <p>Phone: 417-745-3375<br></p>
+        <p>Order Date: 4/1/2021</p>
+        <p>Delivery Date: 4/5/2021 3:00PM</p>
+        <p>Delivery Location: Farm</p>
+        <p>Total: $27.97</p>
+        <p>Total Paid: $12.99</p>
+        <p>Status: Unpaid</p>  <!-- Need a way to show in database how much they have already paid -->
+    </div>
 
 
-<div class="uk-overflow-auto">
-    <table class="uk-table uk-table-small uk-table-divider uk-table-striped uk-table-responsive">
-        <thead>
-            <tr>
-              <th scope="col">Order ID</th>
-              <th scope="col">Customer Name</th> 
-              <th scope="col">Status</th>
-              <th scope="col">Order Date</th>
-              <th scope="col">Delivery Date</th>
-              <th scope="col">Delivery Location</th>
-              <th scope="col">Total</th> <!-- May add another field to the table for unpaid total -->
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-              <td>
-                <form id="form1" method="post" action=""> <!--  -->
-                  <!-- ^^  ^^^^^ -->
-                  <input type="submit" name="viewOrder" value="View">
-                  <input type="hidden" name="adminBtn" value="<?=$adminBtn?>">
-                  <input type="hidden" name="orderID" value="<?=$order['orderID']?>">
-                </form>
-              </td>
-              <td>1</td>
-              <td>Doe, John</td> <!-- Put Last Name, First Name -->
-              <td>Paid</td> <!-- Status: Paid, Unpaid, Delivered. Give different class depending on status. status-paid, status-unpaid, status-delivered -->
-              <td>4/1/2021</td>
-              <td>4/5/2021</td> <!-- Put Date and time together -->
-              <td>Farm</td>
-              <td>$79.99</td>
-            </tr>
-            <tr>
-                <td>Table Data</td>
-                <td>Table Data</td>
-                <td>Table Data</td>
-                <td>Table Data</td>
-                <td>Table Data</td>
-                <td>Table Data</td>
-                <td>Table Data</td>
-            </tr>
-            <tr>
-                <td>Table Data</td>
-                <td>Table Data</td>
-                <td>Table Data</td>
-                <td>Table Data</td>
-                <td>Table Data</td>
-                <td>Table Data</td>
-                <td>Table Data</td>
-            </tr>
-            <tr>
-                <td>Table Data</td>
-                <td>Table Data</td>
-                <td>Table Data</td>
-                <td>Table Data</td>
-                <td>Table Data</td>
-                <td>Table Data</td>
-                <td>Table Data</td>
-            </tr>
-        </tbody>
-    </table>
+    <div class="uk-overflow-auto">
+        <table class="uk-table uk-table-small uk-table-divider uk-table-striped">
+            <thead>
+                <tr>
+                    <th class="uk-table-shrink" scope="col">Order Line Number</th> <!-- order Line number -->
+                    <th scope="col">Product</th>
+                    <th scope="col">Quantity</th> 
+                    <th scope="col">Item Price</th>
+                    <th scope="col">Line Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                <td>1</td>
+                <td>Beef</td>
+                <td>4 lbs</td> <!-- need to show portion -->
+                <td>$5.99</td>
+                <td>$19.99</td>
+                </tr>
+                <tr>
+                <td>2</td>
+                <td>Eggs</td>
+                <td>2 Dozens</td> <!-- need to show portion -->
+                <td>$3.99</td>
+                <td>$10.99</td>
+                </tr>
+                <tr>
+                <td>3</td>
+                <td>Carrots</td>
+                <td>3 Bunches</td> <!-- need to show portion -->
+                <td>$5.99</td>
+                <td>$15.99</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </div>
