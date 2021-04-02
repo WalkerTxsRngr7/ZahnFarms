@@ -188,6 +188,7 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`productID`, `productName`, `portionsID`, `price`, `qty`, `shortDesc`, `fullDesc`, `catID`, `image`, `sizeID`, `outOfSeason`, `hide`) VALUES
+<<<<<<< HEAD
 
 (1, 'Porkchop', 55, '3.99', '100.00', 'Pork chops short description.', 'Pork chops full description.', 43, 'pork.jpg', 1, 1, 0);
 =======
@@ -214,6 +215,9 @@ INSERT INTO `products` (`productID`, `productName`, `portionsID`, `price`, `qty`
 (21, 'Table Tomatoes', 55, '3.99', '100.00', 'Table Tomatoes short description.', 'Table Tomatoes full description.', 46, 'Tomato.jpg', 1, 0, 0),
 (22, 'Zucchini', 55, '3.99', '100.00', 'Zucchini short description.', 'Zucchini description.', 46, 'Zucchini.jpg', 1, 0, 0),
 
+=======
+(1, 'Porkchop', 55, '3.99', '100.00', 'Pork chops short description.', 'Pork chops full description.', 43, 'pork.jpg', 1, 1, 0);
+>>>>>>> parent of b8ac86a (Merge branch 'MVC')
 
 -- --------------------------------------------------------
 
