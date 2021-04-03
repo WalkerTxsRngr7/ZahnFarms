@@ -240,7 +240,7 @@ CREATE TABLE `sizes` (
 
 INSERT INTO `sizes` (`sizeID`, `sizeName`, `price`, `qty`) VALUES
 (1, 'Small (0.5-1 lbs)', '0.00', '0.0'),
-(2, 'Medium (1-1.5 lbs)', '0.00', '0.0'),
+(2, 'Medium (1-1.5 lbs)', '0.00', '0.0');
 
 --
 -- Indexes for dumped tables
