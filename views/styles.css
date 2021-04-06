@@ -161,6 +161,36 @@ footer a {
   padding-right: 10px;
   padding-bottom: 0px;
 }
+
+.print { /* show up on print */
+  display: none;
+}
+.no-print { /* show up normal */
+  display: block;
+}
+
+@media print {
+  .print { /* show up on print */
+    display: block;
+  }
+  .no-print { /* don't show up on print */
+    display: none;
+  }
+  /* footer {
+    display: none;
+  }
+  .uk-navbar-container {
+    display:none;
+  } */
+  .adminBtns {
+    display: none;
+  }
+}
+
+
+
+
+
 @media (min-width: 960px) {
   .admin-prod-row-checkbox{
     align-items: flex-start;

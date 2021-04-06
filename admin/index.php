@@ -12,6 +12,7 @@ $adminBtn = filter_input(INPUT_POST, "adminBtn");
 $modify = filter_input(INPUT_POST, "modify");
 $edit = filter_input(INPUT_POST, "edit");
 $viewOrder = filter_input(INPUT_POST, "viewOrder");
+$printOrder = filter_input(INPUT_POST, "print");
 $newProdName = filter_input(INPUT_POST, "newProdName");
 $newCatName = filter_input(INPUT_POST, "newCatName");
 $newPrice = filter_input(INPUT_POST, "newPrice");

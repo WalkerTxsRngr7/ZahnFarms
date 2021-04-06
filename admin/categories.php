@@ -56,24 +56,26 @@ if (!isset($edit)){
         <div class="uk-grid-small uk-child-width-1-4@s uk-flex-center uk-text-center" uk-grid>
 
             <?php
-                foreach($aryCat as $cat){
-                ?>
+            foreach($aryCat as $cat){
+            ?>
+            
+            <!-- Don't show if supposed to hide -->
             <div>
-                <form action="" method="post">
+                <form action="" method="post"> <!-- Go into category -->
                     
-                        <!--? Put class="uk-flex-last" for out of season items -->
-                        <div class="uk-card uk-card-default" value="<?=$cat['catID']?>">
-                            <div class="uk-card-media-top">
-                                <img src="../images/<?=$cat['image']?>" alt="<?=$cat['catName']?> Image">
-                            </div>
-                            <button type="submit" class="uk-overlay uk-overlay-primary uk-position-bottom uk-width-expand">
-                                <p><?=$cat['catName']?></p>
-                                <input type="hidden" name="adminBtn" value="<?=$adminBtn?>">
-                                <input type="hidden" name="catID" value="<?=$cat['catID']?>">
-                            </button>
+                    <!-- Put class="uk-flex-last" for out of season items -->
+                    <div class="uk-card uk-card-default" value="<?=$cat['catID']?>">
+                        <div class="uk-card-media-top">
+                            <img src="../images/<?=$cat['image']?>" alt="<?=$cat['catName']?> Image">
                         </div>
+                        <button type="submit" class="uk-overlay uk-overlay-primary uk-position-bottom uk-width-expand">
+                            <p><?=$cat['catName']?></p>
+                            <input type="hidden" name="adminBtn" value="<?=$adminBtn?>">
+                            <input type="hidden" name="catID" value="<?=$cat['catID']?>">
+                        </button>
+                    </div>
                 </form>
-                <form action="" method="post">
+                <form action="" method="post"> <!-- Edit Category details -->
                     <div>
                         <input type="hidden" name="adminBtn" value="<?=$adminBtn?>">
                         <input type="hidden" name="edit">
@@ -83,10 +85,9 @@ if (!isset($edit)){
                 </form>
             </div>
 
-
             <?php
-                }
-                ?>
+            }
+            ?>
 
         </div>
     </section>

@@ -1,5 +1,5 @@
 <!-- Form for product details that can be changed -->
-<form class="uk-form-stacked admin-prod-form" action="adminProduct.php" method="post">
+<form class="uk-form-stacked admin-prod-form" action="" method="post">
   <div class="uk-grid-small uk-flex-center uk-text-center content-container" style="width:90%; margin:auto" uk-grid>
       
       <!-- Product image -->

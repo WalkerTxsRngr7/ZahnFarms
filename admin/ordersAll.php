@@ -33,7 +33,7 @@
         <tbody>
             <tr>
                 <td>
-                    <form id="form1" method="post" action="">
+                    <form method="post" action="">
                         <input class="uk-button uk-button-default" type="submit" name="viewOrder" value="View">
                         <input type="hidden" name="adminBtn" value="<?=$adminBtn?>">
                         <input type="hidden" name="orderID" value="<?=$order['orderID']?>">
@@ -49,7 +49,7 @@
             </tr>
             <tr>
                 <td>
-                    <form id="form1" method="post" action="">
+                    <form method="post" action="">
                         <input class="uk-button uk-button-default" type="submit" name="viewOrder" value="View">
                         <input type="hidden" name="adminBtn" value="<?=$adminBtn?>">
                         <input type="hidden" name="orderID" value="<?=$order['orderID']?>">
@@ -65,7 +65,7 @@
             </tr>
             <tr>
                 <td>
-                    <form id="form1" method="post" action="">
+                    <form method="post" action="">
                         <input class="uk-button uk-button-default" type="submit" name="viewOrder" value="View">
                         <input type="hidden" name="adminBtn" value="<?=$adminBtn?>">
                         <input type="hidden" name="orderID" value="<?=$order['orderID']?>">
@@ -81,7 +81,7 @@
             </tr>
             <tr>
                 <td>
-                    <form id="form1" method="post" action="">
+                    <form method="post" action="">
                         <input class="uk-button uk-button-default" type="submit" name="viewOrder" value="View">
                         <input type="hidden" name="adminBtn" value="<?=$adminBtn?>">
                         <input type="hidden" name="orderID" value="<?=$order['orderID']?>">
@@ -97,7 +97,7 @@
             </tr>
             <tr>
                 <td>
-                    <form id="form1" method="post" action="">
+                    <form method="post" action="">
                         <input class="uk-button uk-button-default" type="submit" name="viewOrder" value="View">
                         <input type="hidden" name="adminBtn" value="<?=$adminBtn?>">
                         <input type="hidden" name="orderID" value="<?=$order['orderID']?>">
@@ -113,7 +113,7 @@
             </tr>
             <tr>
                 <td>
-                    <form id="form1" method="post" action="">
+                    <form method="post" action="">
                         <input class="uk-button uk-button-default" type="submit" name="viewOrder" value="View">
                         <input type="hidden" name="adminBtn" value="<?=$adminBtn?>">
                         <input type="hidden" name="orderID" value="<?=$order['orderID']?>">

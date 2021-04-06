@@ -1,5 +1,5 @@
 <!-- TODO Change info -->
-<footer class="footer">
+<footer class="footer no-print">
     <div class="footerImg">
       <a href="../product"><img src="../images/Zahn Farms Logo.jpg" alt="Zahn Farms Logo" style="height: 80px;"> <!--TODO Change logo--></a>
     </div>
