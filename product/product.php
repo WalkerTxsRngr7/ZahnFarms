@@ -60,11 +60,11 @@ if ($prod['sizeID'] != null) {
         </div>
 
         <!-- Quantity box -->
-        <div id="qtyBox" class="uk-card  uk-width-expand">
-          <!-- <!-- class="uk-form-label" for="form-stacked-text">Quantity</!-->
-          <div class="uk-form-controls uk-width-1-3" style="margin:auto; display:none;">
+        <div class="uk-card  uk-width-expand">
+          <label class="uk-form-label" for="form-stacked-text">Quantity</label>
+          <div class="uk-form-controls uk-width-1-3" style="margin:auto">
             <input class="uk-input uk-text-center" id="form-stacked-text" type="number" placeholder="1-<?=$prod['qty']?>" min="1" max="<?=$prod['qty']?>" name="qty" tabindex="1"> 
-          </div> -->
+          </div>
         </div>
         <!-- Add to cart button -->
         <div class="uk-card">
@@ -111,7 +111,5 @@ if ($prod['sizeID'] != null) {
     var input = e.options[e.selectedIndex].textContent;
     var price = input.split('$');
     document.getElementById("price").innerHTML="$" + price[1] + " " + text[1] + " " + text[2];
-    alert("<?=$sizeAry[0]['price']?>");
-    alert("<?=$prod['qty']?>");
   }
 </script>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 02, 2021 at 09:22 PM
+-- Generation Time: Apr 07, 2021 at 09:08 PM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.3.1
 
@@ -40,7 +40,7 @@ CREATE TABLE `categories` (
 --
 
 INSERT INTO `categories` (`catID`, `catName`, `image`, `hide`) VALUES
-(41, 'Beef Test Change', 'beef test.jpg', 0),
+(41, 'Beef', 'beef.jpg', 0),
 (42, 'Chicken', '', 0),
 (43, 'Pork', 'pork.jpg', 0),
 (44, 'Eggs', '', 0),
@@ -164,13 +164,13 @@ CREATE TABLE `portions` (
 --
 
 INSERT INTO `portions` (`portionsID`, `portionsName`, `portionsDesc`) VALUES
-(50, 'Bunches', '/ bunch'),
-(51, 'Individual', NULL),
-(52, 'Pint', '/ pint'),
-(53, 'Quart', '/ quart'),
-(54, 'KnownPounds', '/ lb'),
-(55, 'UnknownPounds', '/ lb'),
-(56, 'Dozen', '/ dozen');
+(1, 'Bunches', '/ bunch'),
+(2, 'Individual', NULL),
+(3, 'Pint', '/ pint'),
+(4, 'Quart', '/ quart'),
+(5, 'KnownPounds', '/ lb'),
+(6, 'UnknownPounds', '/ lb'),
+(7, 'Dozen', '/ dozen');
 
 -- --------------------------------------------------------
 
@@ -188,7 +188,7 @@ CREATE TABLE `products` (
   `fullDesc` varchar(255) DEFAULT NULL,
   `catID` int(11) NOT NULL,
   `image` varchar(255) NOT NULL,
-  `sizeID` int(11) NOT NULL,
+  `sizeID` int(11) DEFAULT NULL,
   `outOfSeason` tinyint(1) NOT NULL,
   `hide` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -198,28 +198,28 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`productID`, `productName`, `portionsID`, `price`, `qty`, `shortDesc`, `fullDesc`, `catID`, `image`, `sizeID`, `outOfSeason`, `hide`) VALUES
-(1, 'Porkchop', 55, '4.00', '100.0', 'Pork chops short description.', 'Pork chops full description.', 43, 'Porkchop.jpg', 1, 0, 0),
-(2, 'Pork', 55, '4.00', '100.0', 'Pork short description.', 'Pork  full description.', 43, 'pork.jpg', 1, 0, 0),
-(3, 'Bacon', 55, '4.00', '100.0', 'Bacon short description.', 'Bacon full description.', 43, 'Bacon.jpg', 1, 0, 0),
-(4, 'Beef', 55, '4.00', '100.0', 'Steak short description.', 'Steak full description.', 41, 'beef.jpg', 1, 0, 0),
-(5, 'Bratwurst', 55, '4.00', '100.0', 'Bratwurst short description.', 'Bratwurst full description.', 41, 'Bratwurst.jpg', 1, 0, 0),
-(6, 'Cabbage', 55, '4.00', '100.0', 'Cabbage short description.', 'Cabbage full description.', 45, 'Cabbage.jpg', 1, 0, 0),
-(7, 'Shiitake Mushrooms Dried', 55, '4.00', '100.0', 'Shiitake Mushrooms Dried short description.', 'Shiitake Mushrooms Dried full description.', 45, 'shiitake_mushroom.jpg', 1, 0, 0),
-(8, 'Shiitake Mushrooms Fresh', 55, '4.00', '100.0', 'Shiitake Mushrooms Fresh short description.', 'Shiitake Mushrooms Fresh full description.', 45, 'Shiitake_Mushrooms_Fresh.jpg', 1, 0, 0),
-(9, 'Okra', 55, '4.00', '100.0', 'Okra short description.', 'Okra full description.', 45, 'pork.jpg', 1, 0, 0),
-(11, 'Green Beens', 55, '4.00', '100.0', 'Green Beens short description.', 'Green Beens full description.', 45, 'Green_Peppers.jpg', 1, 0, 0),
-(12, 'Red pepper', 55, '4.00', '100.0', 'Red pepper short description.', 'Red pepper full description.', 45, 'Red_Peppers.jpg', 1, 0, 0),
-(13, 'Green onion', 55, '4.00', '100.0', 'Green onion short description.', 'Green onion full description.', 45, 'Green_Onions.jpg', 1, 0, 0),
-(14, 'Ground Beef', 55, '4.00', '100.0', 'Ground Beef short description.', 'Ground beef description.', 41, 'Ground_beef.jpg', 1, 0, 0),
-(15, 'Onions', 55, '4.00', '100.0', 'Onions short description.', 'Onions full description.', 45, 'Onions.jpg', 1, 0, 0),
-(16, 'Dill', 55, '4.00', '100.0', 'Dill short description.', 'Dill full description.', 45, 'Dill.jpg', 1, 0, 0),
-(17, 'Carrots', 55, '4.00', '100.0', 'Carrots short description.', 'Carrots full description.', 45, 'Carrots.jpg', 1, 0, 0),
-(18, 'Cherry Tomatoes (red)', 55, '4.00', '100.0', 'Cherry Tomatoes (red) short description.', 'Cherry Tomatoes (red) full description.', 46, 'Cherry_Tomatoes.jpg', 1, 0, 0),
-(19, 'Cucumbers Pickled', 55, '4.00', '100.0', 'Cucumbers Pickled short description.', 'Cucumbers Pickled full description.', 46, 'Pickled_Cucumbers.jpg', 1, 0, 0),
-(20, 'Cucumbers Sliced', 55, '4.00', '100.0', 'Cucumbers Sliced short description.', 'Cucumbers Sliced full description.', 46, 'Cucumber.jpg', 1, 0, 0),
-(21, 'Yellow Squash', 55, '4.00', '100.0', 'Yellow Squash short description.', 'Yellow Squash full description.', 46, 'Yellow_Squash.jpg', 1, 0, 0),
-(22, 'Table Tomatoes', 55, '4.00', '100.0', 'Table Tomatoes short description.', 'Table Tomatoes full description.', 46, 'Tomato.jpg', 1, 0, 0),
-(23, 'Zucchini', 55, '4.00', '100.0', 'Zucchini short description.', 'Zucchini description.', 46, 'Zucchini.jpg', 1, 0, 0);
+(1, 'Porkchop', 2, '4.00', '100.0', 'Pork chops short description.', 'Pork chops full description.', 43, 'Porkchop.jpg', 1, 0, 0),
+(2, 'Pork', 6, '4.00', '100.0', 'Pork short description.', 'Pork  full description.', 43, 'pork.jpg', NULL, 0, 0),
+(3, 'Bacon', 2, '4.00', '100.0', 'Bacon short description.', 'Bacon full description.', 43, 'Bacon.jpg', NULL, 0, 0),
+(4, 'Steak', 6, '4.00', '100.0', 'Steak short description.', 'Steak full description.', 41, 'beef.jpg', 1, 0, 0),
+(5, 'Bratwurst', 2, '4.00', '100.0', 'Bratwurst short description.', 'Bratwurst full description.', 41, 'Bratwurst.jpg', NULL, 0, 0),
+(6, 'Cabbage', 2, '4.00', '100.0', 'Cabbage short description.', 'Cabbage full description.', 45, 'Cabbage.jpg', 1, 0, 0),
+(7, 'Shiitake Mushrooms Dried', 3, '4.00', '100.0', 'Shiitake Mushrooms Dried short description.', 'Shiitake Mushrooms Dried full description.', 45, 'shiitake_mushroom.jpg', NULL, 0, 0),
+(8, 'Shiitake Mushrooms Fresh', 4, '4.00', '100.0', 'Shiitake Mushrooms Fresh short description.', 'Shiitake Mushrooms Fresh full description.', 45, 'Shiitake_Mushrooms_Fresh.jpg', NULL, 0, 0),
+(9, 'Okra', 4, '4.00', '100.0', 'Okra short description.', 'Okra full description.', 45, 'pork.jpg', NULL, 0, 0),
+(11, 'Green Beans', 1, '4.00', '100.0', 'Green Beens short description.', 'Green Beens full description.', 45, 'Green_Beans.jpg', NULL, 0, 0),
+(12, 'Red pepper', 2, '4.00', '100.0', 'Red pepper short description.', 'Red pepper full description.', 45, 'Red_Peppers.jpg', NULL, 0, 0),
+(13, 'Green onion', 1, '4.00', '100.0', 'Green onion short description.', 'Green onion full description.', 45, 'Green_Onions.jpg', NULL, 0, 0),
+(14, 'Ground Beef', 5, '4.00', '100.0', 'Ground Beef short description.', 'Ground beef description.', 41, 'Ground_beef.jpg', NULL, 0, 0),
+(15, 'Onions', 5, '4.00', '100.0', '', 'Onions full description.', 45, 'Onions.jpg', 1, 0, 0),
+(16, 'Dill', 1, '4.00', '100.0', 'Dill short description.', 'Dill full description.', 45, 'Dill.jpg', NULL, 0, 0),
+(17, 'Carrots', 1, '4.00', '100.0', 'Carrots short description.', 'Carrots full description.', 45, 'Carrots.jpg', NULL, 0, 0),
+(18, 'Cherry Tomatoes (red)', 4, '4.00', '100.0', 'Cherry Tomatoes (red) short description.', 'Cherry Tomatoes (red) full description.', 46, 'Cherry_Tomatoes.jpg', NULL, 0, 0),
+(19, 'Cucumbers (Pickling)', 5, NULL, NULL, 'Cucumbers Pickled short description.', 'Cucumbers Pickled full description.', 46, 'Pickled_Cucumbers.jpg', 1, 0, 0),
+(20, 'Cucumbers (Slicing)', 2, NULL, NULL, 'Cucumbers Sliced short description.', 'Cucumbers Sliced full description.', 46, 'Cucumber.jpg', 1, 0, 0),
+(21, 'Yellow Squash', 2, NULL, NULL, 'Yellow Squash short description.', 'Yellow Squash full description.', 46, 'Yellow_Squash.jpg', 1, 0, 0),
+(22, 'Table Tomatoes', 2, NULL, NULL, 'Table Tomatoes short description.', 'Table Tomatoes full description.', 46, 'Tomato.jpg', 1, 0, 0),
+(23, 'Zucchini', 2, NULL, NULL, 'Zucchini short description.', 'Zucchini description.', 46, 'Zucchini.jpg', 1, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -239,8 +239,8 @@ CREATE TABLE `sizes` (
 --
 
 INSERT INTO `sizes` (`sizeID`, `sizeName`, `price`, `qty`) VALUES
-(1, 'Small (0.5-1 lbs)', '0.00', '0.0'),
-(2, 'Medium (1-1.5 lbs)', '0.00', '0.0');
+(1, 'Medium (1-1.5 lbs)', '5.00', '25.0'),
+(1, 'Small (0.5-1 lbs)', '2.00', '50.0');
 
 --
 -- Indexes for dumped tables
@@ -295,8 +295,7 @@ ALTER TABLE `products`
 -- Indexes for table `sizes`
 --
 ALTER TABLE `sizes`
-  ADD PRIMARY KEY (`sizeID`),
-  ADD KEY `sizeNameFK` (`sizeName`) USING BTREE;
+  ADD PRIMARY KEY (`sizeID`,`sizeName`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -325,12 +324,6 @@ ALTER TABLE `orders`
 --
 ALTER TABLE `products`
   MODIFY `productID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
-
---
--- AUTO_INCREMENT for table `sizes`
---
-ALTER TABLE `sizes`
-  MODIFY `sizeID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
