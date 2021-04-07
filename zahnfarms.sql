@@ -41,7 +41,7 @@ CREATE TABLE `categories` (
 
 INSERT INTO `categories` (`catID`, `catName`, `image`, `hide`) VALUES
 (41, 'Beef', 'beef.jpg', 0),
-(42, 'Chicken', '', 0),
+(42, 'Chicken', 'chicken.jpg', 0),
 (43, 'Pork', 'pork.jpg', 0),
 (44, 'Eggs', 'eggs.jpg', 0),
 (45, 'Vegetables', 'Carrots.jpg', 0),
