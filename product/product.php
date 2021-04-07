@@ -2,6 +2,14 @@
 // $cat = catByID($catID);
 $prod = prodByID($prodID);
 $portion = portionByID($prod['portionsID']);
+if ($prod['sizeID'] != null) {
+  $sizeAry = sizesByID($prod['sizeID']);
+  // echo "<h1>$sizeAry[0][0]</h1>";
+  // foreach ($sizeAry as $size){
+    // echo "<h1>" . $sizeAry[0][1] . "</h1>";
+  // }
+}
+
 ?>
 
 
@@ -17,14 +25,14 @@ $portion = portionByID($prod['portionsID']);
     <h2>
       <?=$prod['productName']?>
     </h2>
-    <h3>
-      <?=$prod['price']?> <?$portion['portionsDesc']?>
+    <h3 id="price">
+      $<?=$prod['price']?> <?=$portion['portionsDesc']?>
     </h3>
     <!-- Form for product details to add to cart -->
     <form class="uk-form-stacked" action="product.php" method="get">
       <div class="uk-grid-small uk-child-width-1-1@m uk-flex-center uk-text-center" uk-grid>
         <?php
-          if($prod['sizeID'] != null){ /* If product has different sizes */
+        if($prod['sizeID'] != null){ /* If product has different sizes */
         ?>
         <!-- Size dropdown card -->
         <div class="uk-card">
@@ -32,11 +40,17 @@ $portion = portionByID($prod['portionsID']);
             
             <label class="uk-form-label">Size</label>
             <!-- Size Dropdown-->
-            <select name="size"> <!-- TODO foreach size that has sizeID of prod -->
-              <option value="">Please select...</option>
-              <option value="1">Small</option>
-              <option value="2">Medium</option>
-              <option value="3">Large</option>
+            <select name="size" onchange="sizePrice(this)"> <!-- TODO foreach size that has sizeID of prod -->
+              <option selected disabled>Please select...</option>
+              <?php
+              foreach ($sizeAry as $size){
+                
+              ?>
+              <option value="<?=$size['sizeName']?>"><?=$size['sizeName']?> $<?=$size['price']?></option>
+
+              <?php
+              }
+              ?>
             </select>
             <button class="uk-button uk-button-default" type="button" tabindex="-1">
               <span></span>
@@ -44,36 +58,60 @@ $portion = portionByID($prod['portionsID']);
             </button>
           </div>
         </div>
+
+        <!-- Quantity box -->
+        <div id="qtyBox" class="uk-card  uk-width-expand">
+          <!-- <!-- class="uk-form-label" for="form-stacked-text">Quantity</!-->
+          <div class="uk-form-controls uk-width-1-3" style="margin:auto; display:none;">
+            <input class="uk-input uk-text-center" id="form-stacked-text" type="number" placeholder="1-<?=$prod['qty']?>" min="1" max="<?=$prod['qty']?>" name="qty" tabindex="1"> 
+          </div> -->
+        </div>
+        <!-- Add to cart button -->
+        <div class="uk-card">
+          <input type="hidden" name="productID" value="1">
+          <button class="uk-button uk-button-default" type="submit" tabindex="2">Add To Cart</button>
+        </div>  
+
+
         <?php
-          }
+          } else {
         ?>
         <!-- Quantity box -->
         <div class="uk-card  uk-width-expand">
           <label class="uk-form-label" for="form-stacked-text">Quantity</label>
-          <div class="uk-form-controls uk-width-1-3" style="margin:auto"> <!-- Possibly use numbered dropdown through 10+ then change to input box like Amazon-->
-            <input class="uk-input uk-text-center" id="form-stacked-text" type="number" placeholder="How many?" min="1" name="qty"> 
+          <div class="uk-form-controls uk-width-1-3" style="margin:auto">
+            <input class="uk-input uk-text-center" id="form-stacked-text" type="number" placeholder="1-<?=$prod['qty']?>" min="1" max="<?=$prod['qty']?>" name="qty" tabindex="1"> 
           </div>
         </div>
         <!-- Add to cart button -->
         <div class="uk-card">
           <input type="hidden" name="productID" value="1">
-          <button class="uk-button uk-button-default" type="submit">Add To Cart</button>
+          <button class="uk-button uk-button-default" type="submit" tabindex="2">Add To Cart</button>
         </div>
+
+        <?php
+        }
+        ?>
       </div>
     </form>
     <div class="uk-card uk-card-default uk-card-body uk-width-expand product-desc-short">
-    <p>
-      Short Description. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.
-    </p>
+    <p><?=$prod['shortDesc']?></p>
   </div>
   </div>
   <div class="uk-card uk-card-default uk-card-body uk-width-expand product-desc-full">
-    <p>
-      Full Description. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-      et dolore magna aliqua. In ante metus dictum at tempor commodo. Mattis ullamcorper velit sed ullamcorper. Mauris
-      ultrices eros in cursus turpis massa tincidunt dui ut. Enim sit amet venenatis urna cursus eget nunc
-      scelerisque.
-    </p>
+    <p><?=$prod['fullDesc']?></p>
   </div>
   
 </div>
+
+<script>
+  function sizePrice(e) {
+    var existing = document.getElementById("price").innerText;
+    var text = existing.trim().split(/\s+/);
+    var input = e.options[e.selectedIndex].textContent;
+    var price = input.split('$');
+    document.getElementById("price").innerHTML="$" + price[1] + " " + text[1] + " " + text[2];
+    alert("<?=$sizeAry[0]['price']?>");
+    alert("<?=$prod['qty']?>");
+  }
+</script>

@@ -22,15 +22,21 @@ $aryProd = productsByCatID($catID);
                 <div class="uk-card-media-top">
                   <img src="../images/<?=$prod['image']?>" alt="<?=$prod['productName']?> Image">
                 </div>
-                <?php if ($prod['outOfSeason'] == 1){?> <!-- if out of season -->
+                
+                <?php 
+                if ($prod['outOfSeason'] == 1){
+                ?> <!-- if out of season -->
+
                 <div class="uk-overlay uk-overlay-primary uk-position-cover" style="overflow:hidden">
                   <p class="card-name" style="font-weight:bold;text-decoration:underline;">OUT OF<br>SEASON</p>
                   <p class="card-name"><?=$prod['productName']?></p>
                   <p class="card-price">$<?=$prod['price']?> <?=$portion['portionsDesc']?></p>
                 </div>
+
                 <?php
                 } else { /* if in season */
                 ?>
+
                 <div class="uk-overlay uk-overlay-primary uk-position-bottom">
                   <p class="card-name"><?=$prod['productName']?></p>
                   <p class="card-price">$<?=$prod['price']?> <?=$portion['portionsDesc']?></p>

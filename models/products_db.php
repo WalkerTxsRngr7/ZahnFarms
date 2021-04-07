@@ -43,24 +43,45 @@ function productsByCatID($catID){
 function prodByID($prodID){
     global $db;
     $sql = "select * from products where productID = $prodID";
-    //oop
+    
     $qry = $db->query($sql);
     $product = $qry->fetch();
 
     //return a product
     return $product;
-
 }
 
-/** RETURN A SINGLE PORTION FILTERED BY PRODUCT ID */
+function sizesByID($sizeID) {
+    global $db;
+
+    $sql = "SELECT * FROM sizes WHERE sizeID = $sizeID";
+    $qry = $db->query($sql);
+    $size = $qry->fetchAll();
+
+    //return a size
+    return $size;
+}
+
+function sizeByName($sizeName, $sizeID) {
+    global $db;
+
+    $sql = "SELECT * FROM sizes WHERE sizeName = $sizeName AND sizeID = $sizeID";
+    $qry = $db->query($sql);
+    $size = $qry->fetch();
+
+    //return a size
+    return $size;
+}
+
+/** RETURN A SINGLE PORTION FILTERED BY PORTION ID */
 function portionByID($portionID){
     global $db;
 
-    $sql = "SELECT * FROM portions WHERE portionsID = $portionID";
+    $sql = "SELECT * FROM `portions` WHERE `portionsID` = $portionID";
     $qry = $db->query($sql);
     $portion = $qry->fetch();
 
-    //return a product
+    //return a portion
     return $portion;
 
 }
