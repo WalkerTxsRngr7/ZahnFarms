@@ -40,11 +40,10 @@ if ($prod['sizeID'] != null) {
             
             <label class="uk-form-label">Size</label>
             <!-- Size Dropdown-->
-            <select name="size" onchange="sizePrice(this)"> <!-- TODO foreach size that has sizeID of prod -->
+            <select name="size" onchange="sizePrice(this)"> 
               <option selected disabled>Please select...</option>
               <?php
-              foreach ($sizeAry as $size){
-                
+              foreach ($sizeAry as $size){ /* Foreach size that has sizeID from prod */
               ?>
               <option value="<?=$size['sizeName']?>"><?=$size['sizeName']?> $<?=$size['price']?></option>
 
@@ -60,11 +59,12 @@ if ($prod['sizeID'] != null) {
         </div>
 
         <!-- Quantity box -->
-        <div class="uk-card  uk-width-expand">
+        <div id="qty-box" style="display:none;" class="uk-card  uk-width-expand">
           <label class="uk-form-label" for="form-stacked-text">Quantity</label>
           <div class="uk-form-controls uk-width-1-3" style="margin:auto">
-            <input class="uk-input uk-text-center" id="form-stacked-text" type="number" placeholder="1-<?=$prod['qty']?>" min="1" max="<?=$prod['qty']?>" name="qty" tabindex="1"> 
+            <input id="qty-input" class="uk-input uk-text-center" id="form-stacked-text" type="number" placeholder="1-<?=$prod['qty']?>" min="1" max="<?=$prod['qty']?>" name="qty" tabindex="1" required onchange="checkQty(this)">
           </div>
+          <p id="qty-invalid-alert">Invalid Quantity</p>
         </div>
         <!-- Add to cart button -->
         <div class="uk-card">
@@ -109,7 +109,28 @@ if ($prod['sizeID'] != null) {
     var existing = document.getElementById("price").innerText;
     var text = existing.trim().split(/\s+/);
     var input = e.options[e.selectedIndex].textContent;
+    var index = e.selectedIndex - 1;
+
+    var arrayName = <?php echo json_encode($sizeAry); ?>;
+    document.getElementById("qty-input").max = arrayName[index][3];
+    document.getElementById("qty-input").placeholder = "1-" + arrayName[index][3];
+    document.getElementById("qty-input").value = "";
+
     var price = input.split('$');
     document.getElementById("price").innerHTML="$" + price[1] + " " + text[1] + " " + text[2];
+    document.getElementById("qty-box").style = "display:block";
+  }
+
+  function checkQty(e) {
+    var input = document.getElementById("qty-input").value;
+    var maxQty = document.getElementById("qty-input").max;
+    
+    if (parseFloat(input) > parseFloat(maxQty)) {
+      // alert("Quantity selected cannot be higher than " + maxQty);
+      // document.getElementById("qtyInput").value = maxQty;
+      document.getElementById("qty-invalid-alert").style = "display:block; font-size:.5em; color: red; padding:5px; margin: 0px;";
+    } else {
+      document.getElementById("qty-invalid-alert").style = "display:none";
+    }
   }
 </script>
