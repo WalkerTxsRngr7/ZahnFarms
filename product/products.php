@@ -13,7 +13,8 @@ $aryProd = productsByCatID($catID);
 
         <?php
         foreach($aryProd as $prod){
-          $portion = portionByID($prod['portionsID'])
+          $portion = portionByID($prod['portionsID']);
+          if ($prod['hide'] == 0) { /* Show unless supposed to hide */
         ?>
             <a href="?catID=<?=$catID?>&prodID=<?=$prod['productID']?>">
               <!--? Put class="uk-flex-last" for out of season items -->
@@ -46,7 +47,8 @@ $aryProd = productsByCatID($catID);
                 ?>
               </div>
             </a>
-        <?php
+        <?php  
+          }
         }
         ?>
     </div>

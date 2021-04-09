@@ -56,16 +56,19 @@ function sizesByID($sizeID) {
 
     $sql = "SELECT * FROM sizes WHERE sizeID = $sizeID";
     $qry = $db->query($sql);
-    $size = $qry->fetchAll();
+    $sizes = $qry->fetchAll();
 
     //return a size
-    return $size;
+    return $sizes;
 }
 
 function sizeByName($sizeName, $sizeID) {
     global $db;
-
-    $sql = "SELECT * FROM sizes WHERE sizeName = $sizeName AND sizeID = $sizeID";
+    // $sizeName = "Medium (1-1.5 lbs)";
+    // $sizeID = 1;
+    // $sql = "SELECT * FROM sizes WHERE sizeName = $sizeName AND sizeID = $sizeID";
+    $sql = "SELECT * FROM `sizes` WHERE `sizeName`= \"Medium (1-1.5 lbs)\" AND `sizeID`= $sizeID";
+    // $sql = "SELECT * FROM `sizes` WHERE `sizeName`= \"Medium (1-1.5 lbs)\" AND `sizeID`= 1";
     $qry = $db->query($sql);
     $size = $qry->fetch();
 

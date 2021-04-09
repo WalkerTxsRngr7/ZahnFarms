@@ -2,12 +2,9 @@
 // $cat = catByID($catID);
 $prod = prodByID($prodID);
 $portion = portionByID($prod['portionsID']);
+$sizeAry = null;
 if ($prod['sizeID'] != null) {
   $sizeAry = sizesByID($prod['sizeID']);
-  // echo "<h1>$sizeAry[0][0]</h1>";
-  // foreach ($sizeAry as $size){
-    // echo "<h1>" . $sizeAry[0][1] . "</h1>";
-  // }
 }
 
 ?>
@@ -29,7 +26,7 @@ if ($prod['sizeID'] != null) {
       $<?=$prod['price']?> <?=$portion['portionsDesc']?>
     </h3>
     <!-- Form for product details to add to cart -->
-    <form class="uk-form-stacked" action="product.php" method="get">
+    <form class="uk-form-stacked" action="cart.php" method="get">
       <div class="uk-grid-small uk-child-width-1-1@m uk-flex-center uk-text-center" uk-grid>
         <?php
         if($prod['sizeID'] != null){ /* If product has different sizes */
@@ -40,7 +37,7 @@ if ($prod['sizeID'] != null) {
             
             <label class="uk-form-label">Size</label>
             <!-- Size Dropdown-->
-            <select name="size" onchange="sizePrice(this)"> 
+            <select id="size" name="size" onchange="sizePrice(this)"> 
               <option selected disabled>Please select...</option>
               <?php
               foreach ($sizeAry as $size){ /* Foreach size that has sizeID from prod */
@@ -62,16 +59,10 @@ if ($prod['sizeID'] != null) {
         <div id="qty-box" style="display:none;" class="uk-card  uk-width-expand">
           <label class="uk-form-label" for="form-stacked-text">Quantity</label>
           <div class="uk-form-controls uk-width-1-3" style="margin:auto">
-            <input id="qty-input" class="uk-input uk-text-center" id="form-stacked-text" type="number" placeholder="1-<?=$prod['qty']?>" min="1" max="<?=$prod['qty']?>" name="qty" tabindex="1" required onchange="checkQty(this)">
+            <input id="qty-input" class="uk-input uk-text-center" id="form-stacked-text" type="number" placeholder="1-<?=$prod['qty']?>" min="0" max="<?=$prod['qty']?>" name="qty" tabindex="1" required onchange="checkQty(this)">
           </div>
-          <p id="qty-invalid-alert">Invalid Quantity</p>
+          <p id="qty-invalid-alert" style="display:none;">Invalid Quantity</p>
         </div>
-        <!-- Add to cart button -->
-        <div class="uk-card">
-          <input type="hidden" name="productID" value="1">
-          <button class="uk-button uk-button-default" type="submit" tabindex="2">Add To Cart</button>
-        </div>  
-
 
         <?php
           } else {
@@ -80,18 +71,42 @@ if ($prod['sizeID'] != null) {
         <div class="uk-card  uk-width-expand">
           <label class="uk-form-label" for="form-stacked-text">Quantity</label>
           <div class="uk-form-controls uk-width-1-3" style="margin:auto">
-            <input class="uk-input uk-text-center" id="form-stacked-text" type="number" placeholder="1-<?=$prod['qty']?>" min="1" max="<?=$prod['qty']?>" name="qty" tabindex="1"> 
+            <input id="qty-input" class="uk-input uk-text-center" id="form-stacked-text" type="number" placeholder="1-<?=$prod['qty']?>" min="0" max="<?=$prod['qty']?>" name="qty" tabindex="1" required onchange="checkQty(this)">
           </div>
-        </div>
-        <!-- Add to cart button -->
-        <div class="uk-card">
-          <input type="hidden" name="productID" value="1">
-          <button class="uk-button uk-button-default" type="submit" tabindex="2">Add To Cart</button>
+          <p id="qty-invalid-alert" style="display:none;">Invalid Quantity</p>
         </div>
 
         <?php
         }
+        if ($prod['qty'] == 0){ /* Out of stock */
         ?>
+        <!-- Out of Stock button -->
+        <div class="uk-card">
+          <button id="submit" class="uk-button uk-button-default" type="submit" tabindex="-1" disabled>Out of Stock</button>
+        </div>  
+
+        <?php
+        } else if ($prod['outOfSeason'] == 1) { /* Out of season */
+        ?>
+        <!-- Out of Season button -->
+        <div class="uk-card">
+          <button id="submit" class="uk-button uk-button-default" type="submit" tabindex="-1" disabled>Out of Season</button>
+        </div>  
+
+        <?php
+        } else { /* In Season and In Stock */
+        ?>
+        <!-- Add to cart button -->
+        <div class="uk-card">
+          <input type="hidden" name="prodID" value="<?=$prod['productID']?>">
+          <button id="submit" class="uk-button uk-button-default" type="submit" tabindex="2">Add to Cart</button>
+        </div>  
+
+        <?php
+        }
+        ?>
+        
+        
       </div>
     </form>
     <div class="uk-card uk-card-default uk-card-body uk-width-expand product-desc-short">
@@ -105,11 +120,17 @@ if ($prod['sizeID'] != null) {
 </div>
 
 <script>
+  window.addEventListener('load', 
+    function() { 
+      document.getElementById("submit").disabled = true; /* Disable submit button on page load */
+    });
+
   function sizePrice(e) {
     var existing = document.getElementById("price").innerText;
     var text = existing.trim().split(/\s+/);
     var input = e.options[e.selectedIndex].textContent;
     var index = e.selectedIndex - 1;
+    
 
     var arrayName = <?php echo json_encode($sizeAry); ?>;
     document.getElementById("qty-input").max = arrayName[index][3];
@@ -124,13 +145,21 @@ if ($prod['sizeID'] != null) {
   function checkQty(e) {
     var input = document.getElementById("qty-input").value;
     var maxQty = document.getElementById("qty-input").max;
-    
     if (parseFloat(input) > parseFloat(maxQty)) {
       // alert("Quantity selected cannot be higher than " + maxQty);
       // document.getElementById("qtyInput").value = maxQty;
       document.getElementById("qty-invalid-alert").style = "display:block; font-size:.5em; color: red; padding:5px; margin: 0px;";
-    } else {
+      document.getElementById("submit").disabled = true;
+    } else if (parseFloat(input) > 0){
       document.getElementById("qty-invalid-alert").style = "display:none";
+      formValidation();
+    }
+  }
+
+  function formValidation() {
+    var submit = document.getElementById("submit").innerText;
+    if (submit == "ADD TO CART") {
+      document.getElementById("submit").disabled = false;
     }
   }
 </script>
