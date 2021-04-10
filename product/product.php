@@ -26,7 +26,7 @@ if ($prod['sizeID'] != null) {
       $<?=$prod['price']?> <?=$portion['portionsDesc']?>
     </h3>
     <!-- Form for product details to add to cart -->
-    <form class="uk-form-stacked" action="cart.php" method="get">
+    <form class="uk-form-stacked" action="cart.php" method="post">
       <div class="uk-grid-small uk-child-width-1-1@m uk-flex-center uk-text-center" uk-grid>
         <?php
         if($prod['sizeID'] != null){ /* If product has different sizes */
@@ -99,6 +99,7 @@ if ($prod['sizeID'] != null) {
         <!-- Add to cart button -->
         <div class="uk-card">
           <input type="hidden" name="prodID" value="<?=$prod['productID']?>">
+          <input type="hidden" name="addToCart" value="true">
           <button id="submit" class="uk-button uk-button-default" type="submit" tabindex="2">Add to Cart</button>
         </div>  
 

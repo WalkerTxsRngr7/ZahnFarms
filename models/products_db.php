@@ -64,17 +64,19 @@ function sizesByID($sizeID) {
 
 function sizeByName($sizeName, $sizeID) {
     global $db;
-    // $sizeName = "Medium (1-1.5 lbs)";
-    // $sizeID = 1;
-    // $sql = "SELECT * FROM sizes WHERE sizeName = $sizeName AND sizeID = $sizeID";
-    $sql = "SELECT * FROM `sizes` WHERE `sizeName`= \"Medium (1-1.5 lbs)\" AND `sizeID`= $sizeID";
-    // $sql = "SELECT * FROM `sizes` WHERE `sizeName`= \"Medium (1-1.5 lbs)\" AND `sizeID`= 1";
+
+    $sql = "SELECT * FROM `sizes` WHERE `sizeName`= \"$sizeName\" AND `sizeID`= $sizeID";
     $qry = $db->query($sql);
     $size = $qry->fetch();
 
     //return a size
     return $size;
 }
+// function test($sizeName, $sizeID) {
+//     $sql = "SELECT * FROM `sizes` WHERE `sizeName`= \"$sizeName\" AND `sizeID`= $sizeID";
+//     //return a size
+//     return $sql;
+// }
 
 /** RETURN A SINGLE PORTION FILTERED BY PORTION ID */
 function portionByID($portionID){
