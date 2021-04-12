@@ -16,7 +16,7 @@
                             $aryCat = getAllCategories();
                             foreach($aryCat as $cat){
                             ?>
-                            <li><a href="?catID=<?=$cat['catID']?>"><?=$cat['catName']?></a></li>
+                            <li><a href="../product?catID=<?=$cat['catID']?>"><?=$cat['catName']?></a></li>
                             <?php
                             }
                             ?>

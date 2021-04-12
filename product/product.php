@@ -139,7 +139,11 @@ if ($prod['sizeID'] != null) {
     document.getElementById("qty-input").value = "";
 
     var price = input.split('$');
-    document.getElementById("price").innerHTML="$" + price[1] + " " + text[1] + " " + text[2];
+    if (text[1] == null) {
+      document.getElementById("price").innerHTML="$" + price[1];
+    } else {
+      document.getElementById("price").innerHTML="$" + price[1] + " " + text[1] + " " + text[2];
+    }
     document.getElementById("qty-box").style = "display:block";
   }
 

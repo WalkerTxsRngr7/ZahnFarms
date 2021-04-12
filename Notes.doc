@@ -1,3 +1,8 @@
 Some individual products can have sizes. IE. Cow can have whole, half, quarter but will be sold by size. Not by weight.
 
 Products can now have null price and qty if has a sizeID. The price and qty will be set for those sizes individually and will have to be referenced when displayed.
+
+
+Need admin page where can input orders made in person to keep online stock amounts correct.
+
+Need checkout page
