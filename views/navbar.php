@@ -1,5 +1,5 @@
 <div class="no-print" uk-sticky="sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky">
-    <nav class="uk-navbar-container" uk-navbar>
+    <nav class="nav-bar uk-navbar-container" uk-navbar>
         <div class="uk-navbar-left">
             <ul class="uk-navbar-nav">
                 <li>
@@ -24,14 +24,9 @@
                     </div>
                 </li>
                 <li><a href="../aboutUs/aboutUs.php">About Us</a></li>
-                <li><a href="../aboutUs/latestNews.php">Blog</a></li>
-                <li><a href="../aboutUS/contact.php">Contact Us</a></li>
-
                 <li><a href="tel:417-719-7517" class="navContact">(417) 719-7517</a></li>
                 <li><a href="https://www.facebook.com/ZahnFarms/" target="_blank"><i
                             class="fab fa-facebook-square"></i></a></li>
-                <li><a href="#" target="_blank"><i class="fab fa-instagram"></i></a></li>
-                <li><a href="https://twitter.com/ag_select" target="_blank"><i class="fab fa-twitter-square"></i></a>
                 </li>
             </ul>
         </div>
@@ -43,12 +38,39 @@
             </ul>
         </div>
     </nav>
-    <!--? For putting breadcrumbs on Products and Product page. Not Categories/Home Page -->
-    <!-- <div class="uk-navbar-subtitle">
-      <ul class="uk-breadcrumb">
-        <li><a href="">Products</a></li>
-        <li><a href="">Chicken</a></li>
-        <li><span>Chicken Breast</span></li>
-      </ul>
-    </div> -->
+
+    <!-- Mobile Nav -->
+    <nav class="nav-menu uk-navbar uk-navbar-container">
+        <div class="uk-navbar-left">
+            <a class="uk-navbar-toggle" uk-navbar-toggle-icon href="#offcanvas-slide" uk-toggle></a>
+            <a href="../product/"></a>
+            <a class="uk-position-center-right" href="../product/cart.php"><i class="fas fa-shopping-cart"></i></a>
+        </div>
+        <div id="offcanvas-slide" uk-offcanvas>
+            <div class="uk-offcanvas-bar">
+                <ul class="uk-nav-default uk-nav-parent-icon" uk-nav>
+                    <li><a class="uk-navbar-toggle" uk-navbar-toggle-icon href="#offcanvas-slide" uk-toggle></a></li>
+                    <li class="uk-nav-divider"></li>
+                    <li><a href="../product/">Home</a></li>
+                    <li class="uk-parent">
+                        <a href="../product/">Products</a>
+                        <ul class="uk-nav-sub">
+                            <?php
+                            $aryCat = getAllCategories();
+                            foreach($aryCat as $cat){
+                            ?>
+                            <li><a href="../product?catID=<?=$cat['catID']?>"><?=$cat['catName']?></a></li>
+                            <?php
+                            }
+                            ?>
+                        </ul>
+                    </li>
+                    <li><a href="../aboutUs/aboutUs.php">About Us</a></li>
+                    <li><a href="tel:417-719-7517" class="navContact">(417) 719-7517</a></li>
+                    <li><a href="https://www.facebook.com/ZahnFarms/" target="_blank"><i
+                                class="fab fa-facebook-square"></i></a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 </div>
