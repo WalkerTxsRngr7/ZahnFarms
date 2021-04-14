@@ -2,46 +2,76 @@
 $aryProd = productsByCatID($catID);
 ?>
 <div class="admin-prod-container">
-  <?php
-  foreach($aryProd as $prod){
-  ?>
-    
-      <!-- Individual Product -->
-      <!-- Remove any changes being made to the database from this page and move to the product.php page -->
-      <div class="admin-prod-row">
-      <form action="" method="post">
-        <input type="hidden" name="prodID" value="<?=$prod['prodID']?>">
-        <div class="uk-flex-center uk-text-center uk-flex-middle uk-child-width-expand@m uk-text-nowrap" uk-grid>
-          <div class="uk-card uk-card-default uk-width-1-5@m">
-            <img src="../images/<?=$prod['image']?>" alt="<?=$prod['productName']?> Image">
-          </div>
-          <div>
-            <h3><?=$prod['productName']?></h3>
-          </div>
+  <table class="uk-table uk-table-small uk-table-divider uk-table-responsive">
+    <thead>
+      <tr>
+        <th class="uk-table-shrink" scope="col"></th>
+        <th class="uk-table-expand" scope="col"></th>
+        <th scope="col">Product</th>
+        <th scope="col">Price</th>
+        <th scope="col">Sizes</th>
+        <th class="uk-table-shrink" scope="col">Stock</th>
+      </tr>
+    </thead>
+    <tbody>
+      <?php
+      foreach($aryProd as $prod){ /* foreach product */
+        $portion = portionByID($prod['portionsID']);
+      ?>
+      <tr>
+        <td>
+          <form method='post' action=''>
+            <Button class="uk-button uk-button-default" type="submit">Edit</Button>
+            <input type="hidden" name="prodID" value="<?=$prod['prodID']?>">
+            <input type='hidden' name='adminBtn' value='$adminBtn'>
+          </form>
+        </td>
+        <td>
+          <img class="uk-width-small" src="../images/<?=$prod['image']?>" alt="<?=$prod['productName']?> Image">
+        <td><?=$prod['productName']?></td>
+        <td class="uk-text-nowrap">
+          <?php
+          if ($prod['sizeID'] != null) { /* if has sizes */
+            $sizeAry = sizesByID($prod['sizeID']); 
+            foreach ($sizeAry as $size){ /* price and portion for each size */
+            ?>
+          $<?=$size['price']?>
+          <?=$portion['portionsDesc']?>
+          <br>
+          <?php } ?>
+        </td>
+        <td class="uk-text-nowrap">
+          <?php
+              foreach ($sizeAry as $size){ /* Sizename for each size */
+            ?>
+          <?=$size['sizeName']?>
+          <br>
+          <?php } ?>
+        </td>
+        <td>
+          <?php
+          foreach ($sizeAry as $size){ /* Stock for each size */
+          ?>
+          <?=$size['qty']?>
+          <br>
+          <?php } ?>
 
-          <div>
-            <h3>$<?=$prod['price']?></h3> <!-- get portionsDesc and show after price to show how is sold. --> <!-- If sizeID != null show each sizeName and price stacked -->
-          </div>
-          <div>
-            <h3>Stock: <?=$prod['qty']?></h3> <!-- If sizeID != null show quantities stacked like price -->
-          </div>
-
-          <div class="admin-prod-row-checkbox uk-flex uk-flex-column "> <!-- Move to product.php page -->
-            <label class="uk-form-label"><input name="hide" value="1" class="uk-checkbox" type="checkbox">
-              Hide</label>
-            <label class="uk-form-label"><input name="outofseason" value="1" class="uk-checkbox" type="checkbox">
-              Out Of
-              Season</label>
-          </div>
-          <div>
-            <Button class="uk-button" type="submit">Edit</Button>
-          </div>
-        </div>
-      </form>
-    </div>
-
-
-  <?php
-  }
-  ?>
+          <?php 
+          } else { /* doesnt have sizes */
+          ?>
+          $<?=$size['price']?>
+          <?=$portion['portionsDesc']?>
+        </td>
+        <td>
+        </td>
+        <td>
+          <?=$size['qty']?>
+          <?php } ?>
+        </td>
+      </tr>
+      <?php
+      }
+      ?>
+    </tbody>
+  </table>
 </div>

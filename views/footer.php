@@ -6,11 +6,9 @@
     <div class="socialMediaFooter">
       <a href="mailto:DHamilton@GreenFundSolutions.com">Email: DHamilton@GreenFundSolutions.com</a>
       <br>
-      <a href="tel:833-697-6649" class="navContact">Phone: (833) 697-6649</a>
+      <a href="tel:417-719-7517" class="navContact">(417) 719-7517</a>
       <br>
       <a href="https://www.facebook.com/AgSelectUSA/" target="_blank"><i class="fab fa-facebook-square"></i></a>
-      <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
-      <a href="https://twitter.com/ag_select" target="_blank"><i class="fab fa-twitter-square"></i></a>
     </div>
     <div class="footerCopyright">
       <br>

@@ -89,7 +89,7 @@ if ($addToCart == "true"){
         <form action="" method="post">
           <div class="uk-flex-center uk-flex-middle uk-child-width-expand" uk-grid>
             <div class="uk-card uk-card-default uk-width-small ">
-              <img src="../images/<?=$item['prod']['image']?>" alt="<?=$item['prod']['productName']?> Image">
+              <img class="card-image"  src="../images/<?=$item['prod']['image']?>" alt="<?=$item['prod']['productName']?> Image">
             </div>
             <div class="uk-flex-center uk-flex-middle uk-child-width-expand@s" uk-grid>
               <div>

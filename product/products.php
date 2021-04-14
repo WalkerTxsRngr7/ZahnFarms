@@ -19,9 +19,9 @@ $aryProd = productsByCatID($catID);
             <a href="?catID=<?=$catID?>&prodID=<?=$prod['productID']?>">
               <!--? Put class="uk-flex-last" for out of season items -->
               <!-- using Ternary if to check for out of season -->
-              <div class="uk-card uk-card-default <?php echo($prod['outOfSeason'] == 1 ? 'uk-flex-last' : '' )?>"> 
+              <div class="uk-card card-rows uk-card-default <?php echo($prod['outOfSeason'] == 1 ? 'uk-flex-last' : '' )?>"> 
                 <div class="uk-card-media-top">
-                  <img src="../images/<?=$prod['image']?>" alt="<?=$prod['productName']?> Image">
+                  <img class="card-image"  src="../images/<?=$prod['image']?>" alt="<?=$prod['productName']?> Image">
                 </div>
                 
                 <?php 
