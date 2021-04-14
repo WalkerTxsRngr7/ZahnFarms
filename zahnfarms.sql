@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 07, 2021 at 09:08 PM
+-- Generation Time: Apr 14, 2021 at 09:54 PM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.3.1
 
@@ -71,31 +71,6 @@ CREATE TABLE `customers` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `links`
---
-
-CREATE TABLE `links` (
-  `URL` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `Text` varchar(25) COLLATE utf8mb4_unicode_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `links`
---
-
-INSERT INTO `links` (`URL`, `Text`) VALUES
-('products.php/beef', 'Beef'),
-('products.php/chicken', 'Chicken'),
-('products.php/pork', 'Pork'),
-('products.php/eggs', 'Eggs'),
-('products.php/mushrooms', 'Mushrooms'),
-('products.php/fruit', 'Fruits'),
-('products.php/berries', 'Berries'),
-('products.php/vegetables', 'Vegetables');
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `orderdetails`
 --
 
@@ -107,6 +82,14 @@ CREATE TABLE `orderdetails` (
   `priceEach` int(11) NOT NULL,
   `orderLineNumber` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `orderdetails`
+--
+
+INSERT INTO `orderdetails` (`orderID`, `productID`, `sizeID`, `quantityOrdered`, `priceEach`, `orderLineNumber`) VALUES
+(1, 3, NULL, 15, 4, 1),
+(1, 4, 1, 3, 7, 2);
 
 -- --------------------------------------------------------
 
