@@ -4,7 +4,7 @@ if (isset($_SESSION['login']) != "valid"){
 }
 ?>
 
-<div class="adminBtns">
+<div class="admin-btns no-print">
     <form method="post">
         <ul class="nav nav-tabs">
             <li class="nav-item">

@@ -1,22 +1,25 @@
 <!-- TODO Change info -->
 <footer class="footer no-print">
-    <div class="footerImg">
-      <a href="../product"><img src="../images/Zahn Farms Logo.jpg" alt="Zahn Farms Logo" style="height: 80px;"> <!--TODO Change logo--></a>
+  <div class="uk-grid-match uk-child-width-expand@s uk-text-center" uk-grid>
+    <div class="footer-image">
+      <a href="../product"><img src="../images/Logo4.png" alt="Zahn Farms Logo" style="height: 80px;">
+        <!--TODO Change logo--></a>
     </div>
-    <div class="socialMediaFooter">
-      <a href="mailto:DHamilton@GreenFundSolutions.com">Email: DHamilton@GreenFundSolutions.com</a>
-      <br>
-      <a href="tel:417-719-7517" class="navContact">(417) 719-7517</a>
-      <br>
-      <a href="https://www.facebook.com/AgSelectUSA/" target="_blank"><i class="fab fa-facebook-square"></i></a>
+    <div class="footer-contact">
+      <a href="mailto:bzahn01@yahoo.com">Email: BZahn01@yahoo.com</a>
+      <a href="tel:417-719-7517" class="nav-contact">(417) 719-7517</a>
+      <a href="https://www.facebook.com/ZahnFarms/" target="_blank"><i class="fab fa-facebook-square"></i></a>
     </div>
-    <div class="footerCopyright">
-      <br>
-      <p>
-        2021 Site Created By: <br>Walker Gross, Jacob Estrada, & Skyler Barr
+    <div class="footer-credits">
+      <p class="uk-text-right@s">
+        2021 Created By:<br>Walker Gross, Jacob Estrada, & Skyler Barr
+        <br><br>
+        <a style="font-size: .65em;" href="https://www.freepik.com/vectors/background">Background vector created by createvil - www.freepik.com</a>
       </p>
+      
     </div>
-  </footer>
+  </div>
+</footer>
 
 
 

@@ -1,7 +1,14 @@
 /* Fonts
   font-family: 'Caveat', cursive; 
   font-family: 'Caveat Brush', cursive;
+
+  rgb(54, 183, 41)
 */
+:root {
+  --primary-green: #0B6400;
+  --secondary-green: #18890B;
+  --dark-green: #022900;
+}
 
 html, body {
   background-image: url("../images/barnWood.jpg");
@@ -11,16 +18,28 @@ html, body {
   font-family: "Caveat Brush", cursive;
 }
 
-/*Nav bar*/
+/*Nav*/
 .nav-menu { /* Mobile */
   display: none;
+  padding-right: 100px;
+  height: 50px;
+}
+.cart-mobile-icon {
+  margin-right: 10px;
+}
+.uk-navbar-toggle {
+  min-height: 25px;
+}
+.uk-offcanvas-bar {
+  padding-top:10px;
+  background-color: var(--primary-green);
+}
+.uk-offcanvas-bar>ul>li>a {
+  padding: 5px;
 }
 
 .uk-navbar-container{
-  background-color: rgb(54, 183, 41) !important;
-  /* for testing reload */
-  /* background-color: pink; */
-  
+  background-color: var(--primary-green) !important;
 }
 .uk-navbar-nav>li>a {
   font-family: 'Caveat Brush', cursive;
@@ -28,24 +47,29 @@ html, body {
   font-size: 1em;
 }
 .uk-navbar-dropdown {
-  background-color: rgb(54, 183, 41);
+  background-color: var(--primary-green);
   font-family: 'Caveat Brush', cursive;
+  padding: 15px;
+  margin-top:10px;
+}
+.uk-navbar-dropdown-nav>li>a {
+  padding-left:5px;
 }
 
 nav a, nav a:hover {
   color: white !important;
-  /* padding: 5px 20px; */
   text-decoration: none;
 }
-
 nav a:hover {
-  background-color: rgb(3, 173, 17);
+  /* background-color: #0F8500; */
+  /* box-shadow: inset 10px 0px 20px -5px #0F8500, inset -10px 0px 20px -5px #0F8500; */
+  box-shadow: inset 1.5px 0px 0px 0px white, inset -1.5px 0px 0px 0px white;
+}
+nav img {
+  height:50px;
+  width: 147px;
 }
 
-nav img {
-  height: 30px;
-  border-radius: 5px;
-}
 
 .content-container {
   background-color: rgba(201, 201, 201, 0.644);
@@ -53,12 +77,6 @@ nav img {
   margin:auto;
   margin-top:0px;
   padding:20px;
-}
-.dropdown-menu {
-  display: flex;
-  width: 100vw;
-  background-color: rgb(2, 148, 69);
-  flex-direction: column;
 }
 
 .dropdown-item {
@@ -139,8 +157,8 @@ h1 {
   color: black;
 }
 
-.adminBtns {
-  background-color: rgb(3, 173, 17);
+.admin-btns {
+  background-color: var(--secondary-green);
   width:90%;
   margin: auto;
 }
@@ -179,45 +197,23 @@ input:focus:invalid {
 
 
 footer {
-  background-color: rgb(100, 100, 100);
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  background-color: var(--dark-green);
   color: white;
-  padding: 15px 0px;
-  box-shadow: 0px 10px 50px -10px black inset;
+  padding: 15px;
+  box-shadow: 0px 10px 10px -10px black inset;
+  font-size: .85em;
+  letter-spacing: 1px;
 }
-
-footer div {
-  flex: 1 1 300px;
-}
-
 footer a {
   color: white;
 }
-
-.footerImg {
-  padding-left: 10px;
-}
-
-.socialMediaFooter {
-  text-align: center;
-}
-
-.socialMediaFooter .fab {
+.footer-contact .fab {
   padding: 0px 5px;
 }
-
-.socialMediaFooter a:hover {
-  color: rgb(2, 148, 69);
+.footer a:hover {
+  color: lightgrey;
 }
 
-.footerCopyright {
-  /* justify-content: flex-end; */
-  text-align: right;
-  padding-right: 10px;
-  padding-bottom: 0px;
-}
 
 .print { /* show up on print */
   display: none;
@@ -231,15 +227,6 @@ footer a {
     display: block;
   }
   .no-print { /* don't show up on print */
-    display: none;
-  }
-  /* footer {
-    display: none;
-  }
-  .uk-navbar-container {
-    display:none;
-  } */
-  .adminBtns {
     display: none;
   }
 }
@@ -257,6 +244,10 @@ footer a {
   }
   .nav-bar {
     display: none;
+  }
+
+  .content-container {
+    width: 100%;
   }
 }
 

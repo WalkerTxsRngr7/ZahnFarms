@@ -3,9 +3,8 @@
         <div class="uk-navbar-left">
             <ul class="uk-navbar-nav">
                 <li>
-                    <a class="uk-logo" href="../product/">
-                        <img src="../images/Zahn Farms Logo.jpg" alt="Zahn Farms Logo">
-                        <!--TODO Change logo-->
+                    <a class="uk-logo" style="min-width:177px;" href="../product/">
+                        <img style="" src="../images/Logo3.png" alt="Zahn Farms Logo">
                     </a>
                 </li>
                 <li>
@@ -33,7 +32,7 @@
         <div class="uk-navbar-right">
             <ul class="uk-navbar-nav">
                 <li><a href="../product/cart.php"><i class="fas fa-shopping-cart"></i></a></li>
-                <li><a href="?lo=y" class='nav' id='lo'>Sign Out</a></li>
+                <!-- <li><a href="?lo=y" class='nav' id='lo'>Sign Out</a></li> -->
                 <li><a href="../admin/">Sign In</a></li> <!-- CHANGE! linked to admin for testing admin page -->
             </ul>
         </div>
@@ -42,9 +41,9 @@
     <!-- Mobile Nav -->
     <nav class="nav-menu uk-navbar uk-navbar-container">
         <div class="uk-navbar-left">
-            <a class="uk-navbar-toggle" uk-navbar-toggle-icon href="#offcanvas-slide" uk-toggle></a>
+            <a class="uk-navbar-toggle uk-position-center-left" uk-navbar-toggle-icon href="#offcanvas-slide" uk-toggle></a>
             <a href="../product/"></a>
-            <a class="uk-position-center-right" href="../product/cart.php"><i class="fas fa-shopping-cart"></i></a>
+            <a style="margin-right:10px;" class="cart-mobile-icon uk-position-center-right" href="../product/cart.php"><i class="fas fa-shopping-cart"></i></a>
         </div>
         <div id="offcanvas-slide" uk-offcanvas>
             <div class="uk-offcanvas-bar">

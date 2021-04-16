@@ -12,7 +12,8 @@ Farm in Elkland: 9018 St Hwy W, Elkland, MO Mon-Sat by appt. Call or email.
  <?php
 if (!isset($_SESSION)) { /* check if session is created */
   session_start();
-} else if (!isset($_SESSION['cart'])){ /* check if cart is created in session */
+}
+if (!isset($_SESSION['cart'])){ /* check if cart is created in session */
   $_SESSION['cart'] = array();
 }
  
@@ -74,7 +75,11 @@ if ($addToCart == "true"){
 <div class="admin-prod-container">
   <a class="uk-button uk-button-default" href="checkout.php">Checkout</a>
   <?php
+  if ($_SESSION['cart'] == null) {
+    echo "<h3>Cart is Empty</h3>";
+  }
   foreach($_SESSION['cart'] as $item){
+    
     // if ($item['size'] != null){
     //   $total += $item['size']['price'];
     // } else {
@@ -128,9 +133,7 @@ if ($addToCart == "true"){
                 </h3>
               </div>
               <div>
-                <Button class="uk-button" type="submit">Remove<br><i class="fas fa-minus-circle"></i> <i
-                    class="fas fa-minus"></i> <i class="fas fa-minus-square"></i> <i class="fas fa-times"></i> <i
-                    class="fas fa-trash"></i> <i class="far fa-trash-alt"></i>
+                <Button class="uk-button" type="submit"><i class="far fa-trash-alt"></i>
                     <input type="hidden" name="remove" value="<?=$item['prod']['productID']?>">
                 </Button>
                     
@@ -152,11 +155,11 @@ if ($addToCart == "true"){
           <div>$<?=number_format((float)$subtotal, 2, '.', '')?></div>
         </div>
         <div class="uk-grid-small" uk-grid>
-          <div class="uk-width-expand" uk-leader="fill: -">Tax:</div> <!-- Need to find out what to do for tax -->
+          <div class="uk-width-expand" uk-leader="fill: .">Tax:</div> <!-- Need to find out what to do for tax -->
           <div>$<?=number_format((float)$tax, 2, '.', '')?></div>
         </div>
         <div class="uk-grid-small" uk-grid>
-          <div class="uk-width-expand" uk-leader="fill: _">Total:</div>
+          <div class="uk-width-expand" uk-leader="fill: .">Total:</div>
           <div>$<?php $total = $subtotal+$tax; echo number_format((float)$total, 2, '.', '');?></div>
         </div>
       </div>

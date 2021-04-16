@@ -1,5 +1,4 @@
 <?php
-session_start();
 $title = "Home";
 $headTitle = "Zahn Farms";
 include "../views/header.php";
@@ -29,6 +28,8 @@ include '../models/requests.php';
     <div id="fb-root"></div>
   <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v10.0"
     nonce="SPVF6MS7"></script>
+
+    
     <h1 class="slogan">Short about us here</h1>
     <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
       sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
