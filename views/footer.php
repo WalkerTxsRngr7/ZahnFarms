@@ -2,12 +2,12 @@
 <footer class="footer no-print">
   <div class="uk-grid-match uk-child-width-expand@s uk-text-center" uk-grid>
     <div class="footer-image">
-      <a href="../product"><img src="../images/Logo4.png" alt="Zahn Farms Logo" style="height: 80px;">
+      <a href="../product"><img src="../images/LogoFull.png" alt="Zahn Farms Logo" style="height: 80px;">
         <!--TODO Change logo--></a>
     </div>
     <div class="footer-contact">
-      <a href="mailto:bzahn01@yahoo.com">Email: BZahn01@yahoo.com</a>
-      <a href="tel:417-719-7517" class="nav-contact">(417) 719-7517</a>
+      <a href="mailto:bzahn01@yahoo.com">Email: BZahn01@Yahoo.com</a>
+      <a href="tel:417-719-7517">(417) 719-7517</a>
       <a href="https://www.facebook.com/ZahnFarms/" target="_blank"><i class="fab fa-facebook-square"></i></a>
     </div>
     <div class="footer-credits">

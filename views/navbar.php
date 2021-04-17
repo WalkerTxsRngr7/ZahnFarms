@@ -4,7 +4,7 @@
             <ul class="uk-navbar-nav">
                 <li>
                     <a class="uk-logo" style="min-width:177px;" href="../product/">
-                        <img style="" src="../images/Logo3.png" alt="Zahn Farms Logo">
+                        <img style="" src="../images/Logo.png" alt="Zahn Farms Logo">
                     </a>
                 </li>
                 <li>

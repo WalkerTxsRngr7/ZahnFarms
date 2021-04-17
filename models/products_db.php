@@ -3,6 +3,16 @@
 /** RETURN AN ARRAY OF ALL CATEGORIES */
 function getAllCategories(){
     global $db;
+    $sql = "SELECT * FROM categories";
+    $qry = $db->query($sql);
+    $aryCat = $qry->fetchAll();
+
+    return $aryCat;
+}
+
+/** RETURN AN ARRAY OF ALL CATEGORIES TO BE SHOWN*/
+function getAllCategoriesShow(){
+    global $db;
     $sql = "SELECT * FROM categories WHERE hide = 0";
     $qry = $db->query($sql);
     $aryCat = $qry->fetchAll();

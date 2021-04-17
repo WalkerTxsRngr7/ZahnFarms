@@ -1,13 +1,13 @@
 <?php
-$aryCat = getAllCategories();
+$aryCat = getAllCategoriesShow();
 ?>
 
-<h1 class="slogan">Short about us here</h1>
+<h1 class="slogan">Short about us here. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Pulvinar sapien et ligula ullamcorper malesuada proin libero.</h1>
  
 <section>
     <!--* Category boxes-->
     <!-- TODO Style -->
-    <div class="uk-grid-small uk-child-width-1-4@s uk-flex-center uk-text-center uk-grid-match" uk-grid>
+    <div class="uk-grid-small uk-child-width-1-4@s uk-child-width-1-2 uk-flex-center uk-text-center uk-grid-match" uk-grid>
 
         <?php
         foreach($aryCat as $cat){

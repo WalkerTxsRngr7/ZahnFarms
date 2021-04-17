@@ -9,7 +9,7 @@ $aryProd = productsByCatID($catID);
     
     <!--* Category boxes-->
     <!-- TODO Style -->
-    <div class="uk-grid-small uk-child-width-1-4@s uk-flex-center uk-text-center" uk-grid>
+    <div class="uk-grid-small uk-child-width-1-4@s uk-child-width-1-2 uk-flex-center uk-text-center" uk-grid>
 
         <?php
         foreach($aryProd as $prod){

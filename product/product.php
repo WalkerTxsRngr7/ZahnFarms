@@ -12,9 +12,9 @@ if ($prod['sizeID'] != null) {
 
 
 <!--* Product box-->
-<div class="uk-grid-small uk-flex-center uk-text-center content-container" style="width:90%; margin:auto" uk-grid>
+<div class="product-card-full uk-grid-small uk-flex-center uk-text-center" style="width:90%; margin:auto" uk-grid>
   <!-- Product image -->
-  <div class="uk-card uk-card-default uk-width-1-2@s"> 
+  <div class="uk-card uk-card-default uk-width-1-2"> 
     <img src="../images/<?=$prod['image']?>" alt="<?=$prod['productName']?> Image">
   </div>
   <!-- Main info and buttons -->
@@ -33,12 +33,12 @@ if ($prod['sizeID'] != null) {
         ?>
         <!-- Size dropdown card -->
         <div class="uk-card">
-          <div uk-form-custom="target: > * > span:first-child">
+          <div class="size-form" uk-form-custom="target: > * > span:first-child">
             
             <label class="uk-form-label">Size</label>
             <!-- Size Dropdown-->
             <select id="size" name="size" onchange="sizePrice(this)"> 
-              <option selected disabled>Please select...</option>
+              <option selected disabled hidden>Please select...</option>
               <?php
               foreach ($sizeAry as $size){ /* Foreach size that has sizeID from prod */
               ?>
@@ -48,7 +48,7 @@ if ($prod['sizeID'] != null) {
               }
               ?>
             </select>
-            <button class="uk-button uk-button-default" type="button" tabindex="-1">
+            <button class="size-button uk-button uk-button-default" type="button" tabindex="-1">
               <span></span>
               <span uk-icon="icon: chevron-down"></span>
             </button>
@@ -61,19 +61,19 @@ if ($prod['sizeID'] != null) {
           <div class="uk-form-controls uk-width-1-3" style="margin:auto">
             <input id="qty-input" class="uk-input uk-text-center" id="form-stacked-text" type="number" placeholder="1-<?=$prod['qty']?>" min="0" max="<?=$prod['qty']?>" name="qty" tabindex="1" required onchange="checkQty(this)">
           </div>
-          <p id="qty-invalid-alert" style="display:none;">Invalid Quantity</p>
+          <p id="qty-invalid-alert">Invalid Quantity</p>
         </div>
 
         <?php
           } else {
         ?>
         <!-- Quantity box -->
-        <div class="uk-card  uk-width-expand">
+        <div class="uk-card uk-width-expand">
           <label class="uk-form-label" for="form-stacked-text">Quantity</label>
           <div class="uk-form-controls uk-width-1-3" style="margin:auto">
-            <input id="qty-input" class="uk-input uk-text-center" id="form-stacked-text" type="number" placeholder="1-<?=$prod['qty']?>" min="0" max="<?=$prod['qty']?>" name="qty" tabindex="1" required onchange="checkQty(this)">
+            <input id="qty-input" class="uk-input uk-text-center" id="form-stacked-text" type="number" placeholder="1-<?=$prod['qty']?>" min="0.1" max="<?=$prod['qty']?>" name="qty" tabindex="1" required onchange="checkQty(this)">
           </div>
-          <p id="qty-invalid-alert" style="display:none;">Invalid Quantity</p>
+          <p id="qty-invalid-alert">Invalid Quantity</p>
         </div>
 
         <?php
@@ -82,7 +82,7 @@ if ($prod['sizeID'] != null) {
         ?>
         <!-- Out of Stock button -->
         <div class="uk-card">
-          <button id="submit" class="uk-button uk-button-default" type="submit" tabindex="-1" disabled>Out of Stock</button>
+          <button id="submit add-to-cart-btn" class="uk-button uk-button-default" tabindex="-1" disabled>Out of Stock</button>
         </div>  
 
         <?php
@@ -90,7 +90,7 @@ if ($prod['sizeID'] != null) {
         ?>
         <!-- Out of Season button -->
         <div class="uk-card">
-          <button id="submit" class="uk-button uk-button-default" type="submit" tabindex="-1" disabled>Out of Season</button>
+          <button id="submit add-to-cart-btn" class="uk-button uk-button-default" tabindex="-1" disabled>Out of Season</button>
         </div>  
 
         <?php
@@ -100,7 +100,7 @@ if ($prod['sizeID'] != null) {
         <div class="uk-card">
           <input type="hidden" name="prodID" value="<?=$prod['productID']?>">
           <input type="hidden" name="addToCart" value="true">
-          <button id="submit" class="uk-button uk-button-default" type="submit" tabindex="2">Add to Cart</button>
+          <button id="submit add-to-cart-btn" class="uk-button uk-button-default" type="submit" tabindex="2">Add to Cart</button>
         </div>  
 
         <?php
@@ -153,7 +153,7 @@ if ($prod['sizeID'] != null) {
     if (parseFloat(input) > parseFloat(maxQty)) {
       // alert("Quantity selected cannot be higher than " + maxQty);
       // document.getElementById("qtyInput").value = maxQty;
-      document.getElementById("qty-invalid-alert").style = "display:block; font-size:.5em; color: red; padding:5px; margin: 0px;";
+      document.getElementById("qty-invalid-alert").style = "display:block;";
       document.getElementById("submit").disabled = true;
     } else if (parseFloat(input) > 0){
       document.getElementById("qty-invalid-alert").style = "display:none";

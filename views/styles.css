@@ -1,6 +1,7 @@
 /* Fonts
   font-family: 'Caveat', cursive; 
   font-family: 'Caveat Brush', cursive;
+  font-family: 'Libre Baskerville', serif;
 
   rgb(54, 183, 41)
 */
@@ -13,9 +14,14 @@
 html, body {
   background-image: url("../images/barnWood.jpg");
   background-size: cover;
-  height:100%;
   padding:0px;
   font-family: "Caveat Brush", cursive;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 /*Nav*/
@@ -42,13 +48,14 @@ html, body {
   background-color: var(--primary-green) !important;
 }
 .uk-navbar-nav>li>a {
-  font-family: 'Caveat Brush', cursive;
+  font-family: 'Libre Baskerville', serif;
+  /* font-family: 'Caveat Brush', cursive; */
   font-weight: 500;
   font-size: 1em;
 }
 .uk-navbar-dropdown {
   background-color: var(--primary-green);
-  font-family: 'Caveat Brush', cursive;
+  font-family: 'Libre Baskerville', cursive;
   padding: 15px;
   margin-top:10px;
 }
@@ -66,8 +73,8 @@ nav a:hover {
   box-shadow: inset 1.5px 0px 0px 0px white, inset -1.5px 0px 0px 0px white;
 }
 nav img {
-  height:50px;
-  width: 147px;
+  height:55px;
+  width: 129px;
 }
 
 
@@ -77,10 +84,7 @@ nav img {
   margin:auto;
   margin-top:0px;
   padding:20px;
-}
-
-.dropdown-item {
-  color: white;
+  min-height:70vh;
 }
 
 h1 {
@@ -88,20 +92,18 @@ h1 {
   margin: 50px;
   text-align: center;
 }
-
 .slogan {
-  font-family: 'Caveat', cursive;
-  font-weight: 500;
-  font-size: 2em;
-  text-shadow: 2px 2px 5px rgb(1, 101, 47); 
+  font-family: 'Caveat Brush', cursive;
+  font-size: 1.6em;
   margin:0px;
-  padding:30px;
-  padding-top:0px;
+  padding-bottom:30px;
 }
+
 .uk-card {
   font-family: 'Caveat Brush', cursive;
-  font-size: 1.4rem;
+  font-size: 1.4em;
   background-color: rgba(1,1,1,0);
+  box-shadow: none;
 }
 .card-rows {
   width: 100%;
@@ -123,7 +125,6 @@ h1 {
 }
 .productDesc {
   font-family: 'Caveat Brush', cursive;
-
 }
 .uk-overlay {
   padding: 5px;
@@ -131,6 +132,66 @@ h1 {
 .uk-overlay p {
   padding: 0px;
   margin: 0px;
+}
+
+
+.product-card-full :is(h2, h3, label)  {
+  font-family: 'Caveat Brush', cursive;
+  /* font-size: 1.1em; */
+  margin:10px;
+}
+.product-card-full label {
+  font-size: .85em;
+}
+.size-button, #size {
+  background-color: var(--primary-green);
+  color: white;
+  border: var(--dark-green) solid 4px;
+}
+select option:checked,
+select option:hover {
+    box-shadow: 0 0 10px 100px #000 inset;
+}
+select:focus > option:checked { 
+  background: #000 !important;
+}
+input {
+  border: 3px solid;
+  border-radius: 4px;
+  font-size: 1rem;
+  margin: 0.25rem;
+  min-width: 125px;
+  padding: 0.5rem;
+  transition: border-color 0.5s ease-out;
+}
+input:optional {
+  border-color: gray;
+}
+input:required:valid {
+  border-color: green;
+}
+input:invalid {
+  border-color: red;
+}
+input:required:focus:valid {
+  background: url("https://assets.digitalocean.com/labs/icons/hand-thumbs-up.svg") no-repeat 95% 50% lightgreen;
+  background-size: 25px;
+}
+input:focus:invalid {
+  background: url("https://assets.digitalocean.com/labs/icons/exclamation-triangle-fill.svg") no-repeat 95% 50% lightsalmon;
+  background-size: 25px;
+}
+#qty-invalid-alert {
+  display: none;
+  font-size: .63em;
+  color: red;
+  padding:5px;
+  margin: 0px;
+}
+#add-to-cart-btn {
+  background-color: var(--primary-green);
+  color: white;
+  border: var(--dark-green) solid 4px;
 }
 
 
@@ -163,32 +224,7 @@ h1 {
   margin: auto;
 }
 
-input {
-  border: 3px solid;
-  border-radius: 4px;
-  font-size: 1rem;
-  margin: 0.25rem;
-  min-width: 125px;
-  padding: 0.5rem;
-  transition: border-color 0.5s ease-out;
-}
-input:optional {
-  border-color: gray;
-}
-input:required:valid {
-  border-color: green;
-}
-input:invalid {
-  border-color: red;
-}
-input:required:focus:valid {
-  background: url("https://assets.digitalocean.com/labs/icons/hand-thumbs-up.svg") no-repeat 95% 50% lightgreen;
-  background-size: 25px;
-}
-input:focus:invalid {
-  background: url("https://assets.digitalocean.com/labs/icons/exclamation-triangle-fill.svg") no-repeat 95% 50% lightsalmon;
-  background-size: 25px;
-}
+
 
 
 
@@ -197,12 +233,14 @@ input:focus:invalid {
 
 
 footer {
+  font-family: 'Libre Baskerville', serif;
   background-color: var(--dark-green);
   color: white;
   padding: 15px;
   box-shadow: 0px 10px 10px -10px black inset;
   font-size: .85em;
   letter-spacing: 1px;
+  margin-top: auto;
 }
 footer a {
   color: white;
@@ -248,6 +286,17 @@ footer a {
 
   .content-container {
     width: 100%;
+  }
+  .uk-overlay {
+    font-size: .75em;
+  }
+
+  .slogan {
+    font-size: 1.2em;
+  }
+
+  #size {
+    font-size:.5em;
   }
 }
 

@@ -6,3 +6,5 @@ Products can now have null price and qty if has a sizeID. The price and qty will
 Need admin page where can input orders made in person to keep online stock amounts correct.
 
 Need checkout page
+
+Categories edit needs option to hide category
