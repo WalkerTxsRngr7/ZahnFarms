@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 14, 2021 at 09:54 PM
+-- Generation Time: Apr 19, 2021 at 05:38 PM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.3.1
 
@@ -59,14 +59,21 @@ CREATE TABLE `customers` (
   `customerID` int(11) NOT NULL,
   `lName` varchar(25) COLLATE utf8mb4_unicode_ci NOT NULL,
   `fName` varchar(25) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `phone` int(11) NOT NULL,
+  `phone` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
   `addressLine1` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   `addressLine2` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `city` varchar(25) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `state` varchar(25) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `postal` varchar(25) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `city` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `state` varchar(2) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `postal` varchar(5) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `customers`
+--
+
+INSERT INTO `customers` (`customerID`, `lName`, `fName`, `phone`, `addressLine1`, `addressLine2`, `city`, `state`, `postal`, `email`) VALUES
+(1, 'Doe', 'John', '4175555555', '123 This St', NULL, 'Springfield', 'MO', '65804', 'thisemail@email.com');
 
 -- --------------------------------------------------------
 
@@ -294,7 +301,7 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT for table `customers`
 --
 ALTER TABLE `customers`
-  MODIFY `customerID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `customerID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `orders`
