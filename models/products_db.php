@@ -174,5 +174,17 @@ function getOrderDetails($orderID){
 
     //return an array of orderDetails
     return $orderDetails;
+}
 
+/** RETURN CUSTOMER BY CUSTOMERID */ 
+function getCustomerByID($custID){
+    global $db;
+    $sql = "SELECT * FROM `customers` WHERE `customerID` = $custID";
+
+    //oop
+    $qry = $db->query($sql);
+    $cust= $qry->fetch();
+
+    //return an array of cust
+    return $cust;
 }
