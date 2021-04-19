@@ -6,7 +6,7 @@
   rgb(54, 183, 41)
 */
 :root {
-  --primary-green: #0B6400;
+  --primary-green: #006416;
   --secondary-green: #18890B;
   --dark-green: #022900;
 }
@@ -25,7 +25,8 @@ body {
 }
 
 /*Nav*/
-.nav-menu { /* Mobile */
+  /* Mobile Nav*/
+.nav-menu { 
   display: none;
   padding-right: 100px;
   height: 50px;
@@ -43,7 +44,7 @@ body {
 .uk-offcanvas-bar>ul>li>a {
   padding: 5px;
 }
-
+  /* Desktop Nav */
 .uk-navbar-container{
   background-color: var(--primary-green) !important;
 }
@@ -62,7 +63,6 @@ body {
 .uk-navbar-dropdown-nav>li>a {
   padding-left:5px;
 }
-
 nav a, nav a:hover {
   color: white !important;
   text-decoration: none;
@@ -78,15 +78,15 @@ nav img {
 }
 
 
+/* Category and products pages. And some defaults */
 .content-container {
-  background-color: rgba(201, 201, 201, 0.644);
+  background-color: rgba(201, 201, 201, 0.643);
   width: 90%;
   margin:auto;
   margin-top:0px;
   padding:20px;
   min-height:70vh;
 }
-
 h1 {
   color: black;
   margin: 50px;
@@ -98,7 +98,6 @@ h1 {
   margin:0px;
   padding-bottom:30px;
 }
-
 .uk-card {
   font-family: 'Caveat Brush', cursive;
   font-size: 1.4em;
@@ -135,6 +134,7 @@ h1 {
 }
 
 
+/* Product page */
 .product-card-full :is(h2, h3, label)  {
   font-family: 'Caveat Brush', cursive;
   /* font-size: 1.1em; */
@@ -148,14 +148,11 @@ h1 {
   color: white;
   border: var(--dark-green) solid 4px;
 }
-select option:checked,
-select option:hover {
-    box-shadow: 0 0 10px 100px #000 inset;
-}
-select:focus > option:checked { 
-  background: #000 !important;
-}
-input {
+/* #qty-input {
+  background-color: var(--primary-green);
+  color: white;
+} */
+#qty-input>input {
   border: 3px solid;
   border-radius: 4px;
   font-size: 1rem;
@@ -164,9 +161,6 @@ input {
   padding: 0.5rem;
   transition: border-color 0.5s ease-out;
 }
-input:optional {
-  border-color: gray;
-}
 input:required:valid {
   border-color: green;
 }
@@ -174,11 +168,11 @@ input:invalid {
   border-color: red;
 }
 input:required:focus:valid {
-  background: url("https://assets.digitalocean.com/labs/icons/hand-thumbs-up.svg") no-repeat 95% 50% lightgreen;
+  background: lightgreen;
   background-size: 25px;
 }
 input:focus:invalid {
-  background: url("https://assets.digitalocean.com/labs/icons/exclamation-triangle-fill.svg") no-repeat 95% 50% lightsalmon;
+  background: lightsalmon;
   background-size: 25px;
 }
 #qty-invalid-alert {
@@ -195,10 +189,49 @@ input:focus:invalid {
 }
 
 
+/* Cart */
+.cart-prod-row {
+  border-bottom: 3px solid rgb(39, 39, 39);
+  padding-bottom:10px;
+  margin-bottom: 10px;
+}
+.cart-prod-row .uk-card,
+.cart-prod-row h4,
+.cart-prod-row {
+  color: black;
+  font-family: "Caveat Brush", cursive;
+  
+}
+.checkout-btn {
+  background-color: #674128;
+  color: white;
+  border: 2px solid white;
+}
+.checkout-btn:hover {
+  background-color: #422919;
+  color: white;
+  border: 2px solid white;
+}
+.cart-remove-btn {
+  /* background-color: #674128; */
+  background-color: var(--primary-green);
+  color: white;
+  border: 2px solid white;
+}
+.cart-totals .uk-card {
+  padding-top: 0px;
+  padding-bottom: 0px;
+}
+
+
+/* Admin pages */
 .admin-prod-container {
   width: 100%;
   margin: auto;
-  font-size: 1.6rem;
+  font-size: 1.2em;
+}
+.admin-prod-table th {
+  color: black;
 }
 .admin-prod-row {
   margin-bottom: 10px;
@@ -225,9 +258,39 @@ input:focus:invalid {
 }
 
 
-
-
-
+/* Orders pages */
+.orders-table {
+  background-color: rgb(201, 201, 201);
+  border: white solid 2px;
+}
+.orders-table th  {
+  color: black;
+}
+.order-btn {
+  border: 2px solid white;
+  background: transparent;
+} 
+.order-btn:hover {
+  /* background-color: var(--primary-green); */
+  box-shadow: inset 1.5px 0px 0px 0px white, inset -1.5px 0px 0px 0px white;
+  color: white;
+}
+.view-btn:hover {
+  background-color: var(--primary-green);
+}
+.delivered {
+  Border: green solid 3px;
+  color: green;
+}
+.paid {
+  Border: blue solid 3px;
+  color: blue;
+}
+.unpaid {
+  Border: red solid 3px;
+  color: rgb(253, 70, 70);
+  text-decoration: underline;
+}
 
 
 
@@ -297,6 +360,17 @@ footer a {
 
   #size {
     font-size:.5em;
+  }
+
+  .cart-prod-row {
+    margin-bottom:20px;
+    padding-bottom:20px;
+  }
+  .cart-prod-row .uk-grid-margin {
+    margin:2px;
+  }
+  .cart-totals {
+    font-size: .9em;
   }
 }
 

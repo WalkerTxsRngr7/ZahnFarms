@@ -2,7 +2,7 @@
 $aryProd = productsByCatID($catID);
 ?>
 <div class="admin-prod-container">
-  <table class="uk-table uk-table-small uk-table-divider uk-table-responsive">
+  <table class="admin-prod-table uk-table uk-table-small uk-table-divider uk-table-responsive">
     <thead>
       <tr>
         <th class="uk-table-shrink" scope="col"></th>

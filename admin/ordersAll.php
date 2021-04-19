@@ -2,25 +2,11 @@
     $orders = getAllOrders();
 ?>
 
-<!-- example -->
-<?php
-// foreach ($orders as $order ) {
-//     echo("
-//     <tr>
-//         <th scope='row'>$order[orderID]</th>
-//         <td>$order[customerName]</td>
-//         <td>$order[productID]</td>
-//         <td>$order[qtyOrdered]</td>
-//     </tr>");
-// }
-?>
-
-
-<div style="width:80%; margin:auto">
-    <table class="uk-table uk-table-small uk-table-hover uk-table-striped uk-table-responsive">
+<div style="width:100%;">
+    <table class="orders-table uk-table uk-table-small uk-table-divider uk-table-responsive">
         <thead>
             <tr>
-                <th scope="col"></th>
+                <th class="uk-table-shrink" scope="col"></th>
                 <th scope="col">Order ID</th>
                 <th scope="col">Customer Name</th> 
                 <th scope="col">Status</th>
@@ -45,20 +31,23 @@
             $orderID = $ord['orderID'];
             echo "<tr>";
             echo
-            "<td>
+            "<td class='view-btn'>
                     <form method='post' action=''>
-                        <input class='uk-button uk-button-default' type='submit' name='viewOrder' value='View'>
+                        <input class='order-btn uk-button' type='submit' name='viewOrder' value='View'>
                         <input type='hidden' name='adminBtn' value='$adminBtn'>
                         <input type='hidden' name='orderID' value='$orderID'>
                     </form>
                 </td>";
             echo "<td>$OrderID</td>";
             echo "<td>" . $Customer['lName'] . ", " . $Customer['fName'] . "</td>";
-            if($Status === 1){
-                echo "<td>Paid</td>";
+            /* Status: Paid, Unpaid, Delivered. Give different class depending on status. status-paid, status-unpaid, status-delivered  Paid, Pay At Pickup, Delivered  Style: Paid(Blue) Unpaid(Red, underline) Delivered(Green) Border solid 3px */
+            if($Status === 2){ 
+                echo "<td class='delivered'>Delivered</td>";
             }
-            else{
-                echo "<td>Unpaid</td>";
+            else if($Status === 1){ 
+                echo "<td class='paid'>Paid</td>";
+            } else {
+                echo "<td class='unpaid'>Unpaid</td>";
             }
             echo "<td>";
             echo $OrderDate->format('m-d-y');

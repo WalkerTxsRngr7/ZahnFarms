@@ -46,34 +46,21 @@ echo"<div class='content-container'>";
 if ($addToCart == "true"){
     $prod = prodByID($prodID);
   
-    // if ($prod['sizeID'] != null) {
     if (isset($sizeName)) {
         $size = sizeByName($sizeName, $prod['sizeID']);
         $_SESSION['cart'][$prodID] = array('prod' => $prod, 'qty' => $qty, 'size' => $size);
-        // echo "<h1>Added " . $prodID . "</h1>";
-        // echo "<h1>Added " . $size['sizeName'] . "</h1>";
     } else {
       $_SESSION['cart'][$prodID] = array('prod' => $prod, 'qty' => $qty, 'size' => null);
-      // echo "<h1>Added " . $prodID . "</h1>";
-      // echo "<h1>Added " . $_SESSION['cart'][$prodID]['size'] . "</h1>";
     }
     
 } else if (isset($remove)) {
   unset($_SESSION['cart'][$remove]); //remove the item from the cart
 }
 
+
+?>
+<!-- <div class="cart-container"> -->
   
-
-
-
-?>
-
-
-<?php
-// $aryProd = productsByCatID($catID);
-?>
-<div class="admin-prod-container">
-  <a class="uk-button uk-button-default" href="checkout.php">Checkout</a>
   <?php
   if ($_SESSION['cart'] == null) {
     echo "<h3>Cart is Empty</h3>";
@@ -90,7 +77,7 @@ if ($addToCart == "true"){
   ?>
       <!-- Individual Product -->
       <!-- Remove any changes being made to the database from this page and move to the product.php page -->
-      <div class="admin-prod-row">
+      <div class="cart-prod-row">
         <form action="" method="post">
           <div class="uk-flex-center uk-flex-middle uk-child-width-expand" uk-grid>
             <div class="uk-card uk-card-default uk-width-small ">
@@ -98,7 +85,7 @@ if ($addToCart == "true"){
             </div>
             <div class="uk-flex-center uk-flex-middle uk-child-width-expand@s" uk-grid>
               <div>
-                <h3><?=$item['prod']['productName']?></h3>
+                <h4><?=$item['prod']['productName']?></h4>
                 <?php
                   if ($item['size'] != null){
                     echo $item['size']['sizeName'];
@@ -106,7 +93,7 @@ if ($addToCart == "true"){
                 ?>
               </div>
               <div>
-                <h3>$
+                <h4>$
                   <?php
                   if ($item['size'] != null){
                     echo $item['size']['price'];
@@ -114,13 +101,13 @@ if ($addToCart == "true"){
                     echo $item['prod']['price'];
                   }
                 ?>
-                </h3> <!-- get portionsDesc and show after price to show how is sold. -->
+                </h4> <!-- get portionsDesc and show after price to show how is sold. -->
               </div>
               <div>
-                <h3>Quantity: <?=$item['qty']?></h3>
+                <h4>Quantity: <?=$item['qty']?></h4>
               </div>
               <div>
-                <h3>Item Total:<br>$
+                <h4>Item Total:<br>$
                   <?php
                   if ($item['size'] != null){
                     $itemPrice = $item['size']['price'] * $item['qty'];
@@ -130,10 +117,10 @@ if ($addToCart == "true"){
                   $subtotal += $itemPrice;
                   echo number_format((float)$itemPrice, 2, '.', '');
                 ?>
-                </h3>
+                </h4>
               </div>
               <div>
-                <Button class="uk-button" type="submit"><i class="far fa-trash-alt"></i>
+                <Button class="cart-remove-btn uk-button" type="submit"><i class="far fa-trash-alt"></i>
                     <input type="hidden" name="remove" value="<?=$item['prod']['productID']?>">
                 </Button>
                     
@@ -147,7 +134,7 @@ if ($addToCart == "true"){
   <?php
   }
   ?>
-  <div class="admin-prod-row"> <!-- Totals. May only show subtotal. Tax and total can be on the checkout page -->
+  <div class="cart-prod-row cart-totals"> <!-- Totals. May only show subtotal. Tax and total can be on the checkout page -->
     <div class="uk-flex uk-flex-right">
       <div class="uk-card uk-card-default uk-card-body uk-width-1-3@m">
         <div class="uk-grid-small" uk-grid>
@@ -165,11 +152,12 @@ if ($addToCart == "true"){
       </div>
     </div>  
   </div>
+  <div style="margin: 0px; margin-bottom: 45px; padding:0px; width:100%;" class="uk-inline">
+    <a class="checkout-btn uk-button uk-button-default uk-position-top-right" href="checkout.php">Checkout</a>
+  </div>
+<!-- </div> -->
+
 </div>
-
-
 <?php
-echo"</div>";
-
 include "../views/footer.php";
 ?>
