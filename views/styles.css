@@ -202,25 +202,36 @@ input:focus:invalid {
   font-family: "Caveat Brush", cursive;
   
 }
-.checkout-btn {
-  background-color: #674128;
+.checkout-btn { /* #674128 #422919 */
+  background-color: #c76509;
   color: white;
   border: 2px solid white;
 }
 .checkout-btn:hover {
-  background-color: #422919;
+  background-color: #C97C33;
   color: white;
   border: 2px solid white;
 }
 .cart-remove-btn {
   /* background-color: #674128; */
-  background-color: var(--primary-green);
+  background-color: #a30101;
   color: white;
   border: 2px solid white;
 }
 .cart-totals .uk-card {
   padding-top: 0px;
   padding-bottom: 0px;
+}
+
+
+.about {
+  font-size: 1.1em;
+  /* width: 75%;
+  margin: auto; */
+}
+.about-fb {
+  width:75%;
+  margin:auto;
 }
 
 
@@ -371,6 +382,12 @@ footer a {
   }
   .cart-totals {
     font-size: .9em;
+  }
+
+
+  .about-fb {
+    width:100%; 
+    margin:auto;
   }
 }
 

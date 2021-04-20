@@ -53,7 +53,7 @@ $sizeAry = null;
                     <p class="card-name" style="font-weight:bold;text-decoration:underline;">OUT OF<br>STOCK</p>
                     <div>
                       <p class="card-name uk-position-bottom"><?=$prod['productName']?></p>
-                      <p class="card-price">$<?=$prod['price']?> <?=$portion['portionsDesc']?></p>
+                      <!-- <p class="card-price">$<?=$prod['price']?> <?=$portion['portionsDesc']?></p> -->
                     </div>
                     
                   </div>
@@ -68,7 +68,7 @@ $sizeAry = null;
 
                 <div class="uk-overlay uk-overlay-primary uk-position-bottom">
                   <p class="card-name"><?=$prod['productName']?></p>
-                  <p class="card-price">$<?=$prod['price']?> <?=$portion['portionsDesc']?></p>
+                  <!-- <p class="card-price">$<?=$prod['price']?> <?=$portion['portionsDesc']?></p> -->
                 </div>
               </div>
             </a>

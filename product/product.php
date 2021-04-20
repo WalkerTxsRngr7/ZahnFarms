@@ -27,6 +27,7 @@ if ($prod['sizeID'] != null) {
     <h2>
       <?=$prod['productName']?>
     </h2>
+    <!-- don't show price if out of season -->
     <h3 id="price" style="<?php echo($prod['sizeID'] != null ? 'display:none;' : '')?>">
       <?php echo"$" . $prod['price'] . " " . $portion['portionsDesc']?>
     </h3>
@@ -68,7 +69,7 @@ if ($prod['sizeID'] != null) {
             <div id="qty-box" style="display:none;" class="uk-card  uk-width-expand">
               <label class="uk-form-label" for="form-stacked-text">Quantity</label>
               <div class="uk-form-controls uk-width-1-3" style="margin:auto">
-                <input id="qty-input" class="uk-input uk-text-center" id="form-stacked-text" type="number" placeholder="0.1-<?=$prod['qty']?>" min="0.1" max="<?=$prod['qty']?>" name="qty" tabindex="1" step=".1" required onchange="checkQty()">
+                <input id="qty-input" class="uk-input uk-text-center" id="form-stacked-text" type="number" placeholder="0.1-<?=$prod['qty']?>" min="1" max="<?=$prod['qty']?>" name="qty" tabindex="1" step="1" required onchange="checkQty()">
               </div>
               <p id="qty-invalid-alert">Invalid Quantity</p>
             </div>
@@ -82,7 +83,7 @@ if ($prod['sizeID'] != null) {
           <div class="uk-card uk-width-expand">
             <label class="uk-form-label" for="form-stacked-text">Quantity</label>
             <div class="uk-form-controls uk-width-1-3" style="margin:auto">
-              <input id="qty-input" class="uk-input uk-text-center" id="form-stacked-text" type="number" placeholder="0.1-<?=$prod['qty']?>" min="0.1" max="<?=$prod['qty']?>" name="qty" tabindex="1" step=".1" required onchange="checkQty()">
+              <input id="qty-input" class="uk-input uk-text-center" id="form-stacked-text" type="number" placeholder="1-<?=$prod['qty']?>" min="1" max="<?=$prod['qty']?>" name="qty" tabindex="1" step="1" required onchange="checkQty()">
             </div>
             <p id="qty-invalid-alert">Invalid Quantity</p>
           </div>
