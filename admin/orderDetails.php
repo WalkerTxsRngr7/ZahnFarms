@@ -26,10 +26,18 @@
     </div>
     <hr class="print">
     <div class="uk-column-1-2 uk-column-divider">
-        <p>Order #: 13</p>
-        <p>Name: Doe, John</p>
-        <p>Phone: 417-745-3375</p>
-        <p>Email: bobsmith@gmail.com</p>
+        <?php
+        $Customer = getCustomerByID($_POST['orderID']);
+        $first = $Customer['fName'];
+        $last = $Customer['lName'];
+        $phone = $Customer['phone'];
+        $email = $Customer['email'];
+
+        echo $_POST['orderID'];
+        echo "<p> $last , $first  </p>";
+        echo "<p>Phone: $phone</p>";
+        echo "<p>Email: $email</p>";
+        ?>
         <p>Order Date: 4/1/2021</p>
         <p>Delivery Date: 4/5/2021 3:00PM</p>
         <p>Delivery Location: Farm</p>
@@ -53,6 +61,21 @@
                 </tr>
             </thead>
             <tbody>
+            <?php
+                $order = getOrderDetails($_POST['orderID']);
+                foreach($order as $ord){
+                    $number = 1;
+                    $prod = prodByID(ord['productID']);
+                    $productName = prod['productName'];
+                    $q = ord['quantityOrdered'];
+                    echo "<tr>";
+                    echo "<td>$number</td>";
+                    echo "<td>$productName</td>";
+                    echo "<td>Small (1-1.5 lbs)</td>";
+                    echo "<td>$q</td>";
+                    echo "</tr>";
+                }
+            ?>
                 <tr>
                     <td>1</td>
                     <td>Beef</td>
