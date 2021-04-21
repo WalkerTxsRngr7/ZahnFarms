@@ -162,6 +162,19 @@ function getAllOrders(){
     return $aryOrders;
 
 }
+function getOrdersByID($ID){
+    global $db;
+    $sql = "SELECT * FROM `orders` Where customerID = '$ID'";
+
+    //oop
+    $qry = $db->query($sql);
+    $aryOrders= $qry->fetchAll();
+
+
+    //return an array of orders
+    return $aryOrders;
+
+}
 
 /** RETURN ORDER DETAILS BY ORDERID */ 
 function getOrderDetails($orderID){
