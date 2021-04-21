@@ -170,7 +170,7 @@ function getOrderDetails($orderID){
 
     //oop
     $qry = $db->query($sql);
-    $orderDetails= $qry->fetch();
+    $orderDetails= $qry->fetchAll();
 
     //return an array of orderDetails
     return $orderDetails;

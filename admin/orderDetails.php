@@ -33,9 +33,9 @@
         $phone = $Customer['phone'];
         $email = $Customer['email'];
 
-        echo $_POST['orderID'];
-        echo "<p> $last , $first  </p>";
-        echo "<p>Phone: $phone</p>";
+        echo "<p>Order: " . $_POST['orderID'];
+        echo "<p>Name: $last , $first</p>";
+        echo "<p>Phone: $phone</p>"; /* See if way to format as phone number */
         echo "<p>Email: $email</p>";
         ?>
         <p>Order Date: 4/1/2021</p>
@@ -63,59 +63,51 @@
             <tbody>
             <?php
                 $order = getOrderDetails($_POST['orderID']);
-                foreach($order as $ord){
+                foreach($order as $item){
                     $number = 1;
-                    $prod = prodByID(ord['productID']);
-                    $productName = prod['productName'];
-                    $q = ord['quantityOrdered'];
+                    $prod = prodByID($item['productID']);
+                    $productName = $prod['productName'];
+                    $qty = $item['quantityOrdered'];
+                    $portion = portionByID($prod['portionsID']);
+                    $portionDesc = $portion['portionsDesc'];
+                    $size = $item['sizeName'];
+                    $price = $item['priceEach'];
+                    $linePrice = $qty * $price;
+                    $linePrice = number_format((float)$linePrice, 2, '.', '');
                     echo "<tr>";
                     echo "<td>$number</td>";
                     echo "<td>$productName</td>";
-                    echo "<td>Small (1-1.5 lbs)</td>";
-                    echo "<td>$q</td>";
+                    echo "<td>$size";
+                    echo "<td>$qty $portionDesc</td>";
+                    echo "<td>$$price</td>";
+                    echo "<td>$$linePrice</td>";
                     echo "</tr>";
                 }
             ?>
-                <tr>
-                    <td>1</td>
-                    <td>Beef</td>
-                    <td>Small (1-1.5 lbs)</td>
-                    <td>4 lbs</td> <!-- need to show portion -->
-                    <td>$5.99</td>
-                    <td>$19.99</td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Beef</td>
-                    <td>Small (1-1.5 lbs)</td>
-                    <td>4 lbs</td> <!-- need to show portion -->
-                    <td>$5.99</td>
-                    <td>$19.99</td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td>Subtotal</td>
-                    <td>$15.99</td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td>Tax</td>
-                    <td>$2.99</td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td> 
-                    <td>Total</td>
-                    <td>$20.99</td>
-                </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>Subtotal</td>
+                <td>$15.99</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>Tax</td>
+                <td>$2.99</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td> 
+                <td>Total</td>
+                <td>$20.99</td>
+            </tr>
             </tbody>
         </table>
     </div>
