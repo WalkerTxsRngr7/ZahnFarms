@@ -28,7 +28,7 @@ if ($prod['sizeID'] != null) {
       <?=$prod['productName']?>
     </h2>
     <!-- don't show price if out of season -->
-    <h3 id="price" style="<?php echo($prod['sizeID'] != null ? 'display:none;' : '')?>">
+    <h3 id="price" style="<?php echo($prod['sizeID'] != null ? 'display:none;' : '')?><?php echo($prod['outOfSeason'] == 1 ? 'display:none;' : '')?>">
       <?php echo"$" . $prod['price'] . " " . $portion['portionsDesc']?>
     </h3>
     <!-- Form for product details to add to cart -->
@@ -69,7 +69,7 @@ if ($prod['sizeID'] != null) {
             <div id="qty-box" style="display:none;" class="uk-card  uk-width-expand">
               <label class="uk-form-label" for="form-stacked-text">Quantity</label>
               <div class="uk-form-controls uk-width-1-3" style="margin:auto">
-                <input id="qty-input" class="uk-input uk-text-center" id="form-stacked-text" type="number" placeholder="0.1-<?=$prod['qty']?>" min="1" max="<?=$prod['qty']?>" name="qty" tabindex="1" step="1" required onchange="checkQty()">
+                <input id="qty-input" class="uk-input uk-text-center" id="form-stacked-text" type="number" placeholder="1-<?=$prod['qty']?>" min="1" max="<?=$prod['qty']?>" name="qty" tabindex="1" step="1" required onchange="checkQty()">
               </div>
               <p id="qty-invalid-alert">Invalid Quantity</p>
             </div>
@@ -96,7 +96,8 @@ if ($prod['sizeID'] != null) {
           
 
         <?php
-        } if ($qty == 0) { /* Out of stock */
+        } 
+        if ($qty == 0) { /* Out of stock */
         ?>
         <!-- Out of Stock button -->
         <div class="uk-card">
@@ -140,8 +141,9 @@ if ($prod['sizeID'] != null) {
 
 <script>
   window.addEventListener('load', 
-    function() { 
-      document.getElementById("submit").disabled = true; /* Disable submit button on page load */
+    function() {
+      /* Disable submit button on page load */
+      document.getElementById("submit").disabled = true; 
     });
 
   function sizePrice(e) {
@@ -169,9 +171,8 @@ if ($prod['sizeID'] != null) {
   function checkQty() {
     var input = document.getElementById("qty-input").value;
     var maxQty = document.getElementById("qty-input").max;
+    /* Input is higher than maxQty */
     if (parseFloat(input) > parseFloat(maxQty)) {
-      // alert("Quantity selected cannot be higher than " + maxQty);
-      // document.getElementById("qtyInput").value = maxQty;
       document.getElementById("qty-invalid-alert").style = "display:block;";
       document.getElementById("submit").disabled = true;
     } else if (parseFloat(input) > 0){

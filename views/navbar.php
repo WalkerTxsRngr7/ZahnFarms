@@ -12,7 +12,7 @@
                     <div class="uk-navbar-dropdown" delay-hide="250">
                         <ul class="uk-nav uk-navbar-dropdown-nav">
                             <?php
-                            $aryCat = getAllCategories();
+                            $aryCat = getAllCategoriesShow();
                             foreach($aryCat as $cat){
                             ?>
                             <li><a href="../product?catID=<?=$cat['catID']?>"><?=$cat['catName']?></a></li>

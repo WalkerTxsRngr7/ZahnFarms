@@ -82,11 +82,6 @@ function sizeByName($sizeName, $sizeID) {
     //return a size
     return $size;
 }
-// function test($sizeName, $sizeID) {
-//     $sql = "SELECT * FROM `sizes` WHERE `sizeName`= \"$sizeName\" AND `sizeID`= $sizeID";
-//     //return a size
-//     return $sql;
-// }
 
 /** RETURN A SINGLE PORTION FILTERED BY PORTION ID */
 function portionByID($portionID){

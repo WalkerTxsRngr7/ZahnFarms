@@ -87,6 +87,10 @@ nav img {
   padding:20px;
   min-height:70vh;
 }
+.blur-container {
+  background-color: rgba(255, 255, 255, .15);  
+  backdrop-filter: blur(7px);
+}
 h1 {
   color: black;
   margin: 50px;
@@ -221,6 +225,9 @@ input:focus:invalid {
 .cart-totals .uk-card {
   padding-top: 0px;
   padding-bottom: 0px;
+}
+#cart-empty {
+  font-family: "Caveat Brush", cursive;
 }
 
 

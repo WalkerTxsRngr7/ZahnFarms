@@ -21,20 +21,18 @@ $title = "Home";
 $headTitle = "Zahn Farms";
 include "../views/header.php";
 
-$catID = filter_input(INPUT_POST, "catID");
+// $catID = filter_input(INPUT_POST, "catID");
 $prodID = filter_input(INPUT_POST, "prodID");
-$prodName = filter_input(INPUT_POST, "productName");
+// $prodName = filter_input(INPUT_POST, "productName");
 $qty = filter_input(INPUT_POST, "qty");
 $sizeName = filter_input(INPUT_POST, "size");
 $addToCart = filter_input(INPUT_POST, "addToCart");
 $remove = filter_input(INPUT_POST, "remove");
-$order = filter_input(INPUT_POST, "order");
-$customerName = filter_input(INPUT_POST, "customerName");
 
 $subtotal = 0;
 $tax = 0;
 
-echo"<div class='content-container'>";
+echo"<div class='content-container blur-container'>";
 // $cat = catByID($catID);
 
 
@@ -63,7 +61,7 @@ if ($addToCart == "true"){
   
   <?php
   if ($_SESSION['cart'] == null) {
-    echo "<h3>Cart is Empty</h3>";
+    echo "<h3 id='cart-empty'>Cart is Empty</h3>";
   }
   foreach($_SESSION['cart'] as $item){
     
@@ -152,9 +150,16 @@ if ($addToCart == "true"){
       </div>
     </div>  
   </div>
-  <div style="margin: 0px; margin-bottom: 45px; padding:0px; width:100%;" class="uk-inline">
-    <a class="checkout-btn uk-button uk-button-default uk-position-top-right" href="checkout.php">Checkout</a>
-  </div>
+  <?php
+  if ($_SESSION['cart'] != null) { 
+  ?>
+    <div style="margin: 0px; margin-bottom: 45px; padding:0px; width:100%;" class="uk-inline">
+      <a class="checkout-btn uk-button uk-button-default uk-position-top-right" href="checkout.php">Checkout</a>
+    </div>
+  <?php
+  }
+  ?>
+  
 <!-- </div> -->
 
 </div>

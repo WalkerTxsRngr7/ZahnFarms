@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 21, 2021 at 09:29 PM
+-- Generation Time: Apr 22, 2021 at 01:06 AM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.3.1
 
@@ -32,6 +32,7 @@ CREATE TABLE `categories` (
   `catID` int(11) NOT NULL,
   `catName` varchar(25) COLLATE utf8mb4_unicode_ci NOT NULL,
   `image` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `taxRate` decimal(4,4) NOT NULL DEFAULT '0.0000',
   `hide` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -39,18 +40,18 @@ CREATE TABLE `categories` (
 -- Dumping data for table `categories`
 --
 
-INSERT INTO `categories` (`catID`, `catName`, `image`, `hide`) VALUES
-(41, 'Beef', 'beef.jpg', 0),
-(42, 'Chicken', 'chicken.jpg', 0),
-(43, 'Pork', 'pork.jpg', 0),
-(44, 'Eggs', 'eggs.jpg', 0),
-(45, 'Vegetables', 'Carrots.jpg', 0),
-(46, 'Fruit', 'Tomato.jpg', 0),
-(47, 'Berries', 'strawberry.jpg', 0),
-(48, 'Mushrooms', 'shiitake_mushroom.jpg', 0),
-(49, 'Seasonings and Mixes', '.jpg', 1),
-(50, 'Crafts', '.jpg', 1),
-(51, 'Lip Balms', '.jpg', 1);
+INSERT INTO `categories` (`catID`, `catName`, `image`, `taxRate`, `hide`) VALUES
+(41, 'Beef', 'beef.jpg', '0.0000', 0),
+(42, 'Chicken', 'chicken.jpg', '0.0000', 0),
+(43, 'Pork', 'pork.jpg', '0.0000', 0),
+(44, 'Eggs', 'eggs.jpg', '0.0000', 0),
+(45, 'Vegetables', 'Carrots.jpg', '0.0000', 0),
+(46, 'Fruit', 'Tomato.jpg', '0.0000', 0),
+(47, 'Berries', 'strawberry.jpg', '0.0000', 0),
+(48, 'Mushrooms', 'shiitake_mushroom.jpg', '0.0000', 0),
+(49, 'Seasonings and Mixes', '.jpg', '0.0000', 1),
+(50, 'Crafts', '.jpg', '0.0000', 1),
+(51, 'Lip Balms', '.jpg', '0.0000', 1);
 
 -- --------------------------------------------------------
 
@@ -62,7 +63,7 @@ CREATE TABLE `customers` (
   `customerID` int(11) NOT NULL,
   `lName` varchar(25) COLLATE utf8mb4_unicode_ci NOT NULL,
   `fName` varchar(25) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `phone` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `phone` int(10) NOT NULL,
   `addressLine1` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   `addressLine2` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `city` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -76,7 +77,7 @@ CREATE TABLE `customers` (
 --
 
 INSERT INTO `customers` (`customerID`, `lName`, `fName`, `phone`, `addressLine1`, `addressLine2`, `city`, `state`, `postal`, `email`) VALUES
-(1, 'Doe', 'John', '4175555555', '123 This St', NULL, 'Springfield', 'MO', '65804', 'thisemail@email.com');
+(1, 'Doe', 'John', 2147483647, '123 This St', NULL, 'Springfield', 'MO', '65804', 'thisemail@email.com');
 
 -- --------------------------------------------------------
 
@@ -202,7 +203,7 @@ INSERT INTO `products` (`productID`, `productName`, `portionsID`, `price`, `qty`
 (6, 'Cabbage', 2, NULL, NULL, 'Cabbage short description.', 'Cabbage full description.', 45, 'Cabbage.jpg', 1, 0, 0),
 (7, 'Shiitake Mushrooms Dried', 3, '4.00', 100, 'Shiitake Mushrooms Dried short description.', 'Shiitake Mushrooms Dried full description.', 45, 'shiitake_mushroom.jpg', NULL, 0, 0),
 (8, 'Shiitake Mushrooms Fresh', 4, '4.00', 100, 'Shiitake Mushrooms Fresh short description.', 'Shiitake Mushrooms Fresh full description.', 45, 'Shiitake_Mushrooms_Fresh.jpg', NULL, 0, 0),
-(9, 'Okra', 4, '4.00', 100, 'Okra short description.', 'Okra full description.', 45, 'pork.jpg', NULL, 0, 0),
+(9, 'Okra', 4, '4.00', 100, 'Okra short description.', 'Okra full description.', 45, 'Okra.jpg', NULL, 0, 0),
 (11, 'Green Beans', 1, '4.00', 100, 'Green Beens short description.', 'Green Beens full description.', 45, 'Green_Beans.jpg', NULL, 1, 0),
 (12, 'Red pepper', 2, '4.00', 100, 'Red pepper short description.', 'Red pepper full description.', 45, 'Red_Peppers.jpg', NULL, 0, 1),
 (13, 'Green onion', 1, '4.00', 0, 'Green onion short description.', 'Green onion full description.', 45, 'Green_Onions.jpg', NULL, 0, 0),
