@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 21, 2021 at 06:30 PM
+-- Generation Time: Apr 21, 2021 at 09:29 PM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.3.1
 
@@ -115,16 +115,19 @@ CREATE TABLE `orders` (
   `deliveryDate` date NOT NULL,
   `deliveryTime` time NOT NULL,
   `deliveryLocation` varchar(25) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `totalPrice` int(11) NOT NULL
+  `subtotal` decimal(10,2) NOT NULL,
+  `deliveryFee` decimal(4,2) NOT NULL DEFAULT '0.00',
+  `tax` decimal(5,2) NOT NULL DEFAULT '0.00',
+  `totalPrice` decimal(10,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `orders`
 --
 
-INSERT INTO `orders` (`orderID`, `customerID`, `orderDate`, `status`, `deliveryDate`, `deliveryTime`, `deliveryLocation`, `totalPrice`) VALUES
-(1, 1, '2021-04-02', 1, '2021-04-09', '15:30:00', 'Farm', 26),
-(2, 1, '2021-04-02', 1, '2021-04-09', '15:30:00', 'Farm', 26);
+INSERT INTO `orders` (`orderID`, `customerID`, `orderDate`, `status`, `deliveryDate`, `deliveryTime`, `deliveryLocation`, `subtotal`, `deliveryFee`, `tax`, `totalPrice`) VALUES
+(1, 1, '2021-04-02', 1, '2021-04-09', '15:30:00', 'Farm', '12.00', '4.00', '1.24', '27.00'),
+(2, 1, '2021-04-02', 1, '2021-04-09', '15:30:00', 'Farm', '18.45', '0.00', '0.00', '46.00');
 
 -- --------------------------------------------------------
 
@@ -224,7 +227,7 @@ CREATE TABLE `sizes` (
   `sizeID` int(11) NOT NULL,
   `sizeName` varchar(25) COLLATE utf8mb4_unicode_ci NOT NULL,
   `price` decimal(10,2) NOT NULL,
-  `qty` decimal(10,1) NOT NULL
+  `qty` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -232,12 +235,12 @@ CREATE TABLE `sizes` (
 --
 
 INSERT INTO `sizes` (`sizeID`, `sizeName`, `price`, `qty`) VALUES
-(1, 'Medium (1-1.5 lbs)', '5.00', '25.0'),
-(1, 'Small (0.5-1 lbs)', '2.00', '50.0'),
-(2, 'Medium (1-1.5 lbs)', '4.99', '30.0'),
-(2, 'Small (0.5-1 lbs)', '3.99', '0.0'),
-(3, 'Medium (1-1.5 lbs)', '4.99', '0.0'),
-(3, 'Small (0.5-1 lbs)', '3.99', '0.0');
+(1, 'Medium (1-1.5 lbs)', '5.00', 25),
+(1, 'Small (0.5-1 lbs)', '2.00', 50),
+(2, 'Medium (1-1.5 lbs)', '4.99', 30),
+(2, 'Small (0.5-1 lbs)', '3.99', 0),
+(3, 'Medium (1-1.5 lbs)', '4.99', 0),
+(3, 'Small (0.5-1 lbs)', '3.99', 0);
 
 --
 -- Indexes for dumped tables
