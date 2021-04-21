@@ -74,6 +74,8 @@
                     $price = $item['priceEach'];
                     $linePrice = $qty * $price;
                     $linePrice = number_format((float)$linePrice, 2, '.', '');
+
+                    // products rows
                     echo "<tr>";
                     echo "<td>$number</td>";
                     echo "<td>$productName</td>";
@@ -84,30 +86,43 @@
                     echo "</tr>";
                 }
             ?>
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td>Subtotal</td>
-                <td>$15.99</td>
-            </tr>
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td>Tax</td>
-                <td>$2.99</td>
-            </tr>
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td> 
-                <td>Total</td>
-                <td>$20.99</td>
-            </tr>
+            <?php
+                $amounts = getOrdersByID($_POST['orderID']);
+                $sub = $amounts['subtotal'];
+                $delv = $amounts['deliveryFee'];
+                $tax = $amounts['tax'];
+                $total = $amounts['total'];
+                echo "
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>Subtotal</td>
+                    <td>$sub</td>
+                </tr>
+                ";
+                echo "
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>Tax</td>
+                    <td>$tax</td>
+                </tr>
+                ";
+                echo "
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td> 
+                    <td></td> 
+                    <td>Total</td>
+                    <td>$total</td>
+                </tr>
+                "
+            ?>
             </tbody>
         </table>
     </div>
@@ -125,46 +140,68 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>Beef</td>
-                    <td>Small (1-1.5 lbs)</td>
-                    <td>4 lbs</td> <!-- need to show portion -->
-                    <td>$5.99</td>
-                    <td>$19.99</td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Beef</td>
-                    <td>Small (1-1.5 lbs)</td>
-                    <td>4 lbs</td> <!-- need to show portion -->
-                    <td>$5.99</td>
-                    <td>$19.99</td>
-                </tr>
+            <?php
+            $order = getOrderDetails($_POST['orderID']);
+            foreach($order as $item){
+                $number = 1;
+                $prod = prodByID($item['productID']);
+                $productName = $prod['productName'];
+                $qty = $item['quantityOrdered'];
+                $portion = portionByID($prod['portionsID']);
+                $portionDesc = $portion['portionsDesc'];
+                $size = $item['sizeName'];
+                $price = $item['priceEach'];
+                $linePrice = $qty * $price;
+                $linePrice = number_format((float)$linePrice, 2, '.', '');
+
+                // products rows
+                echo "<tr>";
+                echo "<td>$number</td>";
+                echo "<td>$productName</td>";
+                echo "<td>$size";
+                echo "<td>$qty $portionDesc</td>";
+                echo "<td>$$price</td>";
+                echo "<td>$$linePrice</td>";
+                echo "</tr>";
+            }
+            ?>
+            <?php
+            $amounts = getOrdersByID($_POST['orderID']);
+            $sub = $amounts['subtotal'];
+            $delv = $amounts['deliveryFee'];
+            $tax = $amounts['tax'];
+            $total = $amounts['total'];
+            echo "
                 <tr>
                     <td></td>
                     <td></td>
                     <td></td>
                     <td></td>
                     <td>Subtotal</td>
-                    <td>$15.99</td>
+                    <td>$sub</td>
                 </tr>
+                ";
+            echo "
                 <tr>
                     <td></td>
                     <td></td>
                     <td></td>
                     <td></td>
                     <td>Tax</td>
-                    <td>$2.99</td>
+                    <td>$tax</td>
                 </tr>
+                ";
+            echo "
                 <tr>
                     <td></td>
                     <td></td>
-                    <td></td>
+                    <td></td> 
                     <td></td> 
                     <td>Total</td>
-                    <td>$20.99</td>
+                    <td>$total</td>
                 </tr>
+                "
+            ?>
             </tbody>
         </table>
     </div>
