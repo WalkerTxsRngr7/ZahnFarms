@@ -202,7 +202,7 @@ INSERT INTO `products` (`productID`, `productName`, `portionsID`, `price`, `qty`
 (6, 'Cabbage', 2, NULL, NULL, 'Cabbage short description.', 'Cabbage full description.', 45, 'Cabbage.jpg', 1, 0, 0),
 (7, 'Shiitake Mushrooms Dried', 3, '4.00', 100, 'Shiitake Mushrooms Dried short description.', 'Shiitake Mushrooms Dried full description.', 45, 'shiitake_mushroom.jpg', NULL, 0, 0),
 (8, 'Shiitake Mushrooms Fresh', 4, '4.00', 100, 'Shiitake Mushrooms Fresh short description.', 'Shiitake Mushrooms Fresh full description.', 45, 'Shiitake_Mushrooms_Fresh.jpg', NULL, 0, 0),
-(9, 'Okra', 4, '4.00', 100, 'Okra short description.', 'Okra full description.', 45, 'pork.jpg', NULL, 0, 0),
+(9, 'Okra', 4, '4.00', 100, 'Okra short description.', 'Okra full description.', 45, 'Okra.jpg', NULL, 0, 0),
 (11, 'Green Beans', 1, '4.00', 100, 'Green Beens short description.', 'Green Beens full description.', 45, 'Green_Beans.jpg', NULL, 1, 0),
 (12, 'Red pepper', 2, '4.00', 100, 'Red pepper short description.', 'Red pepper full description.', 45, 'Red_Peppers.jpg', NULL, 0, 1),
 (13, 'Green onion', 1, '4.00', 0, 'Green onion short description.', 'Green onion full description.', 45, 'Green_Onions.jpg', NULL, 0, 0),
