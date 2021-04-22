@@ -4,7 +4,7 @@ $headTitle = "Zahn Farms";
 include "../views/header.php";
 include '../models/requests.php';
 
-echo"<div class='content-container blur-container'>";
+echo"<div class='content-container'>";
 
 if (!isset($catID)){
     include "categories.php";

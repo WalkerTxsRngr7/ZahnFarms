@@ -42,7 +42,9 @@
     <nav class="nav-menu uk-navbar uk-navbar-container">
         <div class="uk-navbar-left">
             <a class="uk-navbar-toggle uk-position-center-left" uk-navbar-toggle-icon href="#offcanvas-slide" uk-toggle></a>
-            <a href="../product/"></a>
+            <a class="uk-position-center" style="min-width:130px;" href="../product/">
+                        <img style="height:100%" src="../images/LogoText3.png" alt="Zahn Farms Logo">
+                    </a>
             <a style="margin-right:10px;" class="cart-mobile-icon uk-position-center-right" href="../product/cart.php"><i class="fas fa-shopping-cart"></i></a>
         </div>
         <div id="offcanvas-slide" uk-offcanvas>
