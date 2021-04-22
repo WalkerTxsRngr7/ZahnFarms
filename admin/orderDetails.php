@@ -74,8 +74,11 @@
                     $price = $item['priceEach'];
                     $linePrice = $qty * $price;
                     $linePrice = number_format((float)$linePrice, 2, '.', '');
-
-                    // products rows
+                    $Ord = getAllOrdersByID($_POST['orderID']);
+                    $delv = Ord['deliveryFee'];
+                    $sub = Ord['subtotal'];
+                    $tax = Ord['tax'];
+                    $total = Ord['totalPrice'];
                     echo "<tr>";
                     echo "<td>$number</td>";
                     echo "<td>$productName</td>";
@@ -84,44 +87,47 @@
                     echo "<td>$$price</td>";
                     echo "<td>$$linePrice</td>";
                     echo "</tr>";
+                    echo "
+                          <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>Delivery Fee</td>
+                            <td>$delv</td>
+                         </tr>
+                    ";
+                    echo "
+                          <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>Subtotal</td>
+                            <td>$sub</td>
+                         </tr>
+                    ";
+                    echo " 
+                         <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>Tax</td>
+                            <td>$tax</td>
+                        </tr>
+                    ";
+                    echo "
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td> 
+                            <td>Total</td>
+                            <td>$total</td>
+                        </tr>
+                    ";
                 }
-            ?>
-            <?php
-                $amounts = getOrdersByID($_POST['orderID']);
-                $sub = $amounts['subtotal'];
-                $delv = $amounts['deliveryFee'];
-                $tax = $amounts['tax'];
-                $total = $amounts['total'];
-                echo "
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td>Subtotal</td>
-                    <td>$sub</td>
-                </tr>
-                ";
-                echo "
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td>Tax</td>
-                    <td>$tax</td>
-                </tr>
-                ";
-                echo "
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td> 
-                    <td></td> 
-                    <td>Total</td>
-                    <td>$total</td>
-                </tr>
-                "
             ?>
             </tbody>
         </table>
@@ -153,8 +159,11 @@
                 $price = $item['priceEach'];
                 $linePrice = $qty * $price;
                 $linePrice = number_format((float)$linePrice, 2, '.', '');
-
-                // products rows
+                $Ord = getAllOrdersByID($_POST['orderID']);
+                $delv = Ord['deliveryFee'];
+                $sub = Ord['subtotal'];
+                $tax = Ord['tax'];
+                $total = Ord['totalPrice'];
                 echo "<tr>";
                 echo "<td>$number</td>";
                 echo "<td>$productName</td>";
@@ -163,44 +172,47 @@
                 echo "<td>$$price</td>";
                 echo "<td>$$linePrice</td>";
                 echo "</tr>";
+                echo "
+                          <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>Delivery Fee</td>
+                            <td>$delv</td>
+                         </tr>
+                    ";
+                echo "
+                          <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>Subtotal</td>
+                            <td>$sub</td>
+                         </tr>
+                    ";
+                echo " 
+                         <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>Tax</td>
+                            <td>$tax</td>
+                        </tr>
+                    ";
+                echo "
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td> 
+                            <td>Total</td>
+                            <td>$total</td>
+                        </tr>
+                    ";
             }
-            ?>
-            <?php
-            $amounts = getOrdersByID($_POST['orderID']);
-            $sub = $amounts['subtotal'];
-            $delv = $amounts['deliveryFee'];
-            $tax = $amounts['tax'];
-            $total = $amounts['total'];
-            echo "
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td>Subtotal</td>
-                    <td>$sub</td>
-                </tr>
-                ";
-            echo "
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td>Tax</td>
-                    <td>$tax</td>
-                </tr>
-                ";
-            echo "
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td> 
-                    <td></td> 
-                    <td>Total</td>
-                    <td>$total</td>
-                </tr>
-                "
             ?>
             </tbody>
         </table>
