@@ -28,7 +28,7 @@
           </h2>
           <h3>
               <input class="admin-input uk-input uk-text-center" id="form-stacked-text" type="text"
-                  placeholder="$3 / pound" name="price">
+                  placeholder="$3 / pound" name="price" value="<?=$prod['price']?>">
           </h3>
           <div class="uk-grid-small uk-child-width-1-1@m uk-flex-center uk-text-center" uk-grid>
               <!-- Size dropdown card -->
@@ -49,7 +49,7 @@
                   <label class="uk-form-label" for="form-stacked-text">Stock</label>
                   <div class="uk-form-controls uk-width-1-3" style="margin:auto">
                       <!-- Possibly use numbered dropdown through 10+ then change to input box like Amazon-->
-                      <input class="uk-input uk-text-center" id="form-stacked-text" type="number" placeholder="<?$product['qty']?>" min="1" name="qty">
+                      <input class="uk-input uk-text-center" id="form-stacked-text" type="number" placeholder="<?$prod['qty']?>" min="1" name="qty">
                   </div>
               </div>
 
