@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 23, 2021 at 09:15 PM
+-- Generation Time: Apr 23, 2021 at 09:59 PM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.3.1
 
@@ -118,7 +118,10 @@ INSERT INTO `orderdetails` (`orderID`, `productID`, `sizeName`, `quantityOrdered
 (23, 17, '', 34, '4.00', 1),
 (23, 5, '', 21, '4.00', 2),
 (23, 21, 'Medium (1-1.5 lbs)', 3, '5.00', 3),
-(24, 5, '', 10, '4.00', 1);
+(24, 5, '', 10, '4.00', 1),
+(25, 6, 'Medium (1-1.5 lbs)', 15, '5.00', 1),
+(26, 6, 'Medium (1-1.5 lbs)', 15, '5.00', 1),
+(27, 6, 'Medium (1-1.5 lbs)', 15, '5.00', 1);
 
 -- --------------------------------------------------------
 
@@ -155,7 +158,7 @@ INSERT INTO `orders` (`orderID`, `customerID`, `orderDate`, `status`, `deliveryD
 (21, 10, '2021-04-23', 1, '2021-05-05', 'Springfield', '138.00', '10.00', '0.00', '138.00'),
 (22, 10, '2021-04-23', 0, '2021-05-07', 'Marshfield', '6.00', '0.00', '0.00', '6.00'),
 (23, 10, '2021-04-23', 1, '0000-00-00', 'Farm', '235.00', '0.00', '0.00', '235.00'),
-(24, 10, '2021-04-23', 1, '0000-00-00', 'Farm', '40.00', '0.00', '0.00', '40.00');
+(27, 10, '2021-04-23', 2, '0000-00-00', 'Farm', '75.00', '0.00', '0.00', '75.00');
 
 -- --------------------------------------------------------
 
@@ -240,7 +243,7 @@ INSERT INTO `products` (`productID`, `productName`, `portionsID`, `price`, `qty`
 (17, 'Carrots', 1, '4.00', 66, 'Carrots short description.', 'Carrots full description.', 45, 'Carrots.jpg', NULL, 0, 0),
 (18, 'Cherry Tomatoes (red)', 4, '4.00', 88, 'Cherry Tomatoes (red) short description.', 'Cherry Tomatoes (red) full description.', 46, 'Cherry_Tomatoes.jpg', NULL, 0, 0),
 (19, 'Cucumbers (Pickling)', 5, NULL, -36, 'Cucumbers Pickled short description.', 'Cucumbers Pickled full description.', 46, 'Pickled_Cucumbers.jpg', 1, 0, 0),
-(20, 'Cucumbers (Slicing)', 2, NULL, NULL, 'Cucumbers Sliced short description.', 'Cucumbers Sliced full description.', 46, 'Cucumber.jpg', 3, 0, 0),
+(20, 'Cucumbers (Slicing)', 2, NULL, NULL, 'Cucumbers Sliced short description.', 'Cucumbers Sliced full description.', 46, 'Cucumber.jpg', 2, 0, 0),
 (21, 'Yellow Squash', 2, NULL, -3, 'Yellow Squash short description.', 'Yellow Squash full description.', 46, 'Yellow_Squash.jpg', 1, 0, 0),
 (22, 'Table Tomatoes', 2, NULL, NULL, 'Table Tomatoes short description.', 'Table Tomatoes full description.', 46, 'Tomato.jpg', 1, 0, 0),
 (23, 'Zucchini', 2, NULL, NULL, 'Zucchini short description.', 'Zucchini description.', 46, 'Zucchini.jpg', 1, 0, 0);
@@ -263,7 +266,7 @@ CREATE TABLE `sizes` (
 --
 
 INSERT INTO `sizes` (`sizeID`, `sizeName`, `price`, `qty`) VALUES
-(1, 'Medium (1-1.5 lbs)', '5.00', 25),
+(1, 'Medium (1-1.5 lbs)', '5.00', 10),
 (1, 'Small (0.5-1 lbs)', '2.00', 50),
 (2, 'Medium (1-1.5 lbs)', '4.99', 30),
 (2, 'Small (0.5-1 lbs)', '3.99', 0),
@@ -343,7 +346,7 @@ ALTER TABLE `customers`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `orderID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `orderID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT for table `products`
