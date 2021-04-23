@@ -1,10 +1,17 @@
+<?php
+ $prod = prodByID($prodID);
+
+?>
+
+
+
 <!-- Form for product details that can be changed -->
 <form class="uk-form-stacked admin-prod-form" action="" method="post">
   <div class="uk-grid-small uk-flex-center uk-text-center content-container" style="width:90%; margin:auto" uk-grid>
       
       <!-- Product image -->
       <div class="uk-card uk-card-default uk-width-1-2@s">
-          <img src="images/beef.jpg" alt="beef image">
+          <img src="../images/beef.jpg" alt="beef image">
       </div>
       <!-- Main info and buttons -->
       <div class="uk-width-1-2@s">
@@ -15,7 +22,9 @@
           </div>
           <h2>
               <input class="admin-input uk-input uk-text-center" id="form-stacked-text" type="text"
-                  placeholder="Chicken Breast" name="productName">
+                  placeholder="Chicken Breast" name="productName" value="<?=$prod['productName']?>">
+                  <input type="hidden" name="prodID" value="4">
+                  <input type="hidden" name="adminBtn" value="edit">
           </h2>
           <h3>
               <input class="admin-input uk-input uk-text-center" id="form-stacked-text" type="text"

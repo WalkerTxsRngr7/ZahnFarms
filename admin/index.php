@@ -38,6 +38,7 @@ if (!empty($username) && !empty($password)){
 }
   
 if (isset($_SESSION['login']) == "valid"){
+    $_SESSION['custID'] = 1;
     include "./admin.php";
 } else {
     include "./login.php";

@@ -22,8 +22,8 @@ $aryProd = productsByCatID($catID);
         <td>
           <form method='post' action=''>
             <Button class="uk-button uk-button-default" type="submit">Edit</Button>
-            <input type="hidden" name="prodID" value="<?=$prod['prodID']?>">
-            <input type='hidden' name='adminBtn' value='$adminBtn'>
+            <input type="hidden" name="prodID" value="<?=$prod['productID']?>">
+            <input type='hidden' name='adminBtn' value='<?=$adminBtn?>'>
           </form>
         </td>
         <td>

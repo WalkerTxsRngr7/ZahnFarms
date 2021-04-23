@@ -127,7 +127,6 @@ function orderLine($orderID, $productID, $sizeName, $qty, $num, $price) {
 
     $sqlInsert = "INSERT INTO `orderdetails`(`orderID`, `orderLineNumber`, `productID`, `sizeName`, `quantityOrdered`, `priceEach`) VALUES ($orderID, $num, $productID, \"$sizeName\", $qty, $price)";    
     $pdoS = $db->query($sqlInsert);
-    // echo $sqlInsert;
 
     $product = prodByID($productID);
     $loweredQty = $product['qty'] - $qty;
@@ -139,6 +138,7 @@ function orderLine($orderID, $productID, $sizeName, $qty, $num, $price) {
 
 function order($custID, $orderDate, $status, $delDate, $delLocation, $subtotal, $delFee, $tax, $totalPrice) {
     global $db;
+    
     $sqlInsert = "INSERT INTO `orders`(`customerID`, `orderDate`, `status`, `deliveryDate`, `deliveryLocation`, `subtotal`, `deliveryFee`, `tax`, `totalPrice`) VALUES ($custID, \"$orderDate\", $status, \"$delDate\", \"$delLocation\", $subtotal, $delFee, $tax, $totalPrice)";    
     $pdoS = $db->query($sqlInsert);
 

@@ -51,6 +51,8 @@ echo "<div class='content-container checkout-page'>";
 /* if paid online */
 if ($checkout == 'true') {
     $status = 1; /* paid */
+} else if ($checkout == 'admin') { /* admin */
+    $status = 2; /* delivered */
 } else { /* pay in person */
     $status = 0; /* unpaid */
 }
@@ -61,7 +63,7 @@ $custID = $_SESSION['custID'];
 // place order if haven't placed order yet.
 if (!empty($_SESSION['cart'])) {
     if ($delLoc == "Farm") {
-        $delDate == "Appointment";
+        $delDate == "0000-00-00";
     }
     order($custID, date('Y-m-d'), $status, $delDate, $delLoc, $subtotal, $delFee, $tax, $total);
     unset($_SESSION['cart']);

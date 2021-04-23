@@ -230,14 +230,34 @@ $sizeName = filter_input(INPUT_POST, "size");
         </script>
         <!-- check if can pay online -->
         <?php
-        if ($checkout){?>
+        // Admin place order
+        if (isset($_SESSION['login']) == "valid") {
+        ?>  
+            <div class="col-md-4 order-md-2">
+                <div class="text-center">
+                    <h4>Add Order to System<br><small>As Admin</small> </h4>
+                    <h4>~$<?=number_format((float)$total, 2, '.', '')?></h4>
+                    <form action="thankYou.php" method="post">
+                        <button class="btn checkout-btn btn-lg btn-block" type="submit">Place Order</button>
+                        <input type="hidden" name="placeOrder">
+                        <input type="hidden" name="checkout" value="<?php echo ($checkout? 'true': 'false')?>">
+                        <input type="hidden" name="delDate" value="<?=$delDate?>">
+                        <input type="hidden" name="delLoc" value="<?=$delLoc?>">
+                        <input type="hidden" name="subtotal" value="<?=$subtotal?>">
+                        <input type="hidden" name="delFee" value="<?=$delFee?>">
+                        <input type="hidden" name="tax" value="<?=$tax?>">
+                        <input type="hidden" name="total" value="<?=$total?>">
+                    </form>
+                </div>
+            </div>
+        <?php
+        } else if ($checkout){?>
             <!-- display paypal buttons -->
             <div class="col-md-4 order-md-2">
                 <div id="paypal-button-container"></div>
             </div>
             <form action="thankYou.php" method="post">
                 <button style="display:none" id="placeOrder" name="placeOrder" class="btn checkout-btn btn-lg btn-block" type="submit">Place Order</button>
-                <!-- $custID, date_create(date('Y-m-d')), $status, $delDate, $delLoc, $subtotal, $delFee, $tax, $totalPrice -->
                 <input type="hidden" name="checkout" value="<?php echo ($checkout? 'true': 'false')?>">
                 <input type="hidden" name="delDate" value="<?=$delDate?>">
                 <input type="hidden" name="delLoc" value="<?=$delLoc?>">
@@ -255,7 +275,6 @@ $sizeName = filter_input(INPUT_POST, "size");
                     <h4>~$<?=number_format((float)$total, 2, '.', '')?></h4>
                     <form action="thankYou.php" method="post">
                         <button class="btn checkout-btn btn-lg btn-block" type="submit">Place Order</button>
-                        <!-- $custID, date_create(date('Y-m-d')), $status, $delDate, $delLoc, $subtotal, $delFee, $tax, $totalPrice -->
                         <input type="hidden" name="placeOrder">
                         <input type="hidden" name="checkout" value="<?php echo ($checkout? 'true': 'false')?>">
                         <input type="hidden" name="delDate" value="<?=$delDate?>">
@@ -265,19 +284,6 @@ $sizeName = filter_input(INPUT_POST, "size");
                         <input type="hidden" name="tax" value="<?=$tax?>">
                         <input type="hidden" name="total" value="<?=$total?>">
                     </form>
-                    
-                    <!-- Order Info -->
-                <!-- 
-                customerID
-                orderDate
-                status
-                deliveryDate
-                deliveryLocation
-                subtotal
-                deliveryFee
-                tax
-                totalPrice -->
-                    
                 </div>
             </div>
 
@@ -344,8 +350,6 @@ $sizeName = filter_input(INPUT_POST, "size");
                         $diff_fri = date_diff($start_date,$end_date_fri);
 
                         
-                        echo date('Y-m-d', strtotime('+14 day', strtotime('last Friday')));
-                        echo date('Y-m-d', strtotime('+7 day', strtotime('last Friday')));
                         //find the number of days between two dates
                         // echo "Difference between two dates: ".$diff->format("%a"). " Days ";
                     ?>
