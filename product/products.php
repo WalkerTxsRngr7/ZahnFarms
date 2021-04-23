@@ -47,7 +47,7 @@ $sizeAry = null;
                   </div>
 
                 <?php
-                } else if ($qty == 0){
+                } else if ($qty <= 0){
                 ?> <!-- if out of stock -->
                   <div class="uk-overlay uk-overlay-primary uk-position-cover" style="overflow:hidden">
                     <p class="card-name" style="font-weight:bold;text-decoration:underline;">OUT OF<br>STOCK</p>

@@ -240,7 +240,7 @@ $sizeName = filter_input(INPUT_POST, "size");
                     <form action="thankYou.php" method="post">
                         <button class="btn checkout-btn btn-lg btn-block" type="submit">Place Order</button>
                         <input type="hidden" name="placeOrder">
-                        <input type="hidden" name="checkout" value="<?php echo ($checkout? 'true': 'false')?>">
+                        <input type="hidden" name="checkout" value="<?php echo ($checkout? 'admin': 'false')?>">
                         <input type="hidden" name="delDate" value="<?=$delDate?>">
                         <input type="hidden" name="delLoc" value="<?=$delLoc?>">
                         <input type="hidden" name="subtotal" value="<?=$subtotal?>">

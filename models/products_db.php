@@ -129,8 +129,18 @@ function orderLine($orderID, $productID, $sizeName, $qty, $num, $price) {
     $pdoS = $db->query($sqlInsert);
 
     $product = prodByID($productID);
-    $loweredQty = $product['qty'] - $qty;
-    $sqlQty = "UPDATE `products` SET `qty`= $loweredQty WHERE `productID` = $productID";
+
+    if ($sizeName != null){
+        $sizeID = $product['sizeID'];
+        $size = sizeByName($sizeName, $sizeID);
+        $loweredQty = $size['qty'] - $qty;
+        $sqlQty = "UPDATE `sizes` SET `qty`= $loweredQty WHERE `sizeName` = \"$sizeName\" AND `sizeID` = $sizeID";
+    } else {
+        $loweredQty = $product['qty'] - $qty;
+        $sqlQty = "UPDATE `products` SET `qty`= $loweredQty WHERE `productID` = $productID";
+    }
+
+    // $sqlQty = "UPDATE `products` SET `qty`= $loweredQty WHERE `productID` = $productID";
     $pdoS = $db->query($sqlQty);
 
     // echo ("<br><h3 class='modMessage'>Order Item Processed Successfully</h3>");
@@ -138,7 +148,7 @@ function orderLine($orderID, $productID, $sizeName, $qty, $num, $price) {
 
 function order($custID, $orderDate, $status, $delDate, $delLocation, $subtotal, $delFee, $tax, $totalPrice) {
     global $db;
-    
+
     $sqlInsert = "INSERT INTO `orders`(`customerID`, `orderDate`, `status`, `deliveryDate`, `deliveryLocation`, `subtotal`, `deliveryFee`, `tax`, `totalPrice`) VALUES ($custID, \"$orderDate\", $status, \"$delDate\", \"$delLocation\", $subtotal, $delFee, $tax, $totalPrice)";    
     $pdoS = $db->query($sqlInsert);
 
