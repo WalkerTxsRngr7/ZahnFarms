@@ -61,7 +61,7 @@ if ($addToCart == "true"){
   
   <?php
   if ($_SESSION['cart'] == null) {
-    echo "<h3 id='cart-empty'>Cart is Empty</h3>";
+    echo "<h3 id='cart-empty' class='text-center'>No Items in Cart</h3>";
   }
   foreach($_SESSION['cart'] as $item){
     

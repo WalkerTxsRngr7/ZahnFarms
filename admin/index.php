@@ -21,6 +21,9 @@ $newPrice = filter_input(INPUT_POST, "newPrice");
 $newQty = filter_input(INPUT_POST, "newQty");
 $newImage = filter_input(INPUT_POST, "newImage");
 $oldImage = filter_input(INPUT_POST, "oldImage");
+$orderID = filter_input(INPUT_POST, "orderID");
+$custID = filter_input(INPUT_POST, "custID");
+$delDate = filter_input(INPUT_POST, "delDate");
 
 
 if (!empty($username) && !empty($password)){

@@ -118,29 +118,54 @@ function editCat($catName, $imageName, $catID){
     $pdoS = $db->query($sql);
 }
 
-function orderLine($orderID, $productID, $qty){ /* Change to updated database. Probably foreach from each item being purchased. Get price from Database*/
+function orderLine($orderID, $productID, $sizeName, $qty, $num, $price) { 
     global $db;
-    $sqlInsert = "INSERT INTO `orderdetails`(`orderID`, `productID`, `quantityOrdered`, `priceEach`, `orderLineNumber`) VALUES ('$orderID', '$productID', '$qty', '$price')";    
+    $product = prodByID($productID);
+
+    $sqlInsert = "INSERT INTO `orderdetails`(`orderID`, `orderLineNumber`, `productID`, `sizeName`, `quantityOrdered`, `priceEach`) VALUES ($orderID, $num, $productID, \"$sizeName\", $qty, $price)";    
     $pdoS = $db->query($sqlInsert);
+    echo $sqlInsert;
 
     $product = prodByID($productID);
     $loweredQty = $product['qty'] - $qty;
     $sqlQty = "UPDATE `products` SET `qty`= $loweredQty WHERE `productID` = $productID";
     $pdoS = $db->query($sqlQty);
 
-    echo ("<br><h3 class='modMessage'>Order Item Processed Successfully</h3>");
+    // echo ("<br><h3 class='modMessage'>Order Item Processed Successfully</h3>");
 }
 
-function order($orderID, $custID, $delDate, $delTime, $delLocation, $totalPrice, $cartAry) {
+function order($custID, $orderDate, $status, $delDate, $delLocation, $subtotal, $delFee, $tax, $totalPrice) {
     global $db;
-    $sqlInsert = "INSERT INTO `orders`(`orderID`, `customerID`, `orderDate`, `status`, `deliveryDate`, `deliveryTime`, `deliveryLocation`, `totalPrice`) VALUES ('$orderID', '$_SESSION[name]','$delDate', '$delTime', '$delLocation', '$totalPrice')";    
+    $sqlInsert = "INSERT INTO `orders`(`customerID`, `orderDate`, `status`, `deliveryDate`, `deliveryLocation`, `subtotal`, `deliveryFee`, `tax`, `totalPrice`) VALUES ($custID, $orderDate, $status, $delDate, \"$delLocation\", $subtotal, $delFee, $tax, $totalPrice)";    
     $pdoS = $db->query($sqlInsert);
 
-    foreach ($cartAry as $prod){
-        orderLine($orderID, $productID, $qty);
+    $orderID = getLastOrderIDByCustID($custID);
+    $i = 0;
+    foreach ($_SESSION['cart'] as $item){
+        $i++;
+        if ($item['size'] != null){
+            $price = $item['size']['price'];
+            $size = $item['size']['sizeName'];
+        } else {
+            $price =  $item['prod']['price'];
+            $size = null;
+        }
+        orderLine($orderID, $item['prod']['productID'], $size, $item['qty'], $i, $price);
     }
 
-    echo ("<br><h3 class='modMessage'>Order Completed Successfully</h3>");
+    echo "<div class='text-center'><h2>Thank You!</h2><br><h2 class='modMessage'>Order Completed Successfully.</h2></div>";
+}
+// get the last orderID placed by customerID
+function getLastOrderIDByCustID($custID) {
+    global $db;
+    $sql = "SELECT MAX(orderID) FROM orders WHERE customerID = $custID";
+
+    //oop
+    $qry = $db->query($sql);
+    $order= $qry->fetch();
+
+    //return an orders
+    return $order[0];
 }
 
 /** RETURN AN ARRAY OF ALL ORDERS */
@@ -157,13 +182,13 @@ function getAllOrders(){
     return $aryOrders;
 
 }
-function getOrdersByID($ID){
+function getOrderByID($ID){
     global $db;
-    $sql = "SELECT * FROM `orders` Where customerID = '$ID'";
+    $sql = "SELECT * FROM `orders` WHERE orderID = '$ID'";
 
     //oop
     $qry = $db->query($sql);
-    $aryOrders= $qry->fetchAll();
+    $aryOrders= $qry->fetch();
 
 
     //return an array of orders
@@ -184,6 +209,13 @@ function getOrderDetails($orderID){
     return $orderDetails;
 }
 
+// Set status of Order By OrderID to delivered
+function updateOrderDelivered($orderID, $delDate) {
+    global $db;
+    $sql = "UPDATE `orders` SET `status`= 2, `deliveryDate`= $delDate WHERE orderID = $orderID";
+    $pdoS = $db->query($sql);
+}
+
 /** RETURN CUSTOMER BY CUSTOMERID */ 
 function getCustomerByID($custID){
     global $db;
@@ -193,6 +225,40 @@ function getCustomerByID($custID){
     $qry = $db->query($sql);
     $cust= $qry->fetch();
 
+    //return a cust
+    return $cust;
+}
+
+/** RETURN CUSTOMER BY ORDERID */ 
+function getCustomerByOrderID($orderID){
+    global $db;
+    $sql = "SELECT * FROM `customers` WHERE `orderID` = $orderID";
+
+    //oop
+    $qry = $db->query($sql);
+    $cust= $qry->fetch();
+
+    //return a cust
+    return $cust;
+}
+
+/** RETURN CUSTOMER BY CUSTOMER FName LName and Phone */ 
+function getCustomerByNameAndPhone($fName, $lName, $phone){
+    global $db;
+    $sql = "SELECT * FROM `customers` WHERE `fName` = \"$fName\" AND `lName` = \"$lName\" AND `phone` = \"$phone\"";
+    //oop
+    $qry = $db->query($sql);
+    $cust= $qry->fetch();
+
     //return an array of cust
     return $cust;
+}
+
+/** RETURN CUSTOMER BY CUSTOMER FName LName and Phone */ 
+function insertCustomer($fName, $lName, $phone, $address1, $address2, $city, $state, $zip, $email){
+    global $db;
+    $sql = "INSERT INTO `customers`(`lName`, `fName`, `phone`, `addressLine1`, `addressLine2`, `city`, `state`, `postal`, `email`) VALUES (\"$lName\", \"$fName\", \"$phone\", \"$address1\", \"$address2\", \"$city\", \"$state\", $zip, \"$email\")";
+
+    //oop
+    $pdoS = $db->query($sql);
 }

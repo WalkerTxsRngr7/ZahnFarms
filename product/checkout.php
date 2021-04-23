@@ -19,15 +19,7 @@ if (!isset($_SESSION['cart'])){ /* check if cart is created in session */
  
 $title = "Home";
 $headTitle = "Zahn Farms";
-include "../views/headerCheckout.php";
-
-$catID = filter_input(INPUT_POST, "catID");
-$prodID = filter_input(INPUT_POST, "prodID");
-$prodName = filter_input(INPUT_POST, "productName");
-$qty = filter_input(INPUT_POST, "qty");
-$sizeName = filter_input(INPUT_POST, "size");
-$order = filter_input(INPUT_POST, "order");
-$customerName = filter_input(INPUT_POST, "customerName");
+include "../views/header.php";
 
 $payOnline = true;
 $itemCnt = count($_SESSION['cart']);
@@ -35,13 +27,42 @@ $delFee = 0;
 $subtotal = 0;
 $tax = 0;
 $total = 0;
+$delTime = "";
+
+$email = null;
+$address2 = null;
+
+$custID = filter_input(INPUT_POST, "custID");
+$fName = filter_input(INPUT_POST, "fName");
+$lName = filter_input(INPUT_POST, "lName");
+$address1 = filter_input(INPUT_POST, "address1");
+$address2 = filter_input(INPUT_POST, "address2");
+$phone = filter_input(INPUT_POST, "phone");
+$email = filter_input(INPUT_POST, "email");
+$city = filter_input(INPUT_POST, "city");
+$state = filter_input(INPUT_POST, "state");
+$zip = filter_input(INPUT_POST, "zip");
+
+$checkout = filter_input(INPUT_POST, "checkout");
+$delDate = filter_input(INPUT_POST, "delDate");
+$delLoc = filter_input(INPUT_POST, "delLoc");
+
+$placeOrder = filter_input(INPUT_POST, "placeOrder");
+$order = filter_input(INPUT_POST, "order");
+$catID = filter_input(INPUT_POST, "catID");
+$prodID = filter_input(INPUT_POST, "prodID");
+$prodName = filter_input(INPUT_POST, "productName");
+$qty = filter_input(INPUT_POST, "qty");
+$sizeName = filter_input(INPUT_POST, "size");
+
+
 
 ?>
 <div class='content-container checkout-page'>
 
     <?php
     if ($_SESSION['cart'] == null) {
-        echo "<h3 id='cart-empty'>Cart is Empty</h3>";
+        header("Location: ../product");
     }
     foreach($_SESSION['cart'] as $item){
         $prod = prodByID($item['prod']['productID']);
@@ -49,7 +70,7 @@ $total = 0;
         // Determine if needs to be paid inperson
         if ($prod['portionsID'] == 6) {
             $payOnline = false;
-            echo "<h4>" . $prod['productName'] . "</h4>";
+            // echo "<h4>" . $prod['productName'] . "</h4>";
         }
 
         // calculate itemPrice
@@ -64,16 +85,39 @@ $total = 0;
         // calculate tax
         $cat = catByID($item['prod']['catID']);
         $tax += $cat['taxRate'] * $itemPrice;
-        // calculate total 
-        $total += $itemPrice;
         ?>
 
     <?php
     }
+
+    // calculate total 
+    $total = $subtotal + $tax;
+
     ?>
 
 
+    <?php
+    if (isset($checkout)) {
+        // if customer already exists in session 
+        if (!isset($_SESSION['custID'])) {
+            $cust = getCustomerByNameAndPhone($fName, $lName, $phone);
 
+            // if customer doesn't exist. Create one
+            if ($cust == null) {
+                insertCustomer($fName, $lName, $phone, $address1, $address2, $city, $state, $zip, $email);
+                $cust = getCustomerByNameAndPhone($fName, $lName, $phone);
+                echo "Customer Created with id of " . $cust['customerID'];
+            }
+            $_SESSION['custID'] = $cust['customerID'];
+            echo "Session Created";
+        
+        }
+        
+        
+    
+        
+
+    ?>
 
 
     <!-- paypal -->
@@ -83,30 +127,12 @@ $total = 0;
  -->
     <script src="https://www.paypal.com/sdk/js?client-id=AZP2Q8KFepMqbIDqrpD4eudCxQ1bvKqDjlMppasBzmqZbrfpNZWBTonhkgQbdsD2fG59Ou0o5_nvWK1B
 ">
-        // Required. Replace YOUR_CLIENT_ID with your sandbox client ID.
+    // Required. Replace YOUR_CLIENT_ID with your sandbox client ID.
     </script>
 
 
 
-    <script>
-        // paypal.Buttons().render('#paypal-button-container');
-        // This function displays Smart Payment Buttons on your web page.
-
-
-        paypal.Buttons({
-            createOrder: function (data, actions) {
-                // This function sets up the details of the transaction, including the amount and line item details.
-                return actions.order.create({
-                    purchase_units: [{
-                        amount: {
-                            currency_code: "USD",
-                            value: '<?=$total?>'
-                        }
-                    }]
-                });
-            }
-        }).render('#paypal-button-container');
-    </script>
+    
 
 
 
@@ -117,12 +143,32 @@ $total = 0;
         <h2 class="checkout-title">Checkout</h2>
     </div>
 
-    <div class="row">
-        <div class="col-md-4 order-md-2 mb-4">
-            <h4 class="d-flex justify-content-between align-items-center mb-3">
-                <span class="checkout-title">Your cart</span>
-                <span class="badge badge-light badge-pill"><?=$itemCnt?></span>
+    <div class="py-5 text-center">
+        <span class="checkout-title">Delivery Location:<h4><?php 
+            if ($delLoc == "Farm") {
+                echo "Zahn Farms<br>9018 St Hwy W, Elkland, MO";
+                $delDate = "Mon-Sat by appointment";
+                $delTime = "Call or Email to set up<br>(417) 719-7517<br>BZahn01@Yahoo.com";
+            } else if ($delLoc == "Marshfield") {
+                echo "Marshfield Farmer's Market<br>...address...";
+                $delTime = "2:30-6:30PM";
+            } else if ($delLoc == "Springfield") {
+                echo "Springfield Sam's Club<br>3660 E Sunshine St, Springfield, MO";
+                $delTime = "4PM";
+
+                $delFee = 10;
+                $subtotal += $delFee;
+                $total = $subtotal + $tax;
+            }
+        ?>
             </h4>
+        </span>
+        <span class="checkout-title">Delivery Date:<h4><?=$delDate?><br><?=$delTime?></h4></span>
+    </div>
+
+    <div style="justify-content:center" class="row">
+        <div class="col-md-4 order-md-1">
+            
             <ul class="checkout-cart list-group mb-3">
 
                 <li class="list-group-item d-flex justify-content-between lh-condensed">
@@ -145,286 +191,223 @@ $total = 0;
                     <span class="text-muted">$<?=number_format((float)$tax, 2, '.', '')?></span>
                 </li>
                 <li class="list-group-item d-flex justify-content-between">
-                    <span>Total (USD) <br><small
-                            class="text-muted"><?php echo (!$payOnline ? 'Pay at Pickup':'') ?></small></span>
-
-                    <strong>$<?=number_format((float)$total, 2, '.', '')?></strong>
-                </li>
-                <hr class="mb-4">
-                <li>
-                    <div id="paypal-button-container"></div>
+                    <!-- check if total is known and can pay online -->
+                    <?php if ($checkout) {
+                        echo "<span>Total (USD)</span>";
+                        echo "<strong>$" . number_format((float)$total, 2, '.', '') . "</strong>";
+                    } else {
+                        echo "<span>Estimated Total (USD)<br><small
+                        class='text-muted'>Pay at Pickup</small></span>";
+                        echo "<strong>~$" . number_format((float)$total, 2, '.', '') . "</strong>";
+                    }?>
                 </li>
             </ul>
         </div>
 
+        <script>
+        // This function displays Smart Payment Buttons on your web page.
+        paypal.Buttons({
+            createOrder: function(data, actions) {
+                // This function sets up the details of the transaction, including the amount and line item details.
+                return actions.order.create({
+                    purchase_units: [{
+                        amount: {
+                            currency_code: "USD",
+                            value: '<?=$total?>'
+                        }
+                    }]
+                });
+            }
+        }).render('#paypal-button-container');
+        </script>
+        <!-- check if can pay online -->
+        <?php
+        if ($checkout){?>
+            <!-- display paypal buttons -->
+            <div class="col-md-4 order-md-2">
+                <div id="paypal-button-container"></div>
+            </div>
 
-
-
-
-        <div class="col-md-8 order-md-1">
-            <form class="needs-validation" novalidate>
-                <!-- Order Info -->
+        <?php 
+        } else { ?>
+            <div class="col-md-4 order-md-2">
+                <div class="text-center">
+                    <h4>Estimated Total to be Paid at Pickup</h4>
+                    <h4>~$<?=number_format((float)$total, 2, '.', '')?></h4>
+                    <form action="thankYou.php" method="post">
+                        <button class="btn checkout-btn btn-lg btn-block" type="submit">Place Order</button>
+                        <!-- $custID, date_create(date('Y-m-d')), $status, $delDate, $delLoc, $subtotal, $delFee, $tax, $totalPrice -->
+                        <input type="hidden" name="placeOrder">
+                        <input type="hidden" name="checkout" value="<?php echo ($checkout? 'true': 'false')?>">
+                        <input type="hidden" name="delDate" value="<?=$delDate?>">
+                        <input type="hidden" name="delLoc" value="<?=$delLoc?>">
+                        <input type="hidden" name="subtotal" value="<?=$subtotal?>">
+                        <input type="hidden" name="delFee" value="<?=$delFee?>">
+                        <input type="hidden" name="tax" value="<?=$tax?>">
+                        <input type="hidden" name="total" value="<?=$total?>">
+                    </form>
+                    <!-- Order Info -->
                 <!-- 
-customerID
-orderDate
-status
-deliveryDate
-deliveryTime
-deliveryLocation
-subtotal
-deliveryFee
-tax
-totalPrice -->
+                customerID
+                orderDate
+                status
+                deliveryDate
+                deliveryLocation
+                subtotal
+                deliveryFee
+                tax
+                totalPrice -->
+                    
+                </div>
+            </div>
+
+        <?php } ?>
+        
+    </div>
+
+    <?php
+    } else if (!isset($checkout)) {
+
+
+    ?>
+
+
+    <!-- Bootstrap checkout form -->
+    <div class="py-5 text-center">
+        <h2 class="checkout-title">Checkout</h2>
+    </div>
+
+    <div class="row">
+
+        <div style="margin:auto" class="col-md-8 order-md-1">
+            <form class="needs-validation" action="" method="post">
+                
                 <h4 class="mb-3 checkout-title">Order</h4>
                 <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label>Delivery Location</label>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="delLoc" id="radioFarm"
+                                value="Farm" onclick="locationSelect(this);" required>
+                            <label class="form-check-label" for="radioFarm">
+                                Farm in Elkland:<br>
+                                <small>9018 St Hwy W, Elkland, MO.<br>Mon-Sat by appointment.</small>
+
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="delLoc" id="radioMarshfield"
+                                value="Marshfield" onclick="locationSelect(this);">
+                            <label class="form-check-label" for="radioMarshfield">
+                                Marshfield Farmer's Market:<br>
+                                <small>...address...<br>Fridays 2:30-6:30PM.</small>
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="delLoc" id="radioSpringfield"
+                                value="Springfield" onclick="locationSelect(this);">
+                            <label class="form-check-label" for="radioSpringfield">
+                                Springfield Sam's Club: <small>($10 delivery fee)</small><br>
+                                <small>3660 E Sunshine St, Springfield, MO<br>Wednesdays 4PM.</small>
+
+                            </label>
+                        </div>
+                    </div>
 
                     <?php
-                    // get how many days till next wednesday. For checking if this week is valid for delivery
-                        // $start_date = date_create('2021-04-20');
+                    // get how many days till next delivery day for selected location. For checking if this week is valid for delivery
                         $start_date = date_create(date('Y-m-d'));
-                        $end_date   = date_create(date('Y-m-d', strtotime('next Wednesday')));;
-                        
+                        $end_date_wed   = date_create(date('Y-m-d', strtotime('this Wednesday')));
+                        $end_date_fri   = date_create(date('Y-m-d', strtotime('this Friday')));
                         //difference between two dates
-                        $diff = date_diff($start_date,$end_date);
-                        
+                        $diff_wed = date_diff($start_date,$end_date_wed);
+                        $diff_fri = date_diff($start_date,$end_date_fri);
                         //find the number of days between two dates
-                        echo "Difference between two dates: ".$diff->format("%a"). " Days ";
+                        // echo "Difference between two dates: ".$diff->format("%a"). " Days ";
                     ?>
-
                     <div class="col-md-6 mb-3">
-                        <label for="firstName">Delivery Date</label>
-                        <input type="date" class="datepicker" min="<?php echo date('Y-m-d', strtotime("-7 day", strtotime('next Wednesday')));?>" value="<?php echo date('Y-m-d', strtotime('next Wednesday'));?>" max="<?=date('Y-m-d', strtotime("+7 day", time()))?>"> <!-- value <?=date('Y-m-d')?> -->
-                        <input type="submit">
+                        <label for="delDate">Delivery Date</label><br>
+                        <!-- Date picker. Sets min to location's delivery day that is at least 2 days from today. Sets max to 4 weeks from today  -->
+
+                        <!-- Farm selected -->
+                        <p style="display:none" id="delDateFarm">
+                            Call or Email to set up pickup.<br>(417) 719-7517<br>BZahn01@Yahoo.com
+                        </p>
+                        <!-- Marshfield Selected -->
+                        <input name="delDate" disabled type="date" id="delDateMarshfield" required min="<?php 
+                                if ($diff_fri->format("%a") < 2) {
+                                    echo date('Y-m-d', strtotime('+14 day', strtotime('last Friday')));
+                                } else {
+                                    echo date('Y-m-d', strtotime('+7 day', strtotime('last Friday')));
+                                }?>" max="<?=date('Y-m-d', strtotime('+4 week'))?>" step="7">
+                        <!-- Springfield Selected -->
+                        <input name="delDate" style="display:none;" disabled type="date" id="delDateSpringfield" required min="<?php 
+                                if ($diff_wed->format("%a") < 2) {
+                                    echo date('Y-m-d', strtotime('+14 day', strtotime('last Wednesday')));
+                                } else {
+                                    echo date('Y-m-d', strtotime('+7 day', strtotime('last Wednesday')));
+                                }?>" max="<?=date('Y-m-d', strtotime('+4 week'))?>" step="7">
+
+
+                        <br>
+                        <small id="delDateSmall">Choose a delivery location</small>
                         <div class="invalid-feedback">
                             Valid first name is required.
                         </div>
                     </div>
-                    <script>
-                        // var date = document.getElementById('bookdate'),
-                        // errorMessage = date.title;
-                        //     function noSundays(e){
-                        //         var day = new Date(e.target.value).getUTCDay();
-                        //         // Days in JS range from 0-6 where 0 is Sunday and 6 is Saturday
-                        //         if ( day == 0 ){
-                        //             date.title = '';
-                        // e.target.setCustomValidity(errorMessage);
-                        //         } else {
-                        // e.target.setCustomValidity('');
-                        //         }}
-                        // date.addEventListener('#bookdate',noSundays);
-                        // function startDate() {
-                        //     var dtToday = new Date();
-
-                        //     var month = dtToday.getMonth() + 1;
-                        //     var day2 = dtToday.getDate();
-                        //     var year = dtToday.getFullYear();
-
-                        //     var day = new Date(e.target.value).getUTCDay();
-
-                        //     while (day != 3) {
-                        //         day.stepDown();
-                        //     }
-                        // }
-                        
-                        // $(function() {
-                        //     $( "#datepicker-5" ).datepicker({
-                        //     beforeShowDay : function (date) {
-                        //         var dayOfWeek = date.getDay ();
-                        //         // 0 : Sunday, 1 : Monday, ...
-                        //         if (dayOfWeek == 0 || dayOfWeek == 6) return [false];
-                        //         else return [true];
-                        //     }
-                        //     });
-                        // });
-
-
-                        // function nextSession(date) {
-                        //     var ret = new Date(date||new Date());
-                        //     ret.setDate(ret.getDate() + (3 - 1 - ret.getDay() + 7) % 7 + 1);
-                        //     return ret;
-                        // };
-
-
-
-
-                        // document.getElementById('datePicker').value = nextSession(Date()).toDateInputValue();
-
-                        // $('.datepicker').pickadate({
-                        //     disable: [
-                        //         1, 4, 7
-                        //     ],
-                        //     min: [2021,4,14],
-                        //     max: [2021,4,29]
-                        // });
-
-
-                        // $(function(){
-                        //     var dtToday = new Date();
-
-                        //     var month = dtToday.getMonth() + 1;
-                        //     var day = dtToday.getDate();
-                        //     var year = dtToday.getFullYear();
-
-                        //     if(month < 10)
-                        //         month = '0' + month.toString();
-                        //     if(day < 10)
-                        //         day = '0' + day.toString();
-
-                        //     var maxDate = year + '-' + month + '-' + day;    
-                        //     $('#txtDate').attr('max', maxDate);
-
-                        //     var now = new Date(),
-                        //     // minimum date the user can choose, in this case now and in the future
-                        //     minDate = now.toISOString().substring(0,10);
-                        //     $('#delDate').prop('min', minDate);
-                        // });
-
-                        
-                    </script>
-
-                    <div class="col-md-6 mb-3">
-                        <label for="lastName">Delivery Time</label>
-                        <input type="text" class="form-control" id="lastName" placeholder="Last Name" value="" required>
-                        <div class="invalid-feedback">
-                            Valid last name is required.
-                        </div>
-                    </div>
                 </div>
 
-                <div class="row">
-                    <div class="col-md-6 mb-3">
-                        <label for="phone">Delivery Location</label>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                            <label class="form-check-label" for="flexRadioDefault1">
-                                Default radio
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2"
-                                checked>
-                            <label class="form-check-label" for="flexRadioDefault2">
-                                Default checked radio
-                            </label>
-                        </div>
-                    </div>
-                    <div class="col-md-6 mb-3">
-                        <label for="email">Email <span class="text-muted">(Optional)</span></label>
-                        <div class="uk-margin">
-                            <div class="uk-form-label">Radio</div>
-                            <div class="uk-form-controls">
-                                <label><input class="uk-radio" type="radio" name="radio1"> Option 01</label><br>
-                                <label><input class="uk-radio" type="radio" name="radio1"> Option 02</label>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <script>
+                function locationSelect(loc) {
+                    var select = loc.value;
+                    document.getElementById("delDateSmall").style = "display:block";
+                    document.getElementById("delDateFarm").style = "display:none";
+                    document.getElementById("delDateMarshfield").style = "display:none";
+                    document.getElementById("delDateSpringfield").style = "display:none";
 
-                <div class="mb-3">
-                    <label for="address">Address</label>
-                    <input type="text" class="form-control" id="address" placeholder="1234 Main St" required>
-                    <div class="invalid-feedback">
-                        Please enter your address.
-                    </div>
-                </div>
+                    if (select == "Farm") {
+                        document.getElementById("delDateFarm").style = "display:block";
+                        document.getElementById("delDateSmall").style = "display:none";
+                        document.getElementById("delDateMarshfield").value = "";
+                        document.getElementById("delDateSpringfield").value = "";
+                    } else if (select == "Marshfield") {
+                        document.getElementById("delDateMarshfield").style = "display:block";
+                        document.getElementById("delDateMarshfield").disabled = false;
+                        document.getElementById("delDateSmall").innerHTML = "Fridays 2:30-6:30PM";
+                        document.getElementById("delDateSpringfield").value = "";
+                    } else if (select == "Springfield") {
+                        document.getElementById("delDateSpringfield").style = "display:block";
+                        document.getElementById("delDateSpringfield").disabled = false;
+                        document.getElementById("delDateSmall").innerHTML = "Wednesdays 4PM";
+                        document.getElementById("delDateMarshfield").value = "";
+                        // add delivery fee
+                        document.getElementById("delFee").value = "10";
+                    }
+                }
+                </script>
 
-                <div class="mb-3">
-                    <label for="address2">Address 2 <span class="text-muted">(Optional)</span></label>
-                    <input type="text" class="form-control" id="address2" placeholder="Apartment or suite">
-                </div>
 
-                <div class="row">
-                    <div class="col-md-5 mb-3">
-                        <label for="country">City</label>
-                        <input type="text" class="form-control" id="address" placeholder="City" required>
-                        <div class="invalid-feedback">
-                            Please enter your city.
-                        </div>
-                    </div>
-                    <div class="col-md-4 mb-3">
-                        <label for="state">State</label>
-                        <select class="custom-select d-block w-100" id="state" required>
-                            <option selected hidden disabled>Choose...</option>
-                            <option value="AL">Alabama</option>
-                            <option value="AK">Alaska</option>
-                            <option value="AZ">Arizona</option>
-                            <option value="AR">Arkansas</option>
-                            <option value="CA">California</option>
-                            <option value="CO">Colorado</option>
-                            <option value="CT">Connecticut</option>
-                            <option value="DE">Delaware</option>
-                            <option value="DC">Dist of Columbia</option>
-                            <option value="FL">Florida</option>
-                            <option value="GA">Georgia</option>
-                            <option value="HI">Hawaii</option>
-                            <option value="ID">Idaho</option>
-                            <option value="IL">Illinois</option>
-                            <option value="IN">Indiana</option>
-                            <option value="IA">Iowa</option>
-                            <option value="KS">Kansas</option>
-                            <option value="KY">Kentucky</option>
-                            <option value="LA">Louisiana</option>
-                            <option value="ME">Maine</option>
-                            <option value="MD">Maryland</option>
-                            <option value="MA">Massachusetts</option>
-                            <option value="MI">Michigan</option>
-                            <option value="MN">Minnesota</option>
-                            <option value="MS">Mississippi</option>
-                            <option value="MO">Missouri</option>
-                            <option value="MT">Montana</option>
-                            <option value="NE">Nebraska</option>
-                            <option value="NV">Nevada</option>
-                            <option value="NH">New Hampshire</option>
-                            <option value="NJ">New Jersey</option>
-                            <option value="NM">New Mexico</option>
-                            <option value="NY">New York</option>
-                            <option value="NC">North Carolina</option>
-                            <option value="ND">North Dakota</option>
-                            <option value="OH">Ohio</option>
-                            <option value="OK">Oklahoma</option>
-                            <option value="OR">Oregon</option>
-                            <option value="PA">Pennsylvania</option>
-                            <option value="RI">Rhode Island</option>
-                            <option value="SC">South Carolina</option>
-                            <option value="SD">South Dakota</option>
-                            <option value="TN">Tennessee</option>
-                            <option value="TX">Texas</option>
-                            <option value="UT">Utah</option>
-                            <option value="VT">Vermont</option>
-                            <option value="VA">Virginia</option>
-                            <option value="WA">Washington</option>
-                            <option value="WV">West Virginia</option>
-                            <option value="WI">Wisconsin</option>
-                            <option value="WY">Wyoming</option>
-                        </select>
-                        <div class="invalid-feedback">
-                            Please provide a valid state.
-                        </div>
-                    </div>
-                    <div class="col-md-3 mb-3">
-                        <label for="zip">Zip</label>
-                        <input type="text" class="form-control" id="zip" placeholder="Zip" required>
-                        <div class="invalid-feedback">
-                            Zip code required.
-                        </div>
-                    </div>
-                </div>
+
+                <?php
+                if (!isset($_SESSION['custID'])) {
+                ?>
+
                 <hr class="mb-4">
 
                 <!-- Customer Info -->
                 <h4 class="mb-3 checkout-title">Billing Address</h4>
                 <div class="row">
                     <div class="col-md-6 mb-3">
-                        <label for="firstName">First Name</label>
-                        <input type="text" class="form-control" id="firstName" placeholder="First Name" value=""
+                        <label for="fName">First Name</label>
+                        <input name="fName" type="text" class="form-control" id="fName" placeholder="First Name" value=""
                             required>
                         <div class="invalid-feedback">
                             Valid first name is required.
                         </div>
                     </div>
                     <div class="col-md-6 mb-3">
-                        <label for="lastName">Last Name</label>
-                        <input type="text" class="form-control" id="lastName" placeholder="Last Name" value="" required>
+                        <label for="lName">Last Name</label>
+                        <input name="lName" type="text" class="form-control" id="lName" placeholder="Last Name" value="" required>
                         <div class="invalid-feedback">
                             Valid last name is required.
                         </div>
@@ -433,16 +416,19 @@ totalPrice -->
 
                 <div class="row">
                     <div class="col-md-6 mb-3">
-                        <label for="phone">Phone (123-456-7890)</label>
+                        <label for="phone">Phone <small>(No Special Characters)</small></label>
+                        <input name="phone" type="tel" class="form-control" id="phone" placeholder="1234567890" value=""
+                            pattern="[0-9]{10}" required autocomplete="tel-national">
+                        <!-- <label for="phone">Phone <small>e.g. 123-456-7890</small></label>
                         <input type="tel" class="form-control" id="phone" placeholder="123-456-7890" value=""
-                            pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required>
+                        pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required autocomplete="tel-national"> -->
                         <div class="invalid-feedback">
                             Valid phone number is required.
                         </div>
                     </div>
                     <div class="col-md-6 mb-3">
-                        <label for="email">Email <span class="text-muted">(Optional)</span></label>
-                        <input type="email" class="form-control" id="email" placeholder="you@example.com">
+                        <label for="email">Email <small>(Optional)</small></label>
+                        <input name="email" type="email" class="form-control" id="email" placeholder="you@example.com">
                         <div class="invalid-feedback">
                             Please enter a valid email address.
                         </div>
@@ -451,28 +437,28 @@ totalPrice -->
 
                 <div class="mb-3">
                     <label for="address">Address</label>
-                    <input type="text" class="form-control" id="address" placeholder="1234 Main St" required>
+                    <input name="address1" type="text" class="form-control" id="address" placeholder="1234 Main St" required>
                     <div class="invalid-feedback">
                         Please enter your address.
                     </div>
                 </div>
 
                 <div class="mb-3">
-                    <label for="address2">Address 2 <span class="text-muted">(Optional)</span></label>
-                    <input type="text" class="form-control" id="address2" placeholder="Apartment or suite">
+                    <label for="address2">Address 2 <small>(Optional)</small></label>
+                    <input name="address2" type="text" class="form-control" id="address2" placeholder="Apartment or suite">
                 </div>
 
                 <div class="row">
                     <div class="col-md-5 mb-3">
                         <label for="country">City</label>
-                        <input type="text" class="form-control" id="address" placeholder="City" required>
+                        <input name="city" type="text" class="form-control" id="address" placeholder="City" required>
                         <div class="invalid-feedback">
                             Please enter your city.
                         </div>
                     </div>
                     <div class="col-md-4 mb-3">
                         <label for="state">State</label>
-                        <select class="custom-select d-block w-100" id="state" required>
+                        <select name="state" class="custom-select d-block w-100" id="state" required>
                             <option selected hidden disabled>Choose...</option>
                             <option value="AL">Alabama</option>
                             <option value="AK">Alaska</option>
@@ -532,19 +518,21 @@ totalPrice -->
                     </div>
                     <div class="col-md-3 mb-3">
                         <label for="zip">Zip</label>
-                        <input type="text" class="form-control" id="zip" placeholder="Zip" required>
+                        <input name="zip" type="text" class="form-control" id="zip" placeholder="Zip" required>
                         <div class="invalid-feedback">
                             Zip code required.
                         </div>
                     </div>
                 </div>
+                <?php } ?>
                 <hr class="mb-4">
                 <button class="btn checkout-btn btn-lg btn-block" type="submit">Continue to Checkout</button>
-                <?php 
+                <input type="hidden" name="checkout" value="<?=$payOnline?>">
+                <!-- <?php 
                 if (!$payOnline) {
                     echo "<label>Pay at Pickup</label>";
                 }
-                ?>
+                ?> -->
 
                 <!-- <h4 class="mb-3">Payment</h4>
 
@@ -600,6 +588,7 @@ totalPrice -->
             </form>
         </div>
     </div>
+    <?php } ?>
 </div>
 <?php
 

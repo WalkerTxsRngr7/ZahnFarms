@@ -1,5 +1,16 @@
 <?php
-    $orders = getAllOrders();
+// $orders = getAllOrders();
+$delivered = filter_input(INPUT_POST, "delivered");
+$order = getOrderByID($orderID);
+
+if (isset($delivered)) {
+    if ($order['deliveryLocation'] != 'Farm') {
+        updateOrderDelivered($orderID, $order['deliveryDate']);
+    } else {
+        updateOrderDelivered($orderID, $delDate);
+    }
+    
+}
 ?>
 
 <!-- example -->
@@ -27,43 +38,84 @@
     <hr class="print">
     <div class="uk-column-1-2 uk-column-divider">
         <?php
-        $Customer = getCustomerByID($_POST['orderID']);
-        $first = $Customer['fName'];
-        $last = $Customer['lName'];
-        $phone = $Customer['phone'];
-        $email = $Customer['email'];
+        $customer = getCustomerByID($custID);
+        $first = $customer['fName'];
+        $last = $customer['lName'];
+        $phone = $customer['phone'];
+        $email = $customer['email'];
 
-        echo "<p>Order: " . $_POST['orderID'];
+        echo "<p>Order: " . $orderID;
         echo "<p>Name: $last , $first</p>";
+
+        
+        if(  preg_match( '/^\+\d(\d{3})(\d{3})(\d{4})$/', $phone,  $matches ) )
+        {
+            $result = $matches[1] . '-' .$matches[2] . '-' . $matches[3];
+            return $phone;
+        }
         echo "<p>Phone: $phone</p>"; /* See if way to format as phone number */
         echo "<p>Email: $email</p>";
         ?>
-        <p>Order Date: 4/1/2021</p>
-        <p>Delivery Date: 4/5/2021 3:00PM</p>
-        <p>Delivery Location: Farm</p>
-        <p>Total: $27.97</p>
-        <p style="text-decoration:underline;">Status: Pay At Pickup</p>  <!-- Paid, Pay At Pickup, Delivered  Style: Paid(Blue) Unpaid(Red, underline) Delivered(Green)--> 
-        <button class="no-print uk-button uk-button-default">Delivered?</button> <!-- To change status to delivered -->
+        <p>Order Date: <?=$order['orderDate']?></p>
+        <p>Delivery Date: <?=$order['deliveryDate']?></p>
+        <p>Delivery Location: <?=$order['deliveryLocation']?></p>
+        <p>Total: $<?=$order['totalPrice']?></p>
+        <p>Status:
+            <?php 
+            if ($order['status'] == 2) {
+                echo "<span style='color:blue'>Delivered</span>";
+            } else if ($order['status'] == 1) {
+                echo "<span style='color:green'>Paid</span>";
+            } else {
+                echo "<span style='color:red; text-decoration:underline;'>Pay At Pickup</span>";
+            }?>
+
+        </p> <!-- Paid, Pay At Pickup, Delivered  Style: Paid(Blue) Unpaid(Red, underline) Delivered(Green)-->
+
+        <button style="<?php echo ($order['status'] == 2 ? 'display:none' : '') ?>" class="no-print uk-button uk-button-default" uk-toggle="target: #delivered-modal" type="button">Delivered?</button>
+        <!-- This is the modal -->
+        <div id="delivered-modal" uk-modal>
+            <div class="uk-modal-dialog uk-modal-body">
+                <h2 class="uk-modal-title">Delivered?</h2>
+                <form class="needs-validation" action="" method="post">
+                    <label style="<?php echo ($order['deliveryLocation'] != 'Farm'? 'display:none' : '') ?>" for="delDate">Select Date of Pickup<input  name="delDate" type="date" id="delDate"></label>
+                    
+                    <input type='hidden' name='viewOrder' value='View'>
+                    <input type='hidden' name='adminBtn' value='<?=$adminBtn?>'>
+                    <input type='hidden' name='orderID' value='<?=$orderID?>'>
+                    <input type='hidden' name='custID' value='<?=$custID?>'>
+                    <input id="add-to-cart-btn" class="uk-button uk-button-default" type="submit" name="delivered" value="Mark Delivered">
+                    <button class="cart-remove-btn uk-modal-close uk-button uk-button-default" type="button">Cancel</button>
+                </form>
+            </div>
+        </div>
     </div>
     <hr>
 
+
+    <!--  -->
+
+
+
+
     <!-- Print and normal versions of the same table. Make the same except normal has uk-table-responsive and print doesn't -->
-    <div class="no-print uk-overflow-auto"> <!-- Normal version -->
-        <table class="uk-table uk-table-small uk-table-divider uk-table-striped uk-table-responsive">
+    <div class="no-print uk-overflow-auto">
+        <!-- Normal version -->
+        <table class="admin-prod-table uk-table uk-table-small uk-table-divider uk-table-responsive">
             <thead>
                 <tr>
                     <th class="uk-table-shrink" scope="col">Order Line Number</th> <!-- order Line number -->
                     <th scope="col">Product</th>
-                    <th scope="col">Size</th> 
-                    <th scope="col">Quantity</th> 
+                    <th scope="col">Size</th>
+                    <th scope="col">Quantity</th>
                     <th scope="col">Item Price</th>
                     <th scope="col">Line Price</th>
                 </tr>
             </thead>
             <tbody>
-            <?php
-                $order = getOrderDetails($_POST['orderID']);
-                foreach($order as $item){
+                <?php
+                $orderDetails = getOrderDetails($orderID);
+                foreach($orderDetails as $item){
                     $number = 1;
                     $prod = prodByID($item['productID']);
                     $productName = $prod['productName'];
@@ -74,11 +126,6 @@
                     $price = $item['priceEach'];
                     $linePrice = $qty * $price;
                     $linePrice = number_format((float)$linePrice, 2, '.', '');
-                    $Ord = getAllOrdersByID($_POST['orderID']);
-                    $delv = Ord['deliveryFee'];
-                    $sub = Ord['subtotal'];
-                    $tax = Ord['tax'];
-                    $total = Ord['totalPrice'];
                     echo "<tr>";
                     echo "<td>$number</td>";
                     echo "<td>$productName</td>";
@@ -86,15 +133,24 @@
                     echo "<td>$qty $portionDesc</td>";
                     echo "<td>$$price</td>";
                     echo "<td>$$linePrice</td>";
-                    echo "</tr>";
-                    echo "
+                    echo "</tr>"; 
+                }
+                $delFee = $order['deliveryFee'];
+                number_format((float)$delFee, 2, '.', '');
+                $sub = $order['subtotal'];
+                number_format((float)$sub, 2, '.', '');
+                $tax = $order['tax'];
+                number_format((float)$tax, 2, '.', '');
+                $total = $order['totalPrice'];
+                number_format((float)$total, 2, '.', '');
+                echo "
                           <tr>
                             <td></td>
                             <td></td>
                             <td></td>
                             <td></td>
                             <td>Delivery Fee</td>
-                            <td>$delv</td>
+                            <td>$$delFee</td>
                          </tr>
                     ";
                     echo "
@@ -104,7 +160,7 @@
                             <td></td>
                             <td></td>
                             <td>Subtotal</td>
-                            <td>$sub</td>
+                            <td>$$sub</td>
                          </tr>
                     ";
                     echo " 
@@ -114,7 +170,7 @@
                             <td></td>
                             <td></td>
                             <td>Tax</td>
-                            <td>$tax</td>
+                            <td>$$tax</td>
                         </tr>
                     ";
                     echo "
@@ -124,54 +180,58 @@
                             <td></td>
                             <td></td> 
                             <td>Total</td>
-                            <td>$total</td>
+                            <td>$$total</td>
                         </tr>
                     ";
-                }
             ?>
             </tbody>
         </table>
     </div>
 
-    <div class="print uk-overflow-auto"> <!-- Print version -->
+    <div class="print uk-overflow-auto">
+        <!-- Print version -->
         <table class="uk-table uk-table-small uk-table-divider">
             <thead>
                 <tr>
                     <th class="uk-table-shrink" scope="col">Order Line Number</th> <!-- order Line number -->
                     <th scope="col">Product</th>
-                    <th scope="col">Size</th> 
-                    <th scope="col">Quantity</th> 
+                    <th scope="col">Size</th>
+                    <th scope="col">Quantity</th>
                     <th scope="col">Item Price</th>
                     <th scope="col">Line Price</th>
                 </tr>
             </thead>
             <tbody>
-            <?php
-            $order = getOrderDetails($_POST['orderID']);
-            foreach($order as $item){
-                $number = 1;
-                $prod = prodByID($item['productID']);
-                $productName = $prod['productName'];
-                $qty = $item['quantityOrdered'];
-                $portion = portionByID($prod['portionsID']);
-                $portionDesc = $portion['portionsDesc'];
-                $size = $item['sizeName'];
-                $price = $item['priceEach'];
-                $linePrice = $qty * $price;
-                $linePrice = number_format((float)$linePrice, 2, '.', '');
-                $Ord = getAllOrdersByID($_POST['orderID']);
-                $delv = Ord['deliveryFee'];
-                $sub = Ord['subtotal'];
-                $tax = Ord['tax'];
-                $total = Ord['totalPrice'];
-                echo "<tr>";
-                echo "<td>$number</td>";
-                echo "<td>$productName</td>";
-                echo "<td>$size";
-                echo "<td>$qty $portionDesc</td>";
-                echo "<td>$$price</td>";
-                echo "<td>$$linePrice</td>";
-                echo "</tr>";
+                <?php
+                $orderDetails = getOrderDetails($orderID);
+                foreach($orderDetails as $item){
+                    $number = 1;
+                    $prod = prodByID($item['productID']);
+                    $productName = $prod['productName'];
+                    $qty = $item['quantityOrdered'];
+                    $portion = portionByID($prod['portionsID']);
+                    $portionDesc = $portion['portionsDesc'];
+                    $size = $item['sizeName'];
+                    $price = $item['priceEach'];
+                    $linePrice = $qty * $price;
+                    $linePrice = number_format((float)$linePrice, 2, '.', '');
+                    echo "<tr>";
+                    echo "<td>$number</td>";
+                    echo "<td>$productName</td>";
+                    echo "<td>$size";
+                    echo "<td>$qty $portionDesc</td>";
+                    echo "<td>$$price</td>";
+                    echo "<td>$$linePrice</td>";
+                    echo "</tr>"; 
+                }
+                $delFee = $order['deliveryFee'];
+                number_format((float)$delFee, 2, '.', '');
+                $sub = $order['subtotal'];
+                number_format((float)$sub, 2, '.', '');
+                $tax = $order['tax'];
+                number_format((float)$tax, 2, '.', '');
+                $total = $order['totalPrice'];
+                number_format((float)$total, 2, '.', '');
                 echo "
                           <tr>
                             <td></td>
@@ -179,40 +239,39 @@
                             <td></td>
                             <td></td>
                             <td>Delivery Fee</td>
-                            <td>$delv</td>
+                            <td>$$delFee</td>
                          </tr>
                     ";
-                echo "
+                    echo "
                           <tr>
                             <td></td>
                             <td></td>
                             <td></td>
                             <td></td>
                             <td>Subtotal</td>
-                            <td>$sub</td>
+                            <td>$$sub</td>
                          </tr>
                     ";
-                echo " 
+                    echo " 
                          <tr>
                             <td></td>
                             <td></td>
                             <td></td>
                             <td></td>
                             <td>Tax</td>
-                            <td>$tax</td>
+                            <td>$$tax</td>
                         </tr>
                     ";
-                echo "
+                    echo "
                         <tr>
                             <td></td>
                             <td></td>
                             <td></td>
                             <td></td> 
                             <td>Total</td>
-                            <td>$total</td>
+                            <td>$$total</td>
                         </tr>
                     ";
-            }
             ?>
             </tbody>
         </table>

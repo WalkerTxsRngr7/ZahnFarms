@@ -87,7 +87,7 @@ nav img {
   min-height:70vh;
   /* background blur */
   background-color: rgba(255, 255, 255, .15);  
-  backdrop-filter: blur(7px);
+  backdrop-filter: blur(12px);
 }
 h1 {
   color: black;
@@ -187,7 +187,7 @@ input:focus:invalid {
 #add-to-cart-btn {
   background-color: var(--primary-green);
   color: white;
-  border: var(--dark-green) solid 4px;
+  border: white solid 4px;
 }
 
 
@@ -235,6 +235,9 @@ input:focus:invalid {
 }
 .py-5 {
   padding: 15px !important;
+}
+.form-check {
+  margin-top:15px;
 }
 /* .checkout-title {
   font-family: 'Libre Baskerville', cursive;

@@ -20,12 +20,13 @@
         <?php
         foreach($orders as $ord){
             $Customer = getCustomerByID($ord['customerID']);
-            $OrderID = $ord["orderID"];
+            $custID = $Customer['customerID'];
+            $OrderID = $ord['orderID'];
             $Status = $ord['status'];
             $OrderDateRow = $ord['orderDate'];
-            $OrderDate = new DateTime($OrderDateRow);
+            $OrderDate = $OrderDateRow;
             $DeliveryDateRow = $ord['deliveryDate'];
-            $DeliveryDate = new DateTime($DeliveryDateRow);
+            $DeliveryDate = $DeliveryDateRow;
             $DeliveryLocation = $ord['deliveryLocation'];
             $Total = $ord['totalPrice'];
             $orderID = $ord['orderID'];
@@ -36,24 +37,25 @@
                         <input class='order-btn uk-button' type='submit' name='viewOrder' value='View'>
                         <input type='hidden' name='adminBtn' value='$adminBtn'>
                         <input type='hidden' name='orderID' value='$orderID'>
+                        <input type='hidden' name='custID' value='$custID'>
                     </form>
                 </td>";
             echo "<td>$OrderID</td>";
             echo "<td>" . $Customer['lName'] . ", " . $Customer['fName'] . "</td>";
             /* Status: Paid, Unpaid, Delivered. Give different class depending on status. status-paid, status-unpaid, status-delivered  Paid, Pay At Pickup, Delivered  Style: Paid(Blue) Unpaid(Red, underline) Delivered(Green) Border solid 3px */
-            if($Status === 2){ 
+            if($Status == 2){ 
                 echo "<td class='delivered'>Delivered</td>";
             }
-            else if($Status === 1){ 
+            else if($Status == 1){ 
                 echo "<td class='paid'>Paid</td>";
             } else {
                 echo "<td class='unpaid'>Unpaid</td>";
             }
             echo "<td>";
-            echo $OrderDate->format('m-d-y');
+            echo $OrderDate;
             echo  "</td>";
             echo "<td>";
-            echo $DeliveryDate->format('m-d-y');
+            echo $DeliveryDate;
             echo  "</td>";
             echo "<td>$DeliveryLocation</td>";
             echo "<td>$" . number_format((float)$Total, 2, '.', '') . "</td>";
