@@ -96,12 +96,15 @@ function portionByID($portionID){
 
 }
 
-function addProduct($productName, $price, $qty, $imageName){
+function addProduct($productName, $portionsID, $price, $qty, $shortDesc, $fullDesc, $catID, $image, $sizeID, $outOfSeason, $hide){
     global $db;
 
+    $sql = "INSERT INTO `products`(`productName`, `portionsID`, `price`, `qty`, `shortDesc`, `fullDesc`, `catID`, `image`, `sizeID`, `outOfSeason`, `hide`) VALUES (, \"$productName\", $portionsID, $price, $qty, \"$shortDesc\", \"$fullDesc\", $catID, \"$image\", $sizeID, $outOfSeason, $hide)";
+
+    echo $sql;
+
+    // $pdoS = $db->query($sql);
     echo ("<br><h3 class='modMessage'>Added: $productName</h3>");
-    $sql = "INSERT INTO `products`(`productName`, `image`, `price`, `qty`) VALUES ('$productName','$imageName',$price,$qty)";
-    $pdoS = $db->query($sql);
 }
 
 function editProduct($productName, $price, $qty, $imageName, $productID){
@@ -124,7 +127,7 @@ function orderLine($orderID, $productID, $sizeName, $qty, $num, $price) {
 
     $sqlInsert = "INSERT INTO `orderdetails`(`orderID`, `orderLineNumber`, `productID`, `sizeName`, `quantityOrdered`, `priceEach`) VALUES ($orderID, $num, $productID, \"$sizeName\", $qty, $price)";    
     $pdoS = $db->query($sqlInsert);
-    echo $sqlInsert;
+    // echo $sqlInsert;
 
     $product = prodByID($productID);
     $loweredQty = $product['qty'] - $qty;
@@ -136,7 +139,7 @@ function orderLine($orderID, $productID, $sizeName, $qty, $num, $price) {
 
 function order($custID, $orderDate, $status, $delDate, $delLocation, $subtotal, $delFee, $tax, $totalPrice) {
     global $db;
-    $sqlInsert = "INSERT INTO `orders`(`customerID`, `orderDate`, `status`, `deliveryDate`, `deliveryLocation`, `subtotal`, `deliveryFee`, `tax`, `totalPrice`) VALUES ($custID, $orderDate, $status, $delDate, \"$delLocation\", $subtotal, $delFee, $tax, $totalPrice)";    
+    $sqlInsert = "INSERT INTO `orders`(`customerID`, `orderDate`, `status`, `deliveryDate`, `deliveryLocation`, `subtotal`, `deliveryFee`, `tax`, `totalPrice`) VALUES ($custID, \"$orderDate\", $status, \"$delDate\", \"$delLocation\", $subtotal, $delFee, $tax, $totalPrice)";    
     $pdoS = $db->query($sqlInsert);
 
     $orderID = getLastOrderIDByCustID($custID);
@@ -212,7 +215,7 @@ function getOrderDetails($orderID){
 // Set status of Order By OrderID to delivered
 function updateOrderDelivered($orderID, $delDate) {
     global $db;
-    $sql = "UPDATE `orders` SET `status`= 2, `deliveryDate`= $delDate WHERE orderID = $orderID";
+    $sql = "UPDATE `orders` SET `status`= 2, `deliveryDate`= \"$delDate\" WHERE orderID = $orderID";
     $pdoS = $db->query($sql);
 }
 

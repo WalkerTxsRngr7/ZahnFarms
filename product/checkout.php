@@ -217,6 +217,14 @@ $sizeName = filter_input(INPUT_POST, "size");
                         }
                     }]
                 });
+            },
+            onApprove: function(data, actions) {
+            // This function captures the funds from the transaction.
+                return actions.order.capture().then(function(details) {
+                    // This function shows a transaction success message to your buyer.
+                    alert('Transaction completed by ' + details.payer.name.given_name);
+                    document.getElementById('placeOrder').click();
+                });
             }
         }).render('#paypal-button-container');
         </script>
@@ -227,6 +235,17 @@ $sizeName = filter_input(INPUT_POST, "size");
             <div class="col-md-4 order-md-2">
                 <div id="paypal-button-container"></div>
             </div>
+            <form action="thankYou.php" method="post">
+                <button style="display:none" id="placeOrder" name="placeOrder" class="btn checkout-btn btn-lg btn-block" type="submit">Place Order</button>
+                <!-- $custID, date_create(date('Y-m-d')), $status, $delDate, $delLoc, $subtotal, $delFee, $tax, $totalPrice -->
+                <input type="hidden" name="checkout" value="<?php echo ($checkout? 'true': 'false')?>">
+                <input type="hidden" name="delDate" value="<?=$delDate?>">
+                <input type="hidden" name="delLoc" value="<?=$delLoc?>">
+                <input type="hidden" name="subtotal" value="<?=$subtotal?>">
+                <input type="hidden" name="delFee" value="<?=$delFee?>">
+                <input type="hidden" name="tax" value="<?=$tax?>">
+                <input type="hidden" name="total" value="<?=$total?>">
+            </form>
 
         <?php 
         } else { ?>
@@ -246,6 +265,7 @@ $sizeName = filter_input(INPUT_POST, "size");
                         <input type="hidden" name="tax" value="<?=$tax?>">
                         <input type="hidden" name="total" value="<?=$total?>">
                     </form>
+                    
                     <!-- Order Info -->
                 <!-- 
                 customerID
@@ -322,6 +342,10 @@ $sizeName = filter_input(INPUT_POST, "size");
                         //difference between two dates
                         $diff_wed = date_diff($start_date,$end_date_wed);
                         $diff_fri = date_diff($start_date,$end_date_fri);
+
+                        
+                        echo date('Y-m-d', strtotime('+14 day', strtotime('last Friday')));
+                        echo date('Y-m-d', strtotime('+7 day', strtotime('last Friday')));
                         //find the number of days between two dates
                         // echo "Difference between two dates: ".$diff->format("%a"). " Days ";
                     ?>

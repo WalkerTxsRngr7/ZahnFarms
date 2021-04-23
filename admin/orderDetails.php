@@ -47,13 +47,18 @@ if (isset($delivered)) {
         echo "<p>Order: " . $orderID;
         echo "<p>Name: $last , $first</p>";
 
-        
-        if(  preg_match( '/^\+\d(\d{3})(\d{3})(\d{4})$/', $phone,  $matches ) )
-        {
-            $result = $matches[1] . '-' .$matches[2] . '-' . $matches[3];
-            return $phone;
-        }
-        echo "<p>Phone: $phone</p>"; /* See if way to format as phone number */
+        $from = $phone;
+        $phoneFormat = sprintf("%s-%s-%s",
+              substr($from, 0, 3),
+              substr($from, 3, 3),
+              substr($from, 6));
+
+        // if(  preg_match( '/^\+\d(\d{3})(\d{3})(\d{4})$/', $phone,  $matches ) )
+        // {
+        //     $phone = $matches[1] . '-' .$matches[2] . '-' . $matches[3];
+        //     // return $phone;
+        // }
+        echo "<p>Phone: $phoneFormat</p>"; /* See if way to format as phone number */
         echo "<p>Email: $email</p>";
         ?>
         <p>Order Date: <?=$order['orderDate']?></p>
@@ -63,9 +68,9 @@ if (isset($delivered)) {
         <p>Status:
             <?php 
             if ($order['status'] == 2) {
-                echo "<span style='color:blue'>Delivered</span>";
+                echo "<span style='color:green'>Delivered</span>";
             } else if ($order['status'] == 1) {
-                echo "<span style='color:green'>Paid</span>";
+                echo "<span style='color:blue'>Paid</span>";
             } else {
                 echo "<span style='color:red; text-decoration:underline;'>Pay At Pickup</span>";
             }?>
