@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 22, 2021 at 06:42 PM
+-- Generation Time: Apr 23, 2021 at 02:28 PM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.3.1
 
@@ -63,12 +63,12 @@ CREATE TABLE `customers` (
   `customerID` int(11) NOT NULL,
   `lName` varchar(25) COLLATE utf8mb4_unicode_ci NOT NULL,
   `fName` varchar(25) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `phone` int(10) NOT NULL,
+  `phone` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
   `addressLine1` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   `addressLine2` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `city` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
   `state` varchar(2) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `postal` varchar(5) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `postal` int(5) NOT NULL,
   `email` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -77,7 +77,8 @@ CREATE TABLE `customers` (
 --
 
 INSERT INTO `customers` (`customerID`, `lName`, `fName`, `phone`, `addressLine1`, `addressLine2`, `city`, `state`, `postal`, `email`) VALUES
-(1, 'Doe', 'John', 2147483647, '123 This St', NULL, 'Springfield', 'MO', '65804', 'thisemail@email.com');
+(1, 'Doe', 'John', '2147483647', '123 This St', NULL, 'Springfield', 'MO', 65804, 'thisemail@email.com'),
+(10, 'Bob', 'Billy', '3425434234', '123 Main St', 'C101', 'Tulsa', 'OK', 42345, 'billybob@test.com');
 
 -- --------------------------------------------------------
 
@@ -100,7 +101,11 @@ CREATE TABLE `orderdetails` (
 
 INSERT INTO `orderdetails` (`orderID`, `productID`, `sizeName`, `quantityOrdered`, `priceEach`, `orderLineNumber`) VALUES
 (1, 3, NULL, 15, '4.00', 1),
-(1, 4, 'Medium (1-1.5 lbs)', 3, '5.00', 2);
+(1, 4, 'Medium (1-1.5 lbs)', 3, '5.00', 2),
+(15, 19, 'Small (0.5-1 lbs)', 4, '2.00', 1),
+(15, 9, '', 6, '4.00', 2),
+(15, 4, 'Small (0.5-1 lbs)', 3, '2.00', 3),
+(16, 4, 'Medium (1-1.5 lbs)', 3, '5.00', 1);
 
 -- --------------------------------------------------------
 
@@ -111,10 +116,9 @@ INSERT INTO `orderdetails` (`orderID`, `productID`, `sizeName`, `quantityOrdered
 CREATE TABLE `orders` (
   `orderID` int(11) NOT NULL,
   `customerID` int(11) NOT NULL,
-  `orderDate` date NOT NULL,
+  `orderDate` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
   `status` tinyint(1) NOT NULL,
-  `deliveryDate` date NOT NULL,
-  `deliveryTime` time NOT NULL,
+  `deliveryDate` varchar(11) COLLATE utf8mb4_unicode_ci NOT NULL,
   `deliveryLocation` varchar(25) COLLATE utf8mb4_unicode_ci NOT NULL,
   `subtotal` decimal(10,2) NOT NULL,
   `deliveryFee` decimal(4,2) NOT NULL DEFAULT '0.00',
@@ -126,9 +130,11 @@ CREATE TABLE `orders` (
 -- Dumping data for table `orders`
 --
 
-INSERT INTO `orders` (`orderID`, `customerID`, `orderDate`, `status`, `deliveryDate`, `deliveryTime`, `deliveryLocation`, `subtotal`, `deliveryFee`, `tax`, `totalPrice`) VALUES
-(1, 1, '2021-04-02', 1, '2021-04-09', '15:30:00', 'Farm', '12.00', '4.00', '1.24', '27.00'),
-(2, 1, '2021-04-02', 1, '2021-04-09', '15:30:00', 'Farm', '18.45', '0.00', '0.00', '46.00');
+INSERT INTO `orders` (`orderID`, `customerID`, `orderDate`, `status`, `deliveryDate`, `deliveryLocation`, `subtotal`, `deliveryFee`, `tax`, `totalPrice`) VALUES
+(1, 1, '2021-04-02', 1, '1991', 'Farm', '12.00', '4.00', '1.24', '27.00'),
+(2, 1, '2021-04-02', 2, '1995', 'Farm', '18.45', '0.00', '0.00', '46.00'),
+(15, 10, '0000-00-00', 0, '0', 'Springfield', '48.00', '10.00', '0.00', '48.00'),
+(16, 10, '0000-00-00', 2, '0', 'Marshfield', '15.00', '0.00', '0.00', '15.00');
 
 -- --------------------------------------------------------
 
@@ -198,12 +204,12 @@ INSERT INTO `products` (`productID`, `productName`, `portionsID`, `price`, `qty`
 (1, 'Porkchop', 2, NULL, NULL, 'Pork chops short description.', 'Pork chops full description.', 43, 'Porkchop.jpg', 1, 0, 0),
 (2, 'Pork', 6, '4.00', 100, 'Pork short description.', 'Pork  full description.', 43, 'pork.jpg', NULL, 0, 0),
 (3, 'Bacon', 2, '4.00', 100, 'Bacon short description.', 'Bacon full description.', 43, 'Bacon.jpg', NULL, 0, 0),
-(4, 'Steak', 6, NULL, NULL, 'Steak short description.', 'Steak full description.', 41, 'beef.jpg', 1, 0, 0),
+(4, 'Steak', 6, NULL, -30, 'Steak short description.', 'Steak full description.', 41, 'beef.jpg', 1, 0, 0),
 (5, 'Bratwurst', 2, '4.00', 100, 'Bratwurst short description.', 'Bratwurst full description.', 41, 'Bratwurst.jpg', NULL, 0, 0),
 (6, 'Cabbage', 2, NULL, NULL, 'Cabbage short description.', 'Cabbage full description.', 45, 'Cabbage.jpg', 1, 0, 0),
 (7, 'Shiitake Mushrooms Dried', 3, '4.00', 100, 'Shiitake Mushrooms Dried short description.', 'Shiitake Mushrooms Dried full description.', 45, 'shiitake_mushroom.jpg', NULL, 0, 0),
 (8, 'Shiitake Mushrooms Fresh', 4, '4.00', 100, 'Shiitake Mushrooms Fresh short description.', 'Shiitake Mushrooms Fresh full description.', 45, 'Shiitake_Mushrooms_Fresh.jpg', NULL, 0, 0),
-(9, 'Okra', 4, '4.00', 100, 'Okra short description.', 'Okra full description.', 45, 'Okra.jpg', NULL, 0, 0),
+(9, 'Okra', 4, '4.00', 46, 'Okra short description.', 'Okra full description.', 45, 'Okra.jpg', NULL, 0, 0),
 (11, 'Green Beans', 1, '4.00', 100, 'Green Beens short description.', 'Green Beens full description.', 45, 'Green_Beans.jpg', NULL, 1, 0),
 (12, 'Red pepper', 2, '4.00', 100, 'Red pepper short description.', 'Red pepper full description.', 45, 'Red_Peppers.jpg', NULL, 0, 1),
 (13, 'Green onion', 1, '4.00', 0, 'Green onion short description.', 'Green onion full description.', 45, 'Green_Onions.jpg', NULL, 0, 0),
@@ -212,7 +218,7 @@ INSERT INTO `products` (`productID`, `productName`, `portionsID`, `price`, `qty`
 (16, 'Dill', 1, '4.00', 100, 'Dill short description.', 'Dill full description.', 45, 'Dill.jpg', NULL, 0, 0),
 (17, 'Carrots', 1, '4.00', 100, 'Carrots short description.', 'Carrots full description.', 45, 'Carrots.jpg', NULL, 0, 0),
 (18, 'Cherry Tomatoes (red)', 4, '4.00', 100, 'Cherry Tomatoes (red) short description.', 'Cherry Tomatoes (red) full description.', 46, 'Cherry_Tomatoes.jpg', NULL, 0, 0),
-(19, 'Cucumbers (Pickling)', 5, NULL, NULL, 'Cucumbers Pickled short description.', 'Cucumbers Pickled full description.', 46, 'Pickled_Cucumbers.jpg', 1, 0, 0),
+(19, 'Cucumbers (Pickling)', 5, NULL, -36, 'Cucumbers Pickled short description.', 'Cucumbers Pickled full description.', 46, 'Pickled_Cucumbers.jpg', 1, 0, 0),
 (20, 'Cucumbers (Slicing)', 2, NULL, NULL, 'Cucumbers Sliced short description.', 'Cucumbers Sliced full description.', 46, 'Cucumber.jpg', 3, 0, 0),
 (21, 'Yellow Squash', 2, NULL, NULL, 'Yellow Squash short description.', 'Yellow Squash full description.', 46, 'Yellow_Squash.jpg', 1, 0, 0),
 (22, 'Table Tomatoes', 2, NULL, NULL, 'Table Tomatoes short description.', 'Table Tomatoes full description.', 46, 'Tomato.jpg', 1, 0, 0),
@@ -310,13 +316,13 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT for table `customers`
 --
 ALTER TABLE `customers`
-  MODIFY `customerID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `customerID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `orderID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `orderID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `products`
