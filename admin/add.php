@@ -190,8 +190,8 @@ if (isset($modify)){
         </div>
     </div>
     <div class="form-group">
-        <label for="formFileSm" class="form-label">Small file input example</label>
-        <input class="form-control form-control-sm" id="formFileSm" type="file">
+        <label for="formFileSm" class="form-label">Image:</label>
+        <input class="form-control form-control-sm" name="newImage" id="formFileSm" type="file">
         <!-- <label for="addImage">Image:</label>
         <div uk-form-custom>
             <input type="file" required>
