@@ -239,18 +239,11 @@ input:focus:invalid {
 .form-check {
   margin-top:15px;
 }
-/* .checkout-title {
-  font-family: 'Libre Baskerville', cursive;
-}
-.checkout-cart {
-  font-family: 'Libre Baskerville', cursive;
-} */
 
 
+/* about us */
 .about {
   font-size: 1.1em;
-  /* width: 75%;
-  margin: auto; */
 }
 .about-fb {
   width:75%;
@@ -284,10 +277,13 @@ input:focus:invalid {
 ::-ms-input-placeholder { /* Microsoft Edge */
   color: black;
 }
-
 .admin-btns {
   background-color: var(--secondary-green);
   width:90%;
+  margin: auto;
+}
+#addForm {
+  width: 80%;
   margin: auto;
 }
 

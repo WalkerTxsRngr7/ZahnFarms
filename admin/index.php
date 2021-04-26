@@ -6,6 +6,8 @@ $title = "Admin";
 $headTitle = "Admin";
 include "../views/header.php";
 
+
+// INSERT INTO `products`(`productID`, `productName`, `portionsID`, `price`, `qty`, `shortDesc`, `fullDesc`, `catID`, `image`, `sizeID`, `outOfSeason`, `hide`) VALUES ([value-1],[value-2],[value-3],[value-4],[value-5],[value-6],[value-7],[value-8],[value-9],[value-10],[value-11],[value-12])
 $prodID = filter_input(INPUT_POST, "prodID");
 $catID = filter_input(INPUT_POST, "catID");
 $username = filter_input(INPUT_POST, "username");
@@ -15,12 +17,19 @@ $modify = filter_input(INPUT_POST, "modify");
 $edit = filter_input(INPUT_POST, "edit");
 $viewOrder = filter_input(INPUT_POST, "viewOrder");
 $printOrder = filter_input(INPUT_POST, "print");
-$newProdName = filter_input(INPUT_POST, "newProdName");
 $newCatName = filter_input(INPUT_POST, "newCatName");
+$newProdName = filter_input(INPUT_POST, "newProdName");
+$portionsID = filter_input(INPUT_POST, "portionsID");
 $newPrice = filter_input(INPUT_POST, "newPrice");
 $newQty = filter_input(INPUT_POST, "newQty");
+$newShort = filter_input(INPUT_POST, "newShort");
+$newFull = filter_input(INPUT_POST, "newFull");
 $newImage = filter_input(INPUT_POST, "newImage");
 $oldImage = filter_input(INPUT_POST, "oldImage");
+$checkSizes = filter_input(INPUT_POST, "checkSizes");
+$newSize = filter_input(INPUT_POST, "newSize");
+$checkSeason = filter_input(INPUT_POST, "checkSeason");
+$checkHide = filter_input(INPUT_POST, "checkHide");
 $orderID = filter_input(INPUT_POST, "orderID");
 $custID = filter_input(INPUT_POST, "custID");
 $delDate = filter_input(INPUT_POST, "delDate");

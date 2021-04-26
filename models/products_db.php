@@ -83,6 +83,15 @@ function sizeByName($sizeName, $sizeID) {
     return $size;
 }
 
+/** RETURN AN ARRAY OF ALL PORTIONS */
+function getAllPortions(){
+    global $db;
+    $sql = "SELECT * FROM portions";
+    $qry = $db->query($sql);
+    $aryPortions = $qry->fetchAll();
+
+    return $aryPortions;
+}
 /** RETURN A SINGLE PORTION FILTERED BY PORTION ID */
 function portionByID($portionID){
     global $db;
@@ -93,7 +102,6 @@ function portionByID($portionID){
 
     //return a portion
     return $portion;
-
 }
 
 function addProduct($productName, $portionsID, $price, $qty, $shortDesc, $fullDesc, $catID, $image, $sizeID, $outOfSeason, $hide){
