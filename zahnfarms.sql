@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 23, 2021 at 09:59 PM
+-- Generation Time: Apr 28, 2021 at 01:12 AM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.3.1
 
@@ -246,7 +246,9 @@ INSERT INTO `products` (`productID`, `productName`, `portionsID`, `price`, `qty`
 (20, 'Cucumbers (Slicing)', 2, NULL, NULL, 'Cucumbers Sliced short description.', 'Cucumbers Sliced full description.', 46, 'Cucumber.jpg', 2, 0, 0),
 (21, 'Yellow Squash', 2, NULL, -3, 'Yellow Squash short description.', 'Yellow Squash full description.', 46, 'Yellow_Squash.jpg', 1, 0, 0),
 (22, 'Table Tomatoes', 2, NULL, NULL, 'Table Tomatoes short description.', 'Table Tomatoes full description.', 46, 'Tomato.jpg', 1, 0, 0),
-(23, 'Zucchini', 2, NULL, NULL, 'Zucchini short description.', 'Zucchini description.', 46, 'Zucchini.jpg', 1, 0, 0);
+(23, 'Zucchini', 2, NULL, NULL, 'Zucchini short description.', 'Zucchini description.', 46, 'Zucchini.jpg', 1, 0, 0),
+(25, 'Corn', 2, '2.99', 22, 'Corn short desc', 'Corn full desc', 45, 'corn.jpg', NULL, 0, 0),
+(26, 'Ribs', 2, NULL, NULL, 'Ribs short desc', 'Ribs full desc', 43, 'ribs.jpg', 4, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -271,7 +273,9 @@ INSERT INTO `sizes` (`sizeID`, `sizeName`, `price`, `qty`) VALUES
 (2, 'Medium (1-1.5 lbs)', '4.99', 30),
 (2, 'Small (0.5-1 lbs)', '3.99', 0),
 (3, 'Medium (1-1.5 lbs)', '4.99', 0),
-(3, 'Small (0.5-1 lbs)', '3.99', 0);
+(3, 'Small (0.5-1 lbs)', '3.99', 0),
+(4, 'Full Rack', '5.99', 35),
+(4, 'Half Rack', '3.99', 50);
 
 --
 -- Indexes for dumped tables
@@ -340,7 +344,7 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT for table `customers`
 --
 ALTER TABLE `customers`
-  MODIFY `customerID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `customerID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `orders`
@@ -352,7 +356,7 @@ ALTER TABLE `orders`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `productID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `productID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

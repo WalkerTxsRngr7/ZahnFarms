@@ -1,33 +1,60 @@
 <?php
-// TODO change for this site.
 if (isset($modify)){
+    $newImage = $_FILES['newImage'];
 
-    $name = $_FILES['newImage']['name'];
-    $imgSize = $_FILES['newImage']['size'] / 1024;
-    $tmpName = $_FILES['newImage']['tmp_name'];
-    $dir =   getcwd() . DIRECTORY_SEPARATOR . "..";
-    $dir =  $dir. DIRECTORY_SEPARATOR . 'images' . DIRECTORY_SEPARATOR . $name;
-    
-    
-    
-    // INSERT INTO `products`(`productID`, `productName`, `portionsID`, `price`, `qty`, `shortDesc`, `fullDesc`, `catID`, `image`, `sizeID`, `outOfSeason`, `hide`) VALUES ([value-1],[value-2],[value-3],[value-4],[value-5],[value-6],[value-7],[value-8],[value-9],[value-10],[value-11],[value-12])
-    if (!empty($newProdName) && !empty($newPrice) && !empty($newQty) && !empty($name)) {
-        move_uploaded_file($tmpName, $dir);
-        addProduct($productName, $portionsID, $price, $qty, $shortDesc, $fullDesc, $catID, $image, $sizeID, $outOfSeason, $hide);
+    if (!empty($newProdName) && !empty($portionsID) &&!empty($newShort) &&!empty($newFull) &&!empty($catID) && !empty($newImage)) {
+        if($_FILES['newImage']['name'])
+        {
+            //if no errors...
+            if(!$_FILES['newImage']['error'])
+            {
+                //now is the time to modify the future file name and validate the file
+                $name = $_FILES['newImage']['name'];
+                // $new_file_name = strtolower($_FILES['newImage']['tmp_name']); //rename file
+                $tmpName = $_FILES['newImage']['tmp_name'];
+                //move it to where we want it to be
+                $dir =   getcwd() . DIRECTORY_SEPARATOR . "..";
+                $dir =  $dir. DIRECTORY_SEPARATOR . 'images' . DIRECTORY_SEPARATOR . $name;
+                move_uploaded_file($tmpName, $dir);
+            }
+            //if there is an error...
+            else
+            {
+                //set that to be the returned message
+                echo 'Ooops! Your upload triggered the following error: '.$_FILES['newImage']['error'];
+            }
+        }
+
+        // set values to 0 if not checked
+        if (!$checkSeason) {
+            $checkSeason = 0;
+        }
+        if (!$checkHide) {
+            $checkHide = 0;
+        }
+        // add product depending on if sizes checkbox is checked
+        if ($checkSizes) { /* Has sizes */
+            // create sizes
+            $sizeID = addSizes($_POST['newSize']);
+            addProduct($newProdName, $portionsID, null, null, $newShort, $newFull, $catID, $_FILES['newImage']['name'], $sizeID, $checkSeason, $checkHide);
+        } else { /* Doesn't have sizes */
+            addProduct($newProdName, $portionsID, $newPrice, $newQty, $newShort, $newFull, $catID, $_FILES['newImage']['name'], null, $checkSeason, $checkHide);
+        }
+        
     } else {
         echo("<h3>You must fill every box</h3>");
     }
 
-    if ($checkSizes)
-    foreach ($_POST['newSize'] as $size) {
-        echo "<h3>" . $size['name'] . "</h3><br>";
-    }
+    // if ($checkSizes)
+    // foreach ($_POST['newSize'] as $size) {
+    //     echo "<h3>" . $size['name'] . "</h3><br>";
+    // }
 }
 
 ?>
 
 
-<form id='addForm' action="index.php" method="post" enctype="multipart/form-data">
+<form id='addForm' action="" method="post" enctype="multipart/form-data">
 
     <div class="form-group">
         <label for="newProdName">Product Name:</label>
@@ -38,7 +65,7 @@ if (isset($modify)){
     <div class="form-group row"> 
         <div class="col-md-3 mb-3">
             <label>Portion:</label>
-            <select class="uk-select" required>
+            <select name="portionsID" class="uk-select" required>
                 <option>Please select...</option>
                 <?php
                 $portionsAry = getAllPortions();
@@ -57,7 +84,7 @@ if (isset($modify)){
     <!-- Sizes -->
     <div class="form-group">
         <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="1" id="checkSizes">
+            <input class="form-check-input" type="checkbox" name="checkSizes" id="checkSizes">
             <label class="form-check-label" for="checkSizes">
                 Sizes?
             </label>
@@ -68,26 +95,26 @@ if (isset($modify)){
         <label>Size 1</label>
         <div id="mainsection" class="row">
             <div class="col-md-4 mb-3">
-                <input type="text" class="form-control" placeholder="Enter Size Name" name='newSize[0][name]' required>
+                <input type="text" class="form-control" placeholder="Enter Size Name" name='newSize[0][name]'>
             </div>
             <div class="col-md-4 mb-3">
-                <input type="number" class="form-control" placeholder="Enter Price" name='newSize[0][price]' step="0.1" required>
+                <input type="number" class="form-control" placeholder="Enter Price" name='newSize[0][price]' step="0.01">
             </div>
             <div class="col-md-4 mb-3">
-                <input type="number" class="form-control" placeholder="Enter Quantity in stock" name='newSize[0][qty]' required>
+                <input type="number" class="form-control" placeholder="Enter Quantity in stock" name='newSize[0][qty]'>
             </div>
         </div>
         <!-- newSize[1] -->
         <label>Size 2</label>
         <div id="mainsection" class="row">
             <div class="col-md-4 mb-3">
-                <input type="text" class="form-control" placeholder="Enter Size Name" name='newSize[1][name]' required>
+                <input type="text" class="form-control" placeholder="Enter Size Name" name='newSize[1][name]'>
             </div>
             <div class="col-md-4 mb-3">
-                <input type="number" class="form-control" placeholder="Enter Price" name='newSize[1][price]' step="0.1" required>
+                <input type="number" class="form-control" placeholder="Enter Price" name='newSize[1][price]' step="0.01">
             </div>
             <div class="col-md-4 mb-3">
-                <input type="number" class="form-control" placeholder="Enter Quantity in stock" name='newSize[1][qty]' required>
+                <input type="number" class="form-control" placeholder="Enter Quantity in stock" name='newSize[1][qty]'>
             </div>
         </div>
         <!-- newSize[2] -->
@@ -97,7 +124,7 @@ if (isset($modify)){
                 <input type="text" class="form-control" placeholder="Enter Size Name" name='newSize[2][name]'>
             </div>
             <div class="col-md-4 mb-3">
-                <input type="number" class="form-control" placeholder="Enter Price" name='newSize[2][price]' step="0.1">
+                <input type="number" class="form-control" placeholder="Enter Price" name='newSize[2][price]' step="0.01">
             </div>
             <div class="col-md-4 mb-3">
                 <input type="number" class="form-control" placeholder="Enter Quantity in stock" name='newSize[2][qty]'>
@@ -110,7 +137,7 @@ if (isset($modify)){
                 <input type="text" class="form-control" placeholder="Enter Size Name" name='newSize[3][name]'>
             </div>
             <div class="col-md-4 mb-3">
-                <input type="number" class="form-control" placeholder="Enter Price" name='newSize[3][price]' step="0.1">
+                <input type="number" class="form-control" placeholder="Enter Price" name='newSize[3][price]' step="0.01">
             </div>
             <div class="col-md-4 mb-3">
                 <input type="number" class="form-control" placeholder="Enter Quantity in stock" name='newSize[3][qty]'>
@@ -123,7 +150,7 @@ if (isset($modify)){
                 <input type="text" class="form-control" placeholder="Enter Size Name" name='newSize[4][name]'>
             </div>
             <div class="col-md-4 mb-3">
-                <input type="number" class="form-control" placeholder="Enter Price" name='newSize[4][price]' step="0.1">
+                <input type="number" class="form-control" placeholder="Enter Price" name='newSize[4][price]' step="0.01">
             </div>
             <div class="col-md-4 mb-3">
                 <input type="number" class="form-control" placeholder="Enter Quantity in stock" name='newSize[4][qty]'>
@@ -146,14 +173,14 @@ if (isset($modify)){
     <div id="noSizes" class="row">
         <div class="col-md-6 mb-3">
             <label for="newSizePrice">Price:</label>
-            <input type="number" class="form-control" id="newPrice" placeholder="Enter price" name='newPrice' step="0.1" required>
+            <input type="number" class="form-control" id="newPrice" placeholder="Enter price" name='newPrice' step="0.01">
             <div class="invalid-feedback">
                 Valid last name is required.
             </div>
         </div>
         <div class="col-md-6 mb-3">
             <label for="newQty">Quantity in Stock:</label>
-            <input type="number" class="form-control" id="newQty" placeholder="Enter quantity in stock" name='newQty' required>
+            <input type="number" class="form-control" id="newQty" placeholder="Enter quantity in stock" name='newQty'>
             <div class="invalid-feedback">
                 Valid last name is required.
             </div>
@@ -175,7 +202,7 @@ if (isset($modify)){
     <div class="form-group row"> 
         <div class="col-md-3 mb-3">
             <label>Category:</label>
-            <select class="uk-select" required>
+            <select name="catID" class="uk-select" required>
                 <option>Please select...</option>
                 <?php
                 $catAry = getAllCategories();
@@ -200,21 +227,21 @@ if (isset($modify)){
     </div>
     <div>
         <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="1" id="checkSeason">
+            <input class="form-check-input" type="checkbox" name="checkSeason" value="1" id="checkSeason">
             <label class="form-check-label" for="checkSeason">
                 Out of Season
             </label>
         </div>
         <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="1" id="checkHide">
+            <input class="form-check-input" type="checkbox" name="checkHide" value="1" id="checkHide">
             <label class="form-check-label" for="checkHide">
                 Hide
             </label>
         </div>
     </div>
 
-    <input type="hidden" name="modify">
+    <!-- <input type="hidden" name="modify"> -->
     <input type="hidden" name="adminBtn" value="<?=$adminBtn?>">
-    <button type="submit" class="uk-button">Add Product</button>
+    <button type="submit" name="modify" class="uk-button">Add Product</button>
 
 </form>

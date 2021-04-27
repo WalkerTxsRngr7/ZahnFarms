@@ -33,7 +33,7 @@ if (isset($modify)){
             <p class='text-muted'><?=$cat['image']?><small class='text-muted'>(leave blank to keep this image)</small></p>
             <input type="hidden" name="oldImage" value='<?=$cat['image']?>'>
             <div class="input-group mb-3 form-control" style='padding: 0px; height: 100%;' placeholder='Image'>
-                <input type="file" id='inputBtn' class='padding: 0px; margin: 0px; width: 100%;' name='newImage'>
+            <input type="file" id='inputBtn' class='padding: 0px; margin: 0px; width: 100%;' name='newImage'>
             </div>
             <input type="hidden" name="modify">
             <input type="hidden" name="adminBtn" value="<?=$adminBtn?>">

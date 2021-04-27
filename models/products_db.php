@@ -104,14 +104,41 @@ function portionByID($portionID){
     return $portion;
 }
 
+// create new sizes when creating product with sizes
+function addSizes($sizesAry){
+    global $db;
+    $sql = "SELECT MAX(sizeID) FROM sizes";
+    //oop
+    $qry = $db->query($sql);
+    $sizeID= $qry->fetch();
+    $sizeID = $sizeID[0] + 1;
+
+    foreach ($sizesAry as $size) {
+        $name = $size['name'];
+        $price = $size['price'];
+        $qty = $size['qty'];
+
+        if ($name != "") {
+            $sql = "INSERT INTO `sizes`(`sizeID`, `sizeName`, `price`, `qty`) VALUES ($sizeID,\"$name\", $price, $qty)";
+            $pdoS = $db->query($sql);
+        }
+    }
+
+    return $sizeID;
+}
+
 function addProduct($productName, $portionsID, $price, $qty, $shortDesc, $fullDesc, $catID, $image, $sizeID, $outOfSeason, $hide){
     global $db;
 
-    $sql = "INSERT INTO `products`(`productName`, `portionsID`, `price`, `qty`, `shortDesc`, `fullDesc`, `catID`, `image`, `sizeID`, `outOfSeason`, `hide`) VALUES (, \"$productName\", $portionsID, $price, $qty, \"$shortDesc\", \"$fullDesc\", $catID, \"$image\", $sizeID, $outOfSeason, $hide)";
+    if ($sizeID != null) {
+        $sql = "INSERT INTO `products`(`productName`, `portionsID`, `price`, `qty`, `shortDesc`, `fullDesc`, `catID`, `image`, `sizeID`, `outOfSeason`, `hide`) VALUES (\"$productName\", $portionsID, null, null, \"$shortDesc\", \"$fullDesc\", $catID, \"$image\", $sizeID, $outOfSeason, $hide)";
+    } else {
+        $sql = "INSERT INTO `products`(`productName`, `portionsID`, `price`, `qty`, `shortDesc`, `fullDesc`, `catID`, `image`, `sizeID`, `outOfSeason`, `hide`) VALUES (\"$productName\", $portionsID, $price, $qty, \"$shortDesc\", \"$fullDesc\", $catID, \"$image\", null, $outOfSeason, $hide)";
+    }
+    
 
-    echo $sql;
 
-    // $pdoS = $db->query($sql);
+    $pdoS = $db->query($sql);
     echo ("<br><h3 class='modMessage'>Added: $productName</h3>");
 }
 
@@ -138,20 +165,18 @@ function orderLine($orderID, $productID, $sizeName, $qty, $num, $price) {
 
     $product = prodByID($productID);
 
-    if ($sizeName != null){
+    // change quantities in either sizes or products table
+    if ($sizeName != null){ /* has sizes */
         $sizeID = $product['sizeID'];
         $size = sizeByName($sizeName, $sizeID);
         $loweredQty = $size['qty'] - $qty;
         $sqlQty = "UPDATE `sizes` SET `qty`= $loweredQty WHERE `sizeName` = \"$sizeName\" AND `sizeID` = $sizeID";
-    } else {
+    } else { /* doesn't have sizes */
         $loweredQty = $product['qty'] - $qty;
         $sqlQty = "UPDATE `products` SET `qty`= $loweredQty WHERE `productID` = $productID";
     }
 
-    // $sqlQty = "UPDATE `products` SET `qty`= $loweredQty WHERE `productID` = $productID";
     $pdoS = $db->query($sqlQty);
-
-    // echo ("<br><h3 class='modMessage'>Order Item Processed Successfully</h3>");
 }
 
 function order($custID, $orderDate, $status, $delDate, $delLocation, $subtotal, $delFee, $tax, $totalPrice) {

@@ -7,7 +7,6 @@ $headTitle = "Admin";
 include "../views/header.php";
 
 
-// INSERT INTO `products`(`productID`, `productName`, `portionsID`, `price`, `qty`, `shortDesc`, `fullDesc`, `catID`, `image`, `sizeID`, `outOfSeason`, `hide`) VALUES ([value-1],[value-2],[value-3],[value-4],[value-5],[value-6],[value-7],[value-8],[value-9],[value-10],[value-11],[value-12])
 $prodID = filter_input(INPUT_POST, "prodID");
 $catID = filter_input(INPUT_POST, "catID");
 $username = filter_input(INPUT_POST, "username");
@@ -27,7 +26,7 @@ $newFull = filter_input(INPUT_POST, "newFull");
 $newImage = filter_input(INPUT_POST, "newImage");
 $oldImage = filter_input(INPUT_POST, "oldImage");
 $checkSizes = filter_input(INPUT_POST, "checkSizes");
-$newSize = filter_input(INPUT_POST, "newSize");
+// $newSize = filter_input(INPUT_POST, "newSize");
 $checkSeason = filter_input(INPUT_POST, "checkSeason");
 $checkHide = filter_input(INPUT_POST, "checkHide");
 $orderID = filter_input(INPUT_POST, "orderID");
