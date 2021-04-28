@@ -109,7 +109,6 @@ $sizeName = filter_input(INPUT_POST, "size");
                 echo "Customer Created with id of " . $cust['customerID'];
             }
             $_SESSION['custID'] = $cust['customerID'];
-            echo "Session Created";
         
         }
         
@@ -144,13 +143,13 @@ $sizeName = filter_input(INPUT_POST, "size");
     </div>
 
     <div class="py-5 text-center">
-        <span class="checkout-title">Delivery Location:<h4><?php 
+        <span class="checkout-title">Pickup Location:<h4><?php 
             if ($delLoc == "Farm") {
                 echo "Zahn Farms<br>9018 St Hwy W, Elkland, MO";
                 $delDate = "Mon-Sat by appointment";
                 $delTime = "Call or Email to set up<br>(417) 719-7517<br>BZahn01@Yahoo.com";
             } else if ($delLoc == "Marshfield") {
-                echo "Marshfield Farmer's Market<br>...address...";
+                echo "Marshfield Farmer's Market<br>900 W Washington St, Marshfield, MO";
                 $delTime = "2:30-6:30PM";
             } else if ($delLoc == "Springfield") {
                 echo "Springfield Sam's Club<br>3660 E Sunshine St, Springfield, MO";
@@ -163,7 +162,7 @@ $sizeName = filter_input(INPUT_POST, "size");
         ?>
             </h4>
         </span>
-        <span class="checkout-title">Delivery Date:<h4><?=$delDate?><br><?=$delTime?></h4></span>
+        <span class="checkout-title">Pickup Date:<h4><?=$delDate?><br><?=$delTime?></h4></span>
     </div>
 
     <div style="justify-content:center" class="row">
@@ -222,7 +221,6 @@ $sizeName = filter_input(INPUT_POST, "size");
             // This function captures the funds from the transaction.
                 return actions.order.capture().then(function(details) {
                     // This function shows a transaction success message to your buyer.
-                    alert('Transaction completed by ' + details.payer.name.given_name);
                     document.getElementById('placeOrder').click();
                 });
             }
@@ -311,7 +309,7 @@ $sizeName = filter_input(INPUT_POST, "size");
                 <h4 class="mb-3 checkout-title">Order</h4>
                 <div class="row">
                     <div class="col-md-6 mb-3">
-                        <label>Delivery Location</label>
+                        <label>Pickup Location</label>
                         <div class="form-check">
                             <input class="form-check-input" type="radio" name="delLoc" id="radioFarm"
                                 value="Farm" onclick="locationSelect(this);" required>
@@ -326,7 +324,7 @@ $sizeName = filter_input(INPUT_POST, "size");
                                 value="Marshfield" onclick="locationSelect(this);">
                             <label class="form-check-label" for="radioMarshfield">
                                 Marshfield Farmer's Market:<br>
-                                <small>...address...<br>Fridays 2:30-6:30PM.</small>
+                                <small>900 W Washington St, Marshfield, MO<br>Fridays 2:30-6:30PM.</small>
                             </label>
                         </div>
                         <div class="form-check">
@@ -354,7 +352,7 @@ $sizeName = filter_input(INPUT_POST, "size");
                         // echo "Difference between two dates: ".$diff->format("%a"). " Days ";
                     ?>
                     <div class="col-md-6 mb-3">
-                        <label for="delDate">Delivery Date</label><br>
+                        <label for="delDate">Pickup Date</label><br>
                         <!-- Date picker. Sets min to location's delivery day that is at least 2 days from today. Sets max to 4 weeks from today  -->
 
                         <!-- Farm selected -->
@@ -378,7 +376,7 @@ $sizeName = filter_input(INPUT_POST, "size");
 
 
                         <br>
-                        <small id="delDateSmall">Choose a delivery location</small>
+                        <small id="delDateSmall">Choose a pickup location</small>
                         <div class="invalid-feedback">
                             Valid first name is required.
                         </div>
