@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 28, 2021 at 07:16 PM
+-- Generation Time: Apr 28, 2021 at 09:36 PM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.3.1
 
@@ -228,8 +228,8 @@ INSERT INTO `products` (`productID`, `productName`, `portionsID`, `price`, `qty`
 (1, 'Porkchop', 2, NULL, NULL, 'Pork chops short description.', 'Pork chops full description.', 43, 'Porkchop.jpg', 1, 0, 0),
 (2, 'Pork', 6, '4.00', 100, 'Pork short description.', 'Pork  full description.', 43, 'pork.jpg', NULL, 0, 0),
 (3, 'Bacon', 2, '4.00', 97, 'Bacon short description.', 'Bacon full description.', 43, 'Bacon.jpg', NULL, 0, 0),
-(4, 'Steak', 6, NULL, -65, 'Steak short description.', 'Steak full description.', 41, 'beef.jpg', 1, 0, 0),
-(5, 'Bratwurst', 2, '4.00', 0, 'Bratwurst short description.', 'Bratwurst full description.', 41, 'Bratwurst.jpg', NULL, 0, 0),
+(4, 'Steak test', 6, NULL, NULL, 'short test', 'full test', 41, 'beef2.jpg', 1, 1, 0),
+(5, 'Bratwurst test', 2, '4.34', 23, 'short', 'full', 41, 'Bratwurst.jpg', NULL, 0, 0),
 (6, 'Cabbage', 2, NULL, NULL, 'Cabbage short description.', 'Cabbage full description.', 45, 'Cabbage.jpg', 1, 0, 0),
 (7, 'Shiitake Mushrooms Dried', 3, '4.00', 98, 'Shiitake Mushrooms Dried short description.', 'Shiitake Mushrooms Dried full description.', 45, 'shiitake_mushroom.jpg', NULL, 0, 0),
 (8, 'Shiitake Mushrooms Fresh', 4, '4.00', 100, 'Shiitake Mushrooms Fresh short description.', 'Shiitake Mushrooms Fresh full description.', 45, 'Shiitake_Mushrooms_Fresh.jpg', NULL, 0, 0),
@@ -268,7 +268,7 @@ CREATE TABLE `sizes` (
 --
 
 INSERT INTO `sizes` (`sizeID`, `sizeName`, `price`, `qty`) VALUES
-(1, 'Medium (1-1.5 lbs)', '5.00', 10),
+(1, 'Medium (1-1.5 lbs) test', '4.99', 15),
 (1, 'Small (0.5-1 lbs)', '2.00', 50),
 (2, 'Medium (1-1.5 lbs)', '4.99', 30),
 (2, 'Small (0.5-1 lbs)', '3.99', 0),

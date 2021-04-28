@@ -127,6 +127,34 @@ function addSizes($sizesAry){
     return $sizeID;
 }
 
+// update sizes from $sizeID
+function updateSizes($sizesAry, $sizeID){
+    global $db;
+    
+    foreach ($sizesAry as $size) {
+        $name = $size['name'];
+        $oldName = $size['oldName'];
+        $price = $size['price'];
+        $price = number_format((float)$price, 2, '.', '');
+        $qty = $size['qty'];
+
+        
+        if (isset($size['del'])) {
+            echo "deleting size " . $name;
+            // delete size 
+            $sql = "DELETE FROM `sizes` WHERE `sizeName` = \"$name\" AND `sizeID` = $sizeID";
+            // echo $sql . "<br>";
+            $pdoS = $db->query($sql);
+        } else if ($name != "") {
+            $sql = "UPDATE `sizes` SET `sizeName`= \"$name\",`price`= $price,`qty`= $qty WHERE `sizeName` = \"$oldName\" AND `sizeID` = $sizeID";
+            // echo $sql . "<br>";
+
+            $pdoS = $db->query($sql);
+        }
+        
+    }
+}
+
 function addProduct($productName, $portionsID, $price, $qty, $shortDesc, $fullDesc, $catID, $image, $sizeID, $outOfSeason, $hide){
     global $db;
 
@@ -138,21 +166,30 @@ function addProduct($productName, $portionsID, $price, $qty, $shortDesc, $fullDe
     
 
 
-    $pdoS = $db->query($sql);
+    // $pdoS = $db->query($sql);
     echo ("<br><h3 class='modMessage'>Added: $productName</h3>");
 }
 
-function editProduct($productName, $price, $qty, $imageName, $productID){
+//update product by sizeID
+function updateProduct($productID, $productName, $price, $qty, $shortDesc, $fullDesc, $image, $sizeID, $outOfSeason, $hide){
     global $db;
     echo ("<h3 class='modMessage'>Edited: $productName</h3>");
-    $sql = "UPDATE `products` SET `productName`='$productName',`image`='$imageName',`price`=$price,`qty`=$qty WHERE productID = $productID";
+
+    if ($sizeID != null) {
+        $sql = "UPDATE `products` SET `productName`=\"$productName\",`shortDesc`=\"$shortDesc\",`fullDesc`=\"$fullDesc\",`image`=\"$image\",`sizeID`= $sizeID,`outOfSeason`= $outOfSeason,`hide`= $hide WHERE productID = $productID";
+    } else {
+        $sql = "UPDATE `products` SET `productName`=\"$productName\",`price`= $price,`qty`= $qty,`shortDesc`=\"$shortDesc\",`fullDesc`=\"$fullDesc\",`image`=\"$image\",`outOfSeason`= $outOfSeason,`hide`= $hide WHERE productID = $productID";
+    }
+
+
+    // echo $sql . "<br>";
     $pdoS = $db->query($sql);
 }
 
 function editCat($catName, $imageName, $taxRate, $hide, $catID){
     global $db;
     echo ("<h3 class='modMessage'>Edited: $catName</h3>");
-    $sql = "UPDATE `categories` SET `catName`= '$catName',`image`= '$imageName',`taxRate`= $taxRate,`hide`= $hide WHERE catID = $catID";
+    $sql = "UPDATE `categories` SET `catName`= '$catName',`image`= \"$imageName\",`taxRate`= $taxRate,`hide`= $hide WHERE catID = $catID";
     $pdoS = $db->query($sql);
 }
 

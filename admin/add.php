@@ -1,4 +1,5 @@
 <?php
+// changes submitted
 if (isset($modify)){
     $newImage = $_FILES['newImage'];
 
@@ -33,13 +34,13 @@ if (isset($modify)){
             $checkHide = 0;
         }
         
-        $newPrice = number_format((float)$newPrice, 2, '.', '');
         // add product depending on if sizes checkbox is checked
         if ($checkSizes) { /* Has sizes */
             // create sizes
             $sizeID = addSizes($_POST['newSize']);
             addProduct($newProdName, $portionsID, null, null, $newShort, $newFull, $catID, $_FILES['newImage']['name'], $sizeID, $checkSeason, $checkHide);
         } else { /* Doesn't have sizes */
+            $newPrice = number_format((float)$newPrice, 2, '.', '');
             addProduct($newProdName, $portionsID, $newPrice, $newQty, $newShort, $newFull, $catID, $_FILES['newImage']['name'], null, $checkSeason, $checkHide);
         }
         
@@ -95,7 +96,7 @@ if (isset($modify)){
     <div id="sizes-container" style="display:none;">
         <!-- newSize[0] -->
         <label>Size 1</label>
-        <div id="mainsection" class="row">
+        <div class="row">
             <div class="col-md-4 mb-3">
                 <input type="text" class="form-control" placeholder="Enter Size Name" name='newSize[0][name]'>
             </div>
@@ -108,7 +109,7 @@ if (isset($modify)){
         </div>
         <!-- newSize[1] -->
         <label>Size 2</label>
-        <div id="mainsection" class="row">
+        <div class="row">
             <div class="col-md-4 mb-3">
                 <input type="text" class="form-control" placeholder="Enter Size Name" name='newSize[1][name]'>
             </div>
@@ -121,7 +122,7 @@ if (isset($modify)){
         </div>
         <!-- newSize[2] -->
         <label>Size 3 <small>(Optional)</small></label>
-        <div id="mainsection" class="row">
+        <div class="row">
             <div class="col-md-4 mb-3">
                 <input type="text" class="form-control" placeholder="Enter Size Name" name='newSize[2][name]'>
             </div>
@@ -134,7 +135,7 @@ if (isset($modify)){
         </div>
         <!-- newSize[3] -->
         <label>Size 4 <small>(Optional)</small></label>
-        <div id="mainsection" class="row">
+        <div class="row">
             <div class="col-md-4 mb-3">
                 <input type="text" class="form-control" placeholder="Enter Size Name" name='newSize[3][name]'>
             </div>
@@ -147,7 +148,7 @@ if (isset($modify)){
         </div>
         <!-- newSize[4] -->
         <label>Size 5 <small>(Optional)</small></label>
-        <div id="mainsection" class="row">
+        <div class="row">
             <div class="col-md-4 mb-3">
                 <input type="text" class="form-control" placeholder="Enter Size Name" name='newSize[4][name]'>
             </div>

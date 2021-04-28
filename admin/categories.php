@@ -50,7 +50,6 @@ if (isset($modify)){
             <p><?=$cat['image']?> <small>(leave blank to keep this image)</small></p>
             <input type="hidden" name="oldImage" value='<?=$cat['image']?>'>
             <div class="input-group mb-3 form-control" style='padding: 0px; height: 100%;' placeholder='Image'>
-                <!-- <input type="file" id='inputBtn' class='padding: 0px; margin: 0px; width: 100%;' name='newImage'> -->
                 <input class="form-control form-control-sm" name="newImage" id="inputBtn" type="file">
             </div>
             <input type="hidden" name="modify">

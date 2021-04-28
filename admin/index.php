@@ -38,11 +38,21 @@ if (!empty($username) && !empty($password)){
     if (md5($username) == '21232f297a57a5a743894a0e4a801fc3' && md5($password) == '1a1dc91c907325c69271ddf0c944bc72') { //U:admin  P:pass
         $_SESSION['login'] = 'valid';
     } else {
-        echo ("<h4 style='color: red; text-align: center;'>Your Username or Password is incorrect</h4>");
+        ?>
+        <div class="alert">
+            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>Your Username or Password is incorrect.
+        </div>
+
+        <?php
     }
     
 } else if (!empty($username) || !empty($password)){
-    echo ("<h4 style='color: red;text-align:center;'>You must enter both username and password</h4>");
+    ?>
+    <div class="alert">
+        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>You must enter both username and password.
+    </div>
+
+    <?php
 }
   
 if (isset($_SESSION['login']) == "valid"){
