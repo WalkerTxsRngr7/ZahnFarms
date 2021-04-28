@@ -99,17 +99,12 @@ if ($prod['sizeID'] != null) {
         } 
         if ($qty == 0) { /* Out of stock */
         ?>
-        <!-- Out of Stock button -->
-        <div class="uk-card">
-          <button id="submit add-to-cart-btn" class="uk-button uk-button-default" tabindex="-1" disabled>Out of Stock</button>
-        </div>  
+        <h3>Out of Stock</h3> 
         <?php
         } else if ($prod['outOfSeason'] == 1) { /* Out of season */
         ?>
         <!-- Out of Season button -->
-        <div class="uk-card">
-          <button id="submit add-to-cart-btn" class="uk-button uk-button-default" tabindex="-1" disabled>Out of Season</button>
-        </div>  
+        <h3>Out of Season</h3>
 
         <?php
         } else { /* In Stock and In Season */

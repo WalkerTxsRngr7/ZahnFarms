@@ -30,7 +30,6 @@ $addToCart = filter_input(INPUT_POST, "addToCart");
 $remove = filter_input(INPUT_POST, "remove");
 
 $subtotal = 0;
-$tax = 0;
 
 echo"<div class='content-container blur-container'>";
 // $cat = catByID($catID);
@@ -65,13 +64,6 @@ if ($addToCart == "true"){
   }
   foreach($_SESSION['cart'] as $item){
     
-    // if ($item['size'] != null){
-    //   $total += $item['size']['price'];
-    // } else {
-    //   $total += $item['prod']['price'];
-    // }
-    
-    // $prod = prodByID($item['prodID']);
   ?>
       <!-- Individual Product -->
       <!-- Remove any changes being made to the database from this page and move to the product.php page -->
@@ -132,20 +124,12 @@ if ($addToCart == "true"){
   <?php
   }
   ?>
-  <div class="cart-prod-row cart-totals"> <!-- Totals. May only show subtotal. Tax and total can be on the checkout page -->
+  <div class="cart-prod-row cart-totals"> <!-- Totals. -->
     <div class="uk-flex uk-flex-right">
       <div class="uk-card uk-card-default uk-card-body uk-width-1-3@m">
         <div class="uk-grid-small" uk-grid>
           <div class="uk-width-expand" uk-leader="fill: .">Subtotal:</div>
           <div>$<?=number_format((float)$subtotal, 2, '.', '')?></div>
-        </div>
-        <div class="uk-grid-small" uk-grid>
-          <div class="uk-width-expand" uk-leader="fill: .">Tax:</div> <!-- Need to find out what to do for tax -->
-          <div>$<?=number_format((float)$tax, 2, '.', '')?></div>
-        </div>
-        <div class="uk-grid-small" uk-grid>
-          <div class="uk-width-expand" uk-leader="fill: .">Total:</div>
-          <div>$<?php $total = $subtotal+$tax; echo number_format((float)$total, 2, '.', '');?></div>
         </div>
       </div>
     </div>  
