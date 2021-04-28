@@ -282,10 +282,11 @@ input:focus:invalid {
   width:90%;
   margin: auto;
 }
-#addForm {
+#adminForm {
   width: 80%;
   margin: auto;
 }
+
 
 
 /* Orders pages */

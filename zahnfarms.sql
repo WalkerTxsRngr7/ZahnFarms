@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 28, 2021 at 01:12 AM
+-- Generation Time: Apr 28, 2021 at 07:16 PM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.3.1
 
@@ -32,7 +32,7 @@ CREATE TABLE `categories` (
   `catID` int(11) NOT NULL,
   `catName` varchar(25) COLLATE utf8mb4_unicode_ci NOT NULL,
   `image` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `taxRate` decimal(4,4) NOT NULL DEFAULT '0.0000',
+  `taxRate` decimal(4,3) NOT NULL DEFAULT '0.000',
   `hide` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -41,17 +41,17 @@ CREATE TABLE `categories` (
 --
 
 INSERT INTO `categories` (`catID`, `catName`, `image`, `taxRate`, `hide`) VALUES
-(41, 'Beef', 'beef.jpg', '0.0000', 0),
-(42, 'Chicken', 'chicken.jpg', '0.0000', 0),
-(43, 'Pork', 'pork.jpg', '0.0000', 0),
-(44, 'Eggs', 'eggs.jpg', '0.0000', 0),
-(45, 'Vegetables', 'Carrots.jpg', '0.0000', 0),
-(46, 'Fruit', 'Tomato.jpg', '0.0000', 0),
-(47, 'Berries', 'strawberry.jpg', '0.0000', 0),
-(48, 'Mushrooms', 'shiitake_mushroom.jpg', '0.0000', 0),
-(49, 'Seasonings and Mixes', '.jpg', '0.0000', 1),
-(50, 'Crafts', '.jpg', '0.0000', 1),
-(51, 'Lip Balms', '.jpg', '0.0000', 1);
+(41, 'Beef', 'beef.jpg', '0.000', 0),
+(42, 'Chicken', 'chicken.jpg', '0.000', 0),
+(43, 'Pork', 'pork.jpg', '0.000', 0),
+(44, 'Eggs', 'eggs.jpg', '0.000', 0),
+(45, 'Vegetables', 'Carrots.jpg', '0.000', 0),
+(46, 'Fruit', 'Tomato.jpg', '0.000', 0),
+(47, 'Berries', 'strawberry.jpg', '0.000', 0),
+(48, 'Mushrooms', 'shiitake_mushroom.jpg', '0.000', 0),
+(49, 'Seasonings and Mixes', '.jpg', '0.000', 1),
+(50, 'Crafts', '.jpg', '0.000', 1),
+(51, 'Lip Balms', '.jpg', '0.000', 1);
 
 -- --------------------------------------------------------
 

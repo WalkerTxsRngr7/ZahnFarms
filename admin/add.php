@@ -32,6 +32,8 @@ if (isset($modify)){
         if (!$checkHide) {
             $checkHide = 0;
         }
+        
+        $newPrice = number_format((float)$newPrice, 2, '.', '');
         // add product depending on if sizes checkbox is checked
         if ($checkSizes) { /* Has sizes */
             // create sizes
@@ -54,7 +56,7 @@ if (isset($modify)){
 ?>
 
 
-<form id='addForm' action="" method="post" enctype="multipart/form-data">
+<form id='adminForm' action="" method="post" enctype="multipart/form-data">
 
     <div class="form-group">
         <label for="newProdName">Product Name:</label>
@@ -219,11 +221,6 @@ if (isset($modify)){
     <div class="form-group">
         <label for="formFileSm" class="form-label">Image:</label>
         <input class="form-control form-control-sm" name="newImage" id="formFileSm" type="file">
-        <!-- <label for="addImage">Image:</label>
-        <div uk-form-custom>
-            <input type="file" required>
-            <button class="uk-button uk-button-default" type="button" tabindex="-1" name='newImage'>Select</button>
-        </div> -->
     </div>
     <div>
         <div class="form-check">

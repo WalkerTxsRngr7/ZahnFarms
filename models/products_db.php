@@ -149,10 +149,10 @@ function editProduct($productName, $price, $qty, $imageName, $productID){
     $pdoS = $db->query($sql);
 }
 
-function editCat($catName, $imageName, $catID){
+function editCat($catName, $imageName, $taxRate, $hide, $catID){
     global $db;
     echo ("<h3 class='modMessage'>Edited: $catName</h3>");
-    $sql = "UPDATE `categories` SET `catName`='$catName',`image`='$imageName' WHERE catID = $catID";
+    $sql = "UPDATE `categories` SET `catName`= '$catName',`image`= '$imageName',`taxRate`= $taxRate,`hide`= $hide WHERE catID = $catID";
     $pdoS = $db->query($sql);
 }
 
