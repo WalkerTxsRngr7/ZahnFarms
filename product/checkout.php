@@ -106,7 +106,7 @@ $sizeName = filter_input(INPUT_POST, "size");
             if ($cust == null) {
                 insertCustomer($fName, $lName, $phone, $address1, $address2, $city, $state, $zip, $email);
                 $cust = getCustomerByNameAndPhone($fName, $lName, $phone);
-                echo "Customer Created with id of " . $cust['customerID'];
+                // echo "Customer Created with id of " . $cust['customerID'];
             }
             $_SESSION['custID'] = $cust['customerID'];
         

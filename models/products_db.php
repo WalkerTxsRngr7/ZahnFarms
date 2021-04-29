@@ -166,7 +166,7 @@ function addProduct($productName, $portionsID, $price, $qty, $shortDesc, $fullDe
     
 
 
-    // $pdoS = $db->query($sql);
+    $pdoS = $db->query($sql);
     echo ("<br><h3 class='modMessage'>Added: $productName</h3>");
 }
 
