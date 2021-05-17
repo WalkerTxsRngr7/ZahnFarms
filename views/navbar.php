@@ -57,7 +57,7 @@
                         <a href="../product/">Products</a>
                         <ul class="uk-nav-sub">
                             <?php
-                            $aryCat = getAllCategories();
+                            $aryCat = getAllCategoriesShow();
                             foreach($aryCat as $cat){
                             ?>
                             <li><a href="../product?catID=<?=$cat['catID']?>"><?=$cat['catName']?></a></li>
