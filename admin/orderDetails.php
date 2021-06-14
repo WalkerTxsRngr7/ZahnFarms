@@ -1,5 +1,4 @@
 <?php
-// $orders = getAllOrders();
 $delivered = filter_input(INPUT_POST, "delivered");
 $order = getOrderByID($orderID);
 
@@ -12,21 +11,6 @@ if (isset($delivered)) {
     
 }
 ?>
-
-<!-- example -->
-<?php
-// foreach ($orders as $order ) {
-//     echo("
-//     <tr>
-//         <th scope='row'>$order[orderID]</th>
-//         <td>$order[customerName]</td>
-//         <td>$order[productID]</td>
-//         <td>$order[qtyOrdered]</td>
-//     </tr>");
-// }
-?>
-
-
 
 <div style="width:90%; margin:auto">
     <div class="print">
@@ -53,11 +37,6 @@ if (isset($delivered)) {
               substr($from, 3, 3),
               substr($from, 6));
 
-        // if(  preg_match( '/^\+\d(\d{3})(\d{3})(\d{4})$/', $phone,  $matches ) )
-        // {
-        //     $phone = $matches[1] . '-' .$matches[2] . '-' . $matches[3];
-        //     // return $phone;
-        // }
         echo "<p>Phone: $phoneFormat</p>"; /* See if way to format as phone number */
         echo "<p>Email: $email</p>";
         ?>
@@ -75,7 +54,7 @@ if (isset($delivered)) {
                 echo "<span style='color:red; text-decoration:underline;'>Pay At Pickup</span>";
             }?>
 
-        </p> <!-- Paid, Pay At Pickup, Delivered  Style: Paid(Blue) Unpaid(Red, underline) Delivered(Green)-->
+        </p>
 
         <button style="<?php echo ($order['status'] == 2 ? 'display:none' : '') ?>" class="no-print uk-button uk-button-default" uk-toggle="target: #delivered-modal" type="button">Delivered?</button>
         <!-- This is the modal -->
@@ -96,12 +75,6 @@ if (isset($delivered)) {
         </div>
     </div>
     <hr>
-
-
-    <!--  -->
-
-
-
 
     <!-- Print and normal versions of the same table. Make the same except normal has uk-table-responsive and print doesn't -->
     <div class="no-print uk-overflow-auto">

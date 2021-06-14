@@ -5,10 +5,6 @@ Marshfield: Farmer's Market, ...address... Friday 2:30-6:30PM.  Wednesday latest
 Farm in Elkland: 9018 St Hwy W, Elkland, MO Mon-Sat by appt. Call or email.
  -->
 
-<!-- If unknownPounds or unknown total pay all at once at pickup. -->
-
-
-
 <?php
 if (!isset($_SESSION)) { /* check if session is created */
   session_start();
@@ -70,7 +66,6 @@ $sizeName = filter_input(INPUT_POST, "size");
         // Determine if needs to be paid inperson
         if ($prod['portionsID'] == 6) {
             $payOnline = false;
-            // echo "<h4>" . $prod['productName'] . "</h4>";
         }
 
         // calculate itemPrice
@@ -106,7 +101,6 @@ $sizeName = filter_input(INPUT_POST, "size");
             if ($cust == null) {
                 insertCustomer($fName, $lName, $phone, $address1, $address2, $city, $state, $zip, $email);
                 $cust = getCustomerByNameAndPhone($fName, $lName, $phone);
-                // echo "Customer Created with id of " . $cust['customerID'];
             }
             $_SESSION['custID'] = $cust['customerID'];
         
@@ -249,6 +243,7 @@ $sizeName = filter_input(INPUT_POST, "size");
                 </div>
             </div>
         <?php
+        // pay online
         } else if ($checkout){?>
             <!-- display paypal buttons -->
             <div class="col-md-4 order-md-2">
@@ -266,6 +261,7 @@ $sizeName = filter_input(INPUT_POST, "size");
             </form>
 
         <?php 
+        // pay at pickup
         } else { ?>
             <div class="col-md-4 order-md-2">
                 <div class="text-center">
@@ -347,9 +343,6 @@ $sizeName = filter_input(INPUT_POST, "size");
                         $diff_wed = date_diff($start_date,$end_date_wed);
                         $diff_fri = date_diff($start_date,$end_date_fri);
 
-                        
-                        //find the number of days between two dates
-                        // echo "Difference between two dates: ".$diff->format("%a"). " Days ";
                     ?>
                     <div class="col-md-6 mb-3">
                         <label for="delDate">Pickup Date</label><br>
@@ -445,9 +438,6 @@ $sizeName = filter_input(INPUT_POST, "size");
                         <label for="phone">Phone <small>(No Special Characters)</small></label>
                         <input name="phone" type="tel" class="form-control" id="phone" placeholder="1234567890" value=""
                             pattern="[0-9]{10}" required autocomplete="tel-national">
-                        <!-- <label for="phone">Phone <small>e.g. 123-456-7890</small></label>
-                        <input type="tel" class="form-control" id="phone" placeholder="123-456-7890" value=""
-                        pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required autocomplete="tel-national"> -->
                         <div class="invalid-feedback">
                             Valid phone number is required.
                         </div>
@@ -554,63 +544,12 @@ $sizeName = filter_input(INPUT_POST, "size");
                 <hr class="mb-4">
                 <button class="btn checkout-btn btn-lg btn-block" type="submit">Continue to Checkout</button>
                 <input type="hidden" name="checkout" value="<?=$payOnline?>">
-                <!-- <?php 
+                <?php 
                 if (!$payOnline) {
                     echo "<label>Pay at Pickup</label>";
                 }
-                ?> -->
+                ?>
 
-                <!-- <h4 class="mb-3">Payment</h4>
-
-            <div class="d-block my-3">
-              <div class="custom-control custom-radio">
-                <input id="credit" name="paymentMethod" type="radio" class="custom-control-input" checked required>
-                <label class="custom-control-label" for="credit">Credit card</label>
-              </div>
-              <div class="custom-control custom-radio">
-                <input id="debit" name="paymentMethod" type="radio" class="custom-control-input" required>
-                <label class="custom-control-label" for="debit">Debit card</label>
-              </div>
-              <div class="custom-control custom-radio">
-                <input id="paypal" name="paymentMethod" type="radio" class="custom-control-input" required>
-                <label class="custom-control-label" for="paypal">Paypal</label>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-6 mb-3">
-                <label for="cc-name">Name on card</label>
-                <input type="text" class="form-control" id="cc-name" placeholder="" required>
-                <small class="text-muted">Full name as displayed on card</small>
-                <div class="invalid-feedback">
-                  Name on card is required
-                </div>
-              </div>
-              <div class="col-md-6 mb-3">
-                <label for="cc-number">Credit card number</label>
-                <input type="text" class="form-control" id="cc-number" placeholder="" required>
-                <div class="invalid-feedback">
-                  Credit card number is required
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-3 mb-3">
-                <label for="cc-expiration">Expiration</label>
-                <input type="text" class="form-control" id="cc-expiration" placeholder="" required>
-                <div class="invalid-feedback">
-                  Expiration date required
-                </div>
-              </div>
-              <div class="col-md-3 mb-3">
-                <label for="cc-expiration">CVV</label>
-                <input type="text" class="form-control" id="cc-cvv" placeholder="" required>
-                <div class="invalid-feedback">
-                  Security code required
-                </div>
-              </div>
-            </div>
-            <hr class="mb-4">
-            <button class="btn btn-primary btn-lg btn-block" type="submit">Continue to checkout</button> -->
             </form>
         </div>
     </div>

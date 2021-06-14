@@ -12,7 +12,7 @@
     </div>
     <div class="footer-credits">
       <p class="uk-text-right@s">
-        2021 Created By:<br>Walker Gross, Jacob Estrada, & Skyler Barr
+        2021 Created By:<br>Walker Gross & Jacob Estrada
         <br><br>
         <a style="font-size: .65em;" href="https://www.freepik.com/vectors/background">Background vector created by createvil - www.freepik.com</a>
       </p>

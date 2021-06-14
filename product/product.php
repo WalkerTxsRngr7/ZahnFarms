@@ -1,5 +1,4 @@
 <?php
-// $cat = catByID($catID);
 $prod = prodByID($prodID);
 $portion = portionByID($prod['portionsID']);
 $sizeAry = null;

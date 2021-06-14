@@ -69,7 +69,6 @@ if (!isset($edit)){
 
     <section>
         <!--* Category boxes-->
-        <!-- TODO Style -->
         <div class="uk-grid-small uk-child-width-1-4@s uk-flex-center uk-text-center" uk-grid>
 
             <?php
@@ -80,7 +79,6 @@ if (!isset($edit)){
             <div>
                 <form action="" method="post"> <!-- Go into category -->
                     
-                    <!-- Put class="uk-flex-last" for out of season items -->
                     <div class="uk-card card-rows uk-card-default" value="<?=$cat['catID']?>">
                         <div class="uk-card-media-top">
                             <img class="card-image" src="../images/<?=$cat['image']?>" alt="<?=$cat['catName']?> Image">

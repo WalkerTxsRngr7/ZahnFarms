@@ -48,10 +48,6 @@ if (isset($modify)){
         echo("<h3>You must fill every box</h3>");
     }
 
-    // if ($checkSizes)
-    // foreach ($_POST['newSize'] as $size) {
-    //     echo "<h3>" . $size['name'] . "</h3><br>";
-    // }
 }
 
 ?>
@@ -238,7 +234,6 @@ if (isset($modify)){
         </div>
     </div>
 
-    <!-- <input type="hidden" name="modify"> -->
     <input type="hidden" name="adminBtn" value="<?=$adminBtn?>">
     <button type="submit" name="modify" class="uk-button">Add Product</button>
 

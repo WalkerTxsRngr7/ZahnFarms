@@ -13,7 +13,7 @@
                 <th scope="col">Order Date</th>
                 <th scope="col">Delivery Date</th>
                 <th scope="col">Delivery Location</th>
-                <th scope="col">Total</th> <!-- May add another field to the table for unpaid total -->
+                <th scope="col">Total</th>
             </tr>
         </thead>
         <tbody>
@@ -42,7 +42,6 @@
                 </td>";
             echo "<td>$OrderID</td>";
             echo "<td>" . $Customer['lName'] . ", " . $Customer['fName'] . "</td>";
-            /* Status: Paid, Unpaid, Delivered. Give different class depending on status. status-paid, status-unpaid, status-delivered  Paid, Pay At Pickup, Delivered  Style: Paid(Blue) Unpaid(Red, underline) Delivered(Green) Border solid 3px */
             if($Status == 2){ 
                 echo "<td class='delivered'>Delivered</td>";
             }

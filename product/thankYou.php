@@ -1,7 +1,3 @@
-
-
-
-
 <?php
 if (!isset($_SESSION)) { /* check if session is created */
     session_start();

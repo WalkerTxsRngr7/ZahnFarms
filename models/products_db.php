@@ -254,7 +254,7 @@ function getLastOrderIDByCustID($custID) {
 /** RETURN AN ARRAY OF ALL ORDERS */
 function getAllOrders(){
     global $db;
-    $sql = "SELECT * FROM `orders`";
+    $sql = "SELECT * FROM orders ORDER BY orderID DESC";
 
     //oop
     $qry = $db->query($sql);

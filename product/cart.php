@@ -1,15 +1,4 @@
-<!-- Choose location first -->
-<!-- Locations: 
-Springfield: Sam's Club E. Sunshine. Wednesday 4-4:30PM.  Monday latest for same Wednesday delivery
-Marshfield: Farmer's Market, ...address... Friday 2:30-6:30PM.  Wednesday latest for this Friday delivery
-Farm in Elkland: 9018 St Hwy W, Elkland, MO Mon-Sat by appt. Call or email.
- -->
-
- <!-- If unknownPounds or unknown total pay all at once at pickup. -->
-
-
-
- <?php
+<?php
 if (!isset($_SESSION)) { /* check if session is created */
   session_start();
 }
@@ -21,9 +10,7 @@ $title = "Home";
 $headTitle = "Zahn Farms";
 include "../views/header.php";
 
-// $catID = filter_input(INPUT_POST, "catID");
 $prodID = filter_input(INPUT_POST, "prodID");
-// $prodName = filter_input(INPUT_POST, "productName");
 $qty = filter_input(INPUT_POST, "qty");
 $sizeName = filter_input(INPUT_POST, "size");
 $addToCart = filter_input(INPUT_POST, "addToCart");
@@ -32,13 +19,6 @@ $remove = filter_input(INPUT_POST, "remove");
 $subtotal = 0;
 
 echo"<div class='content-container blur-container'>";
-// $cat = catByID($catID);
-
-
-// $_SESSION['cart'][$id]['quantity']++; // another of this item to the cart
-// unset($_SESSION['cart'][$id]); //remove the item from the cart
-
-
 
 if ($addToCart == "true"){
     $prod = prodByID($prodID);
@@ -56,7 +36,6 @@ if ($addToCart == "true"){
 
 
 ?>
-<!-- <div class="cart-container"> -->
   
   <?php
   if ($_SESSION['cart'] == null) {
@@ -66,7 +45,6 @@ if ($addToCart == "true"){
     
   ?>
       <!-- Individual Product -->
-      <!-- Remove any changes being made to the database from this page and move to the product.php page -->
       <div class="cart-prod-row">
         <form action="" method="post">
           <div class="uk-flex-center uk-flex-middle uk-child-width-expand" uk-grid>
@@ -143,8 +121,6 @@ if ($addToCart == "true"){
   <?php
   }
   ?>
-  
-<!-- </div> -->
 
 </div>
 <?php
